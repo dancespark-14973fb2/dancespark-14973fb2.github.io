@@ -1,0 +1,2619 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>69夫妻乐园 - 夫妻互动与生活分享平台</title>
+  <meta name="description" content="69夫妻乐园汇聚夫妻日常互动、情感沟通、共同爱好与生活记录等内容，提供精选故事、实用指南、话题问答与用户分享，适合希望增进伴侣默契与生活趣味的夫妻阅读。">
+  <meta name="keywords" content="69夫妻乐园">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23e07a5f'/%3E%3Ctext x='50' y='68' font-size='48' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3E69%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      --primary: #e07a5f;
+      --primary-light: #f4a58e;
+      --primary-dark: #b3573f;
+      --bg: #fdfaf7;
+      --panel: #ffffff;
+      --text-primary: #2d2420;
+      --text-secondary: #5e5048;
+      --text-muted: #8f8179;
+      --border: #efe4dd;
+      --radius-card: 14px;
+      --radius-btn: 8px;
+      --radius-tag: 6px;
+      --radius-banner: 20px;
+      --shadow-default: 0 2px 8px rgba(45, 36, 32, 0.06);
+      --shadow-hover: 0 6px 20px rgba(45, 36, 32, 0.12);
+      --font-sans: system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      --announce-h: 40px;
+      --header-h: 64px;
+      --sticky-offset: calc(var(--announce-h) + var(--header-h));
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--sticky-offset);
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    ul, ol {
+      list-style: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    /* 吸顶公告条 */
+    .announce-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: var(--announce-h);
+      background: var(--primary-dark);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+      overflow: hidden;
+    }
+
+    .announce-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 20px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .announce-brand {
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      flex-shrink: 0;
+    }
+
+    .announce-items {
+      display: flex;
+      gap: 24px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .announce-items span {
+      opacity: 0.92;
+    }
+
+    .announce-items .dot {
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    /* 页头 */
+    .site-header {
+      position: fixed;
+      top: var(--announce-h);
+      left: 0;
+      right: 0;
+      z-index: 999;
+      height: var(--header-h);
+      background: rgba(253, 250, 247, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 20px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+    }
+
+    .logo-text {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      letter-spacing: 0.5px;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 6px;
+      flex: 1;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .main-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .main-nav a {
+      padding: 8px 14px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border-radius: var(--radius-btn);
+      white-space: nowrap;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-btn);
+      padding: 0 10px;
+      height: 36px;
+      transition: border-color 0.2s;
+    }
+
+    .search-box:focus-within {
+      border-color: var(--primary);
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 13px;
+      width: 130px;
+      color: var(--text-primary);
+    }
+
+    .search-box input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .search-box button {
+      color: var(--text-muted);
+      padding: 4px;
+      display: flex;
+    }
+
+    .search-box button:hover {
+      color: var(--primary-dark);
+    }
+
+    .btn-submit {
+      background: var(--primary);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: var(--radius-btn);
+      transition: background 0.2s;
+    }
+
+    .btn-submit:hover {
+      background: var(--primary-dark);
+    }
+
+    .hamburger {
+      display: none;
+      width: 38px;
+      height: 38px;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-btn);
+      color: var(--text-primary);
+    }
+
+    .hamburger:hover {
+      background: var(--border);
+    }
+
+    /* 首屏 */
+    .hero {
+      margin-top: var(--sticky-offset);
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #fdf0ea 0%, #fce4d9 40%, #f9d9cb 100%);
+    }
+
+    .hero-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 48px 20px 56px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-size: 42px;
+      font-weight: 900;
+      color: var(--primary-dark);
+      letter-spacing: 1px;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .hero-desc {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 28px;
+    }
+
+    .hero-entries {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-entries a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 12px 24px;
+      border-radius: var(--radius-btn);
+      font-size: 15px;
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .hero-entries a:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .hero-entries .entry-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .hero-entries .entry-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .hero-entries .entry-secondary {
+      background: var(--panel);
+      color: var(--primary-dark);
+      border: 1px solid var(--primary-light);
+    }
+
+    .hero-entries .entry-secondary:hover {
+      background: var(--primary-light);
+      color: #fff;
+    }
+
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-visual svg {
+      width: 100%;
+      max-width: 420px;
+      height: auto;
+      filter: drop-shadow(0 8px 24px rgba(224, 122, 95, 0.2));
+    }
+
+    /* 主容器 */
+    .main-container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* 三栏布局 */
+    .three-col {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr) 260px;
+      gap: 32px;
+      padding: 40px 0 60px;
+    }
+
+    /* 左侧频道索引 */
+    .channel-sidebar {
+      position: sticky;
+      top: calc(var(--sticky-offset) + 20px);
+      align-self: start;
+    }
+
+    .channel-sidebar h3 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+      padding-left: 4px;
+    }
+
+    .channel-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .channel-list a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 12px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      border-radius: var(--radius-btn);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .channel-list a:hover,
+    .channel-list a.active {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    .channel-list .count {
+      font-size: 11px;
+      color: var(--text-muted);
+      background: var(--border);
+      padding: 1px 7px;
+      border-radius: 10px;
+    }
+
+    .channel-list a:hover .count,
+    .channel-list a.active .count {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* 中间主内容 */
+    .main-content {
+      min-width: 0;
+    }
+
+    .section {
+      margin-bottom: 48px;
+    }
+
+    .section:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .section-header h2 {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: 0.3px;
+    }
+
+    .section-header .sub {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .section-header .more-link {
+      font-size: 13px;
+      color: var(--primary-dark);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .section-header .more-link:hover {
+      text-decoration: underline;
+    }
+
+    /* 概览 */
+    .overview-text p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.85;
+      margin-bottom: 14px;
+    }
+
+    .overview-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 精选卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .feature-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .feature-card .card-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      background: var(--border);
+    }
+
+    .card-body {
+      padding: 14px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .card-type {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      background: #fdf0ea;
+      padding: 2px 8px;
+      border-radius: var(--radius-tag);
+      width: fit-content;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .card-tags span {
+      font-size: 11px;
+      color: var(--text-muted);
+      background: var(--bg);
+      padding: 2px 7px;
+      border-radius: var(--radius-tag);
+      border: 1px solid var(--border);
+    }
+
+    /* 最新更新列表 */
+    .update-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+    }
+
+    .update-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+
+    .update-item:last-child {
+      border-bottom: none;
+    }
+
+    .update-item:hover {
+      background: #fdf8f5;
+    }
+
+    .update-date {
+      font-size: 12px;
+      color: var(--primary-dark);
+      font-weight: 700;
+      white-space: nowrap;
+      padding-top: 2px;
+      min-width: 64px;
+    }
+
+    .update-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .update-info strong {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .update-info p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* 分类入口 */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .category-item {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 18px 14px;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .category-item:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--primary-light);
+    }
+
+    .category-item .cat-icon {
+      font-size: 26px;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .category-item .cat-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .category-item .cat-count {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* 深度解析 */
+    .deep-dive {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 28px 26px;
+    }
+
+    .deep-dive h3 {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin: 22px 0 10px;
+      padding-left: 12px;
+      border-left: 3px solid var(--primary);
+    }
+
+    .deep-dive h3:first-child {
+      margin-top: 0;
+    }
+
+    .deep-dive p {
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      line-height: 1.85;
+      margin-bottom: 12px;
+    }
+
+    .deep-dive ul {
+      margin: 8px 0 14px 0;
+      padding-left: 4px;
+    }
+
+    .deep-dive ul li {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      padding-left: 18px;
+      position: relative;
+      margin-bottom: 6px;
+    }
+
+    .deep-dive ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary-light);
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 16px;
+      font-size: 13px;
+    }
+
+    .compare-table th {
+      background: #fdf0ea;
+      color: var(--primary-dark);
+      font-weight: 700;
+      padding: 9px 12px;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+
+    .compare-table td {
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      vertical-align: top;
+    }
+
+    /* 消费指南 */
+    .guide-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+    }
+
+    .guide-step {
+      display: flex;
+      gap: 16px;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .guide-step:last-child {
+      border-bottom: none;
+    }
+
+    .step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 800;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-content h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .step-content p {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* FAQ */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .faq-list details {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .faq-list details[open] {
+      border-color: var(--primary-light);
+    }
+
+    .faq-list summary {
+      padding: 15px 18px;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .faq-list summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-list summary::after {
+      content: '+';
+      font-size: 18px;
+      color: var(--primary);
+      font-weight: 400;
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+
+    .faq-list details[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      padding: 0 18px 16px;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    /* 用户评论 */
+    .comment-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+    }
+
+    .comment-item {
+      padding: 15px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .comment-item:last-child {
+      border-bottom: none;
+    }
+
+    .comment-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 5px;
+    }
+
+    .comment-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary-light), var(--primary));
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .comment-nick {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .comment-time {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-left: auto;
+    }
+
+    .comment-text {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      padding-left: 40px;
+    }
+
+    /* 相关资讯 */
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .news-item {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 18px 20px;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      transition: box-shadow 0.2s;
+    }
+
+    .news-item:hover {
+      box-shadow: var(--shadow-default);
+    }
+
+    .news-thumb {
+      width: 100px;
+      height: 75px;
+      border-radius: 10px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: var(--border);
+    }
+
+    .news-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .news-body h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+
+    .news-body .news-date {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .news-body p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* 相关推荐 */
+    .related-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .related-tags a {
+      font-size: 13px;
+      color: var(--text-secondary);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 7px 14px;
+      border-radius: 20px;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .related-tags a:hover {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border-color: var(--primary-light);
+    }
+
+    /* 榜单 */
+    .rank-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+    }
+
+    .rank-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 13px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .rank-item:last-child {
+      border-bottom: none;
+    }
+
+    .rank-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 7px;
+      background: var(--bg);
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .rank-item:nth-child(1) .rank-num {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .rank-item:nth-child(2) .rank-num {
+      background: var(--primary-light);
+      color: #fff;
+    }
+
+    .rank-item:nth-child(3) .rank-num {
+      background: #f9d9cb;
+      color: var(--primary-dark);
+    }
+
+    .rank-name {
+      flex: 1;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .rank-score {
+      font-size: 12px;
+      color: var(--primary-dark);
+      font-weight: 700;
+    }
+
+    /* 右侧辅助栏 */
+    .aux-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      position: sticky;
+      top: calc(var(--sticky-offset) + 20px);
+      align-self: start;
+    }
+
+    .aux-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+    }
+
+    .aux-card-header {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .aux-card-header svg {
+      color: var(--primary);
+    }
+
+    .hot-list {
+      padding: 8px 0;
+    }
+
+    .hot-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 9px 16px;
+      font-size: 13px;
+      transition: background 0.15s;
+    }
+
+    .hot-item:hover {
+      background: #fdf8f5;
+    }
+
+    .hot-index {
+      font-weight: 800;
+      color: var(--text-muted);
+      font-size: 12px;
+      width: 18px;
+      flex-shrink: 0;
+      padding-top: 1px;
+    }
+
+    .hot-item:nth-child(-n+3) .hot-index {
+      color: var(--primary);
+    }
+
+    .hot-text {
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    .hot-text strong {
+      color: var(--text-primary);
+      display: block;
+      font-weight: 600;
+    }
+
+    .hot-text small {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .timeline {
+      padding: 12px 16px;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 12px;
+      padding-bottom: 16px;
+      position: relative;
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 16px;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .timeline-item:last-child::before {
+      display: none;
+    }
+
+    .timeline-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      border: 2px solid var(--panel);
+      box-shadow: 0 0 0 1px var(--primary-light);
+      flex-shrink: 0;
+      margin-top: 4px;
+      z-index: 1;
+    }
+
+    .timeline-content strong {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .timeline-content span {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      display: block;
+    }
+
+    /* 投稿互动 */
+    .contribute-box {
+      background: linear-gradient(135deg, #fdf0ea, #fce4d9);
+      border: 1px solid var(--primary-light);
+      border-radius: var(--radius-banner);
+      padding: 24px;
+      text-align: center;
+    }
+
+    .contribute-box h3 {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 6px;
+    }
+
+    .contribute-box p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .contribute-box .btn-submit {
+      padding: 10px 28px;
+      font-size: 14px;
+    }
+
+    /* 页尾 */
+    .site-footer {
+      background: #2d2420;
+      color: #c9bcb5;
+      margin-top: 20px;
+    }
+
+    .footer-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 48px 20px 32px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 36px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-brand .footer-logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-brand p {
+      font-size: 13px;
+      line-height: 1.75;
+      max-width: 300px;
+    }
+
+    .footer-col h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 14px;
+    }
+
+    .footer-col ul {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-col ul a {
+      font-size: 13px;
+      color: #a89b94;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul a:hover {
+      color: var(--primary-light);
+    }
+
+    .footer-bottom {
+      padding-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      color: #8f8179;
+    }
+
+    .footer-bottom .update-note {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* 回到顶部 */
+    .back-top {
+      position: fixed;
+      right: 24px;
+      bottom: 28px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-hover);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: opacity 0.25s, transform 0.25s, visibility 0.25s;
+      z-index: 900;
+    }
+
+    .back-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .back-top:hover {
+      background: var(--primary-dark);
+    }
+
+    /* 移动端菜单 */
+    .mobile-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 1001;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .mobile-overlay.show {
+      display: block;
+      opacity: 1;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 280px;
+      max-width: 80vw;
+      background: var(--panel);
+      z-index: 1002;
+      transform: translateX(-100%);
+      transition: transform 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      gap: 4px;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.show {
+      transform: translateX(0);
+    }
+
+    .mobile-menu .menu-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mobile-menu .menu-header .logo-text {
+      font-size: 18px;
+    }
+
+    .mobile-menu .menu-close {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-btn);
+      font-size: 20px;
+      color: var(--text-secondary);
+    }
+
+    .mobile-menu .menu-close:hover {
+      background: var(--border);
+    }
+
+    .mobile-menu a {
+      padding: 11px 12px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border-radius: var(--radius-btn);
+    }
+
+    .mobile-menu a:hover {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+    }
+
+    /* 搜索无结果 */
+    .search-empty {
+      display: none;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-muted);
+      background: var(--panel);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius-card);
+    }
+
+    .search-empty.show {
+      display: block;
+    }
+
+    /* 响应式 */
+    @media (max-width: 1024px) {
+      .three-col {
+        grid-template-columns: 1fr 260px;
+      }
+
+      .channel-sidebar {
+        display: none;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 36px 20px 40px;
+      }
+
+      .hero-content h1 {
+        font-size: 34px;
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .hero-visual svg {
+        max-width: 280px;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 740px) {
+      .main-nav {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .search-box {
+        display: none;
+      }
+
+      .three-col {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 28px 0 40px;
+      }
+
+      .aux-sidebar {
+        position: static;
+        margin-top: 40px;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-content h1 {
+        font-size: 28px;
+      }
+
+      .hero-desc {
+        font-size: 14px;
+      }
+
+      .news-item {
+        flex-direction: column;
+      }
+
+      .news-thumb {
+        width: 100%;
+        height: 140px;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .deep-dive {
+        padding: 20px 16px;
+      }
+
+      .comment-text {
+        padding-left: 0;
+        margin-top: 4px;
+      }
+
+      .back-top {
+        right: 16px;
+        bottom: 16px;
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+  </style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+  <!-- 吸顶公告条 -->
+  <div class="announce-bar" id="announceBar">
+    <div class="announce-inner">
+      <span class="announce-brand">69夫妻乐园</span>
+      <div class="announce-items">
+        <span><span class="dot"></span>2026-11-07 · 「周末厨房协作计划」新增12组打卡</span>
+        <span><span class="dot"></span>2026-11-06 · 「夫妻默契问答」第3季上线</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 页头 -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/#hero" class="logo" aria-label="69夫妻乐园首页">
+        <svg class="logo-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="40" height="40" rx="11" fill="#e07a5f"/>
+          <path d="M13 26c0-5 3.5-9 7-11 3.5 2 7 6 7 11" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <circle cx="16" cy="15" r="2.5" fill="#fff"/>
+          <circle cx="24" cy="15" r="2.5" fill="#fff"/>
+        </svg>
+        <span class="logo-text">69夫妻乐园</span>
+      </a>
+      <nav class="main-nav" aria-label="主导航">
+        <a href="/#overview" class="active">概览</a>
+        <a href="/#featured">精选</a>
+        <a href="/#updates">动态</a>
+        <a href="/#categories">分类</a>
+        <a href="/#deep-dive">深度</a>
+        <a href="/#guide">指南</a>
+        <a href="/#faq">问答</a>
+        <a href="/#comments">评论</a>
+        <a href="/#news">资讯</a>
+      </nav>
+      <div class="header-actions">
+        <div class="search-box">
+          <input type="search" id="searchInput" placeholder="搜索条目或话题…" aria-label="搜索站内内容">
+          <button type="button" id="searchBtn" aria-label="搜索">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          </button>
+        </div>
+        <a href="/#contribute" class="btn-submit">投稿分享</a>
+        <button class="hamburger" id="hamburgerBtn" aria-label="打开菜单" aria-expanded="false">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 移动端遮罩 -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
+  <!-- 移动端菜单 -->
+  <nav class="mobile-menu" id="mobileMenu" aria-label="移动端导航">
+    <div class="menu-header">
+      <span class="logo-text">69夫妻乐园</span>
+      <button class="menu-close" id="menuCloseBtn" aria-label="关闭菜单">✕</button>
+    </div>
+    <a href="/#overview">内容概览</a>
+    <a href="/#featured">精选推荐</a>
+    <a href="/#updates">最新动态</a>
+    <a href="/#categories">分类入口</a>
+    <a href="/#deep-dive">深度解析</a>
+    <a href="/#guide">体验指南</a>
+    <a href="/#faq">常见问答</a>
+    <a href="/#comments">用户评论</a>
+    <a href="/#news">相关资讯</a>
+    <a href="/#contribute">投稿分享</a>
+  </nav>
+
+  <!-- 首屏 -->
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <h1>69夫妻乐园</h1>
+        <p class="hero-desc">汇集夫妻日常协作、情感沟通、共同兴趣与生活记录的内容聚合页。这里有厨房协作清单、双人旅行路线、沟通练习模板和真实夫妻的实践笔记，适合想在日常里增加默契与趣味的伴侣翻阅。</p>
+        <div class="hero-entries">
+          <a href="/#featured" class="entry-primary">浏览精选内容</a>
+          <a href="/#contribute" class="entry-secondary">分享你的故事</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <svg viewBox="0 0 400 320" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="200" cy="270" rx="150" ry="22" fill="#e07a5f" opacity="0.1"/>
+          <circle cx="140" cy="120" r="52" fill="#f4a58e" opacity="0.35"/>
+          <circle cx="260" cy="120" r="52" fill="#f4a58e" opacity="0.25"/>
+          <path d="M110 160c0-32 28-58 62-58s62 26 62 58" stroke="#b3573f" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <path d="M166 160c0-32 28-58 62-58s62 26 62 58" stroke="#b3573f" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <rect x="150" y="180" width="100" height="54" rx="14" fill="#e07a5f"/>
+          <path d="M178 207l10 10 20-20" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="140" cy="120" r="9" fill="#e07a5f"/>
+          <circle cx="260" cy="120" r="9" fill="#e07a5f"/>
+          <path d="M120 250c18-14 38-18 58-10M280 250c-18-14-38-18-58-10" stroke="#f4a58e" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- 主内容区 -->
+  <div class="main-container">
+    <div class="three-col">
+
+      <!-- 左侧频道索引 -->
+      <aside class="channel-sidebar" aria-label="频道索引">
+        <h3>频道索引</h3>
+        <nav class="channel-list">
+          <a href="/#overview" class="active">领域概览 <span class="count">1</span></a>
+          <a href="/#featured">精选内容 <span class="count">8</span></a>
+          <a href="/#updates">最新动态 <span class="count">10</span></a>
+          <a href="/#categories">分类入口 <span class="count">8</span></a>
+          <a href="/#deep-dive">深度解析 <span class="count">1</span></a>
+          <a href="/#guide">体验指南 <span class="count">4</span></a>
+          <a href="/#faq">常见问答 <span class="count">6</span></a>
+          <a href="/#comments">用户评论 <span class="count">16</span></a>
+          <a href="/#news">相关资讯 <span class="count">6</span></a>
+          <a href="/#related">延伸推荐 <span class="count">8</span></a>
+          <a href="/#ranking">热门榜单 <span class="count">8</span></a>
+          <a href="/#contribute">投稿互动 <span class="count">—</span></a>
+        </nav>
+      </aside>
+
+      <!-- 中间主内容 -->
+      <main class="main-content">
+
+        <!-- 1. 主题领域概览 -->
+        <section class="section" id="overview">
+          <div class="section-header">
+            <h2>夫妻生活内容方向概览</h2>
+          </div>
+          <div class="overview-text">
+            <p>夫妻共同生活的内容版图比多数人预想的要宽。从周末一起做一顿饭、规划一趟三天两夜的自驾，到商量家庭账本怎么记、和对方父母相处时的话术，每一项都可以拆成可操作、可讨论的具体话题。围绕这些话题衍生出的内容形态也各不相同：有人写详细的协作流程清单，有人拍两人在厨房里手忙脚乱的短视频，也有人把夫妻沟通中的常见卡点整理成问答模板。</p>
+            <p>近半年在生活分享类社区里，热度上升较快的是“低预算双人周末”和“家务分工复盘”两类内容。前者集中在人均200元以内的城市周边路线，后者多由结婚3—7年的夫妻发布，附带具体的分工表调整记录。另一个持续有讨论量的方向是伴侣间的兴趣差异处理——一方喜欢徒步、另一方偏好宅家看剧，这类内容通常以“各玩各的+交集时段”的时间分配方案出现，评论区往往比正文更热闹。</p>
+            <p>需要区分的是，生活记录类内容偏个人叙事，参考价值取决于读者与作者在婚龄、城市、收入结构上的相似度；而方法清单类内容更容易迁移，但需要读者自己补充执行细节。两者在检索时应分别对待：看记录找共鸣，看清单找步骤。</p>
+          </div>
+        </section>
+
+        <!-- 2. 精选内容推荐 -->
+        <section class="section" id="featured">
+          <div class="section-header">
+            <h2>本周值得细读的夫妻协作条目</h2>
+            <a href="/#updates" class="more-link">查看更新 →</a>
+          </div>
+          <div class="card-grid">
+            <article class="feature-card">
+              <img class="card-img" src="https://picsum.photos/seed/couplekitchen1/400/300" width="400" height="300" alt="夫妻在厨房一起备菜的场景" loading="lazy">
+              <div class="card-body">
+                <span class="card-type">协作清单</span>
+                <h3 class="card-title">双人四菜一汤 90 分钟出餐流程表</h3>
+                <p class="card-desc">把洗切、下锅、摆盘拆成两条并行时间线，标注了哪几步可以交给不常下厨的一方独立完成。附一张按灶台数量调整的分工表。</p>
+                <div class="card-tags"><span>厨房分工</span><span>周末做饭</span><span>流程表</span></div>
+                <div class="card-meta"><span>🔥 2.4k 收藏</span><span>11-06 更新</span></div>
+              </div>
+            </article>
+            <article class="feature-card">
+              <img class="card-img" src="https://picsum.photos/seed/coupletravel2/400/300" width="400" height="300" alt="夫妻自驾途中在山路停车看风景" loading="lazy">
+              <div class="card-body">
+                <span class="card-type">路线方案</span>
+                <h3 class="card-title">人均 180 元的城郊双人两日自驾线</h3>
+                <p class="card-desc">从杭州西郊出发，走一条避开网红服务区的环线。含两处免费观景台、一家可带宠物入住的民宿，以及雨天替换方案。</p>
+                <div class="card-tags"><span>低预算自驾</span><span>周末两日</span><span>杭州周边</span></div>
+                <div class="card-meta"><span>🔥 1.9k 收藏</span><span>11-04 更新</span></div>
+              </div>
+            </article>
+            <article class="feature-card">
+              <img class="card-img" src="https://picsum.photos/seed/coupletalk3/400/300" width="400" height="300" alt="两人坐在沙发上面对面交谈" loading="lazy">
+              <div class="card-body">
+                <span class="card-type">沟通模板</span>
+                <h3 class="card-title">家务分配谈不拢时的五步对话框架</h3>
+                <p class="card-desc">从“我觉得不公平”到“下周试运行新分工”，每一步给出具体的开场句和可能卡住的节点。使用者反馈第三步最容易吵起来，附了应对提示。</p>
+                <div class="card-tags"><span>家务分工</span><span>对话模板</span><span>冲突处理</span></div>
+                <div class="card-meta"><span>🔥 3.1k 收藏</span><span>11-05 更新</span></div>
+              </div>
+            </article>
+            <article class="feature-card">
+              <img class="card-img" src="https://picsum.photos/seed/couplehabit4/400/300" width="400" height="300" alt="床头柜上放着一本翻开的记事本" loading="lazy">
+              <div class="card-body">
+                <span class="card-type">习惯养成</span>
+                <h3 class="card-title">睡前十分钟交换“今日一件小事”</h3>
+                <p class="card-desc">不聊孩子、不聊账单，只说一件当天发生的小事。持续记录 30 天后的变化被作者整理成对照表，包括话题枯竭期怎么处理。</p>
+                <div class="card-tags"><span>睡前习惯</span><span>日常记录</span><span>30天挑战</span></div>
+                <div class="card-meta"><span>🔥 1.6k 收藏</span><span>10-30 更新</span></div>
+              </div>
+            </article>
+            <article class="feature-card">
+              <img class="card-img" src="https://picsum.photos/seed/couplebudget5/400/300" width="400" height="300" alt="两人在桌前一起看账单和计算器" loading="lazy">
+              <div class="card-body">
+                <span class="card-type">家庭账本</span>
+                <h3 class="card-title">双人记账的三种模式对比：共管、分账、混合</h3>
+                <p class="card-desc">罗列了三种模式各自的适用场景和常见摩擦点。共管模式在收入差距较大的夫妻中投诉率最高，混合模式则需要每月固定一次对账时间。</p>
+                <div class="card-tags"><span>家庭理财</span><span>记账方法</span><span>收支管理</span></div>
+                <div class="card-meta"><span>🔥 2.2k 收藏</span><span>11-02 更新</span></div>
+              </div>
+            </article>
+            <article class="feature-card">
+              <img class="card-img" src="https://picsum.photos/seed/couplehobby6/400/300" width="400" height="300" alt="两人在阳台上一起摆弄盆栽" loading="lazy">
+              <div class="card-body">
+                <span class="card-type">共同爱好</span>
+                <h3 class="card-title">从零开始养一阳台香草：双人分工记录</h3>
+                <p class="card-desc">罗勒、薄荷、迷迭香各一盆，浇水与修剪轮流负责。记录了第 3 周薄荷疯长、第 6 周罗勒枯萎的具体原因和补救动作。</p>
+                <div class="card-tags"><span>阳台种植</span><span>香草盆栽</span><span>共同爱好</span></div>
+                <div class="card-meta"><span>🔥 1.3k 收藏</span><span>10-28 更新</span></div>
+              </div>
+            </article>
+            <article class="feature-card">
+              <img class="card-img" src="https://picsum.photos/seed/couplegame7/400/300" width="400" height="300" alt="客厅茶几上摆着桌游卡牌" loading="lazy">
+              <div class="card-body">
+                <span class="card-type">双人游戏</span>
+                <h3 class="card-title">适合夫妻两人的六款桌游实测排序</h3>
+                <p class="card-desc">按上手门槛、单局时长、吵架概率三个指标排序。合作类比对抗类更适合刚吵完架的局面，其中两款支持单人缺席时三人补位。</p>
+                <div class="card-tags"><span>双人桌游</span><span>合作游戏</span><span>周末娱乐</span></div>
+                <div class="card-meta"><span>🔥 1.8k 收藏</span><span>11-01 更新</span></div>
+              </div>
+            </article>
+            <article class="feature-card">
+              <img class="card-img" src="https://picsum.photos/seed/coupleparent8/400/300" width="400" height="300" alt="年轻夫妻在家庭聚餐中与长辈交谈" loading="lazy">
+              <div class="card-body">
+                <span class="card-type">家庭关系</span>
+                <h3 class="card-title">和对方父母相处：三个高频场景的话术准备</h3>
+                <p class="card-desc">聚餐被问收入、节日送礼被比较、育儿观念被干涉，每个场景给出两种回应路径和各自的后续成本。作者标注了哪些话说了就收不回来。</p>
+                <div class="card-tags"><span>姻亲相处</span><span>沟通话术</span><span>家庭聚餐</span></div>
+                <div class="card-meta"><span>🔥 2.7k 收藏</span><span>11-03 更新</span></div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- 3. 最新更新 -->
+        <section class="section" id="updates">
+          <div class="section-header">
+            <h2>近十日更新与新增条目</h2>
+          </div>
+          <div class="update-list">
+            <div class="update-item">
+              <span class="update-date">11-07</span>
+              <div class="update-info">
+                <strong>「周末厨房协作计划」新增12组打卡记录</strong>
+                <p>参与夫妻上传了各自的出餐时间，最快一组 72 分钟完成四菜一汤，最慢一组 118 分钟，差距主要在备菜环节。</p>
+              </div>
+            </div>
+            <div class="update-item">
+              <span class="update-date">11-06</span>
+              <div class="update-info">
+                <strong>「夫妻默契问答」第3季上线，首日参与 860 对</strong>
+                <p>本季新增“家务预期”与“假期安排”两个模块，每模块 15 题，答完后生成分歧点清单。</p>
+              </div>
+            </div>
+            <div class="update-item">
+              <span class="update-date">11-05</span>
+              <div class="update-info">
+                <strong>沟通模板《家务分配五步对话框架》更新至 2.1 版</strong>
+                <p>补充了“对方拒绝进入对话”的三种应对方式，并附上一位使用者按框架执行四轮后的分工表变化截图。</p>
+              </div>
+            </div>
+            <div class="update-item">
+              <span class="update-date">11-04</span>
+              <div class="update-info">
+                <strong>杭州周边双人自驾线新增雨天替换方案</strong>
+                <p>原路线的两处露天观景台在雨天关闭，替换为一家陶艺体验店和一条室内市集路线，人均增加约 40 元。</p>
+              </div>
+            </div>
+            <div class="update-item">
+              <span class="update-date">11-02</span>
+              <div class="update-info">
+                <strong>双人记账模式对比补充“收入差距超过两倍”场景</strong>
+                <p>增加了三对夫妻的实际操作记录，其中两对从共管模式改为混合模式，一对保留了共管但调整了每月对账频率。</p>
+              </div>
+            </div>
+            <div class="update-item">
+              <span class="update-date">10-30</span>
+              <div class="update-info">
+                <strong>睡前十分钟交换小事：30 天记录完整版发布</strong>
+                <p>包含第 12—16 天的话题枯竭期记录，作者用抽签卡解决了连续四天无话可说的问题。</p>
+              </div>
+            </div>
+            <div class="update-item">
+              <span class="update-date">10-28</span>
+              <div class="update-info">
+                <strong>阳台香草种植记录更新第 6 周数据</strong>
+                <p>罗勒枯萎原因确认为浇水频率过高，薄荷在同一时段因修剪不足出现徒长，两盆的补救措施不同。</p>
+              </div>
+            </div>
+            <div class="update-item">
+              <span class="update-date">10-26</span>
+              <div class="update-info">
+                <strong>双人桌游实测新增“吵架概率”评分维度</strong>
+                <p>六款游戏中对抗类平均分 3.2，合作类 1.4，评分来自 47 对夫妻的匿名反馈。</p>
+              </div>
+            </div>
+            <div class="update-item">
+              <span class="update-date">10-24</span>
+              <div class="update-info">
+                <strong>姻亲相处话术新增“节日送礼被比较”场景</strong>
+                <p>给出两条回应路径：淡化比较和主动设定比较标准，各自附上了后续三次聚餐的观察记录。</p>
+              </div>
+            </div>
+            <div class="update-item">
+              <span class="update-date">10-22</span>
+              <div class="update-info">
+                <strong>夫妻默契问答第2季数据汇总发布</strong>
+                <p>分歧率最高的题目是“假期是否接受临时改变计划”，68% 的夫妻在这一点上答案不一致。</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. 分类入口 -->
+        <section class="section" id="categories">
+          <div class="section-header">
+            <h2>按生活场景找内容</h2>
+          </div>
+          <div class="category-grid">
+            <a href="/#featured" class="category-item">
+              <span class="cat-icon">🍳</span>
+              <span class="cat-name">厨房协作</span>
+              <span class="cat-count">24 条</span>
+            </a>
+            <a href="/#featured" class="category-item">
+              <span class="cat-icon">🚗</span>
+              <span class="cat-name">双人旅行</span>
+              <span class="cat-count">18 条</span>
+            </a>
+            <a href="/#featured" class="category-item">
+              <span class="cat-icon">💬</span>
+              <span class="cat-name">沟通模板</span>
+              <span class="cat-count">31 条</span>
+            </a>
+            <a href="/#featured" class="category-item">
+              <span class="cat-icon">📒</span>
+              <span class="cat-name">家庭账本</span>
+              <span class="cat-count">12 条</span>
+            </a>
+            <a href="/#featured" class="category-item">
+              <span class="cat-icon">🪴</span>
+              <span class="cat-name">共同爱好</span>
+              <span class="cat-count">16 条</span>
+            </a>
+            <a href="/#featured" class="category-item">
+              <span class="cat-icon">🎲</span>
+              <span class="cat-name">双人娱乐</span>
+              <span class="cat-count">9 条</span>
+            </a>
+            <a href="/#featured" class="category-item">
+              <span class="cat-icon">👨‍👩‍👧</span>
+              <span class="cat-name">姻亲相处</span>
+              <span class="cat-count">14 条</span>
+            </a>
+            <a href="/#featured" class="category-item">
+              <span class="cat-icon">🧹</span>
+              <span class="cat-name">家务分工</span>
+              <span class="cat-count">21 条</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- 5. 深度解析 -->
+        <section class="section" id="deep-dive">
+          <div class="section-header">
+            <h2>夫妻协作内容的三层参考价值</h2>
+          </div>
+          <div class="deep-dive">
+            <h3>协作流程类内容：可迁移性最高，但依赖执行环境</h3>
+            <p>厨房分工表、家务轮值表这类内容的价值在于把模糊的“你帮我一下”拆成了有先后顺序的动作。以《双人四菜一汤 90 分钟出餐流程表》为例，它把 90 分钟拆成 0—15 分钟备菜、15—45 分钟两条并行烹饪线、45—75 分钟收尾与摆盘、75—90 分钟上桌与清洁。这种拆法的参考价值取决于两个变量：灶台数量与两人烹饪熟练度差。</p>
+            <p>该流程表在“灶台只有一个”的版本中，并行烹饪线改为串行，总时长增加到 110 分钟；而在“两人熟练度接近”的版本中，备菜环节可以压缩到 10 分钟。使用者需要先判断自己属于哪个版本，再决定是否照搬时间节点。直接套用不匹配的版本，通常会在第 40 分钟前后出现一次等待空档，这个空档正是流程表没有覆盖的变量。</p>
+
+            <h3>对话模板类内容：卡点集中在“第三步”</h3>
+            <p>沟通模板的写法差异比流程表更大。以《家务分配五步对话框架》为例，五个步骤分别是：确认共同目标、各自列出实际承担的家务项、指出差异项、提出试运行方案、约定复盘时间。作者在 2.1 版更新中补充了“对方拒绝进入对话”的应对，说明第三步“指出差异项”是整个框架最容易破裂的地方。</p>
+            <p>原因可以从模板本身找到：前两步是陈述事实，第三步要求双方承认“自己可能低估了对方的付出”，这一步没有标准句式可用。模板给出的开场句是“我列了这周我做的家务，你列了你的，我们把两张表放一起看看”，但实际执行时，两张表的颗粒度往往不一致——一方按“天”记录，另一方按“件”记录。颗粒度差异本身就会引发新一轮争论。</p>
+            <p>比较有效的处理方式是在第二步之前先约定记录单位，比如都按“每天花了多少分钟”记，或者都按“完成了哪几项”记。这个调整在模板原文中没有单独成步，属于使用者需要自行补充的前置动作。</p>
+
+            <h3>个人记录类内容：参考价值要按相似度打折</h3>
+            <p>睡前交换小事、阳台种香草、双人自驾这类内容，本质是个人生活记录。它们的可迁移性低于前两类，但共鸣感更强。判断一篇记录对自己有多大参考价值，可以看三个维度：婚龄差距、城市等级、是否有孩子。</p>
+            <p>以《睡前十分钟交换“今日一件小事”》为例，作者婚龄 4 年、无孩、居住在新一线城市。记录里提到的“话题枯竭期出现在第 12—16 天”，在另一个婚龄 9 年、有两个孩子的家庭记录中，枯竭期提前到了第 5 天，原因被归结为“每天处理的事务重叠度太高，小事不够用”。同样的方法，在不同生活结构下的表现差异明显。</p>
+            <p>这类内容更适合当作“触发自己行动的引子”，而不是“照做的操作手册”。看到别人用抽签卡解决了话题枯竭，可以借鉴的是“引入外部随机性”这个思路，具体用什么形式，需要按各自的生活节奏来定。</p>
+
+            <h3>信息层级：哪些能直接信，哪些要再看一步</h3>
+            <p>生活协作类内容里，事实与判断经常混在一起。可以按以下结构拆分：</p>
+            <ul>
+              <li><strong>已公开的操作事实</strong>：如“四菜一汤用了 72 分钟”“第 6 周罗勒枯萎”，这类有具体时间与现象的陈述可以直接作为参照点。</li>
+              <li><strong>作者归因</strong>：如“枯萎原因是浇水频率过高”，这属于单一作者的判断，需要对照其他记录或专业种植资料再确认。</li>
+              <li><strong>评论区补充</strong>：如“我照做也枯了，但我是因为光照不足”，这类信息提供的是另一种可能性，不能直接推翻原作者归因，但能说明归因不唯一。</li>
+              <li><strong>媒体转述与二次加工</strong>：部分内容被转载时会省略版本号和前置条件，看到删减版时，应回到原始记录核对完整流程。</li>
+            </ul>
+            <p>把这几层分开之后，再决定采纳哪一部分，比整体接受或整体否定都更稳妥。一个具体的核对方法是：看原文是否标注了版本号与更新日期，是否有至少一条评论区补充与作者归因不同，两者都有，说明内容经过了实际检验。</p>
+          </div>
+        </section>
+
+        <!-- 6. 体验指南 -->
+        <section class="section" id="guide">
+          <div class="section-header">
+            <h2>按什么顺序看这些内容更省时间</h2>
+          </div>
+          <div class="guide-steps">
+            <div class="guide-step">
+              <span class="step-num">1</span>
+              <div class="step-content">
+                <h4>先判断自己的需求类型</h4>
+                <p>想要具体步骤的，直接看协作清单和流程表；想找共鸣或记录灵感的，看个人记录类内容；有明确矛盾要处理的，看对话模板。三类内容混着看，容易在“别人家怎么这样”和“我家怎么不行”之间反复消耗时间。</p>
+              </div>
+            </div>
+            <div class="guide-step">
+              <span class="step-num">2</span>
+              <div class="step-content">
+                <h4>核对版本与前置条件</h4>
+                <p>流程表看是否标注了灶台数量、熟练度前提；对话模板看更新到第几版、补充了哪些卡点；个人记录看婚龄、城市、有无孩子。缺少这些信息的条目，先降低预期再看。</p>
+              </div>
+            </div>
+            <div class="guide-step">
+              <span class="step-num">3</span>
+              <div class="step-content">
+                <h4>用评论区做交叉验证</h4>
+                <p>重点看与作者归因不同的评论。如果一条厨房流程表下有多人反馈“备菜环节超时”，说明该环节的时间估计偏乐观，可以按自己情况加 15—20 分钟缓冲。</p>
+              </div>
+            </div>
+            <div class="guide-step">
+              <span class="step-num">4</span>
+              <div class="step-content">
+                <h4>小范围试运行再调整</h4>
+                <p>任何分工方案先试一周，记录实际耗时与摩擦点。试运行期间不要同时改动多项，一次只调整一个变量，比如只改“谁负责洗碗”而不动“谁负责做饭”，方便定位问题。</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. FAQ -->
+        <section class="section" id="faq">
+          <div class="section-header">
+            <h2>夫妻日常协作常见疑问</h2>
+          </div>
+          <div class="faq-list">
+            <details>
+              <summary>家务分工表真的有用吗，还是最后都会回到原样？</summary>
+              <div class="faq-answer">分工表的作用是让“谁做了什么”从感觉变成可见的条目。它通常能维持两到四周，之后需要复盘调整。维持不下去的常见原因不是表本身没用，而是分工项没有随生活节奏变化更新——比如换季衣物清洗、孩子假期安排，这些新增项如果没有进入表内，旧表就会失效。建议每两周花十分钟核对一次分工项是否还覆盖当前实际事务。</div>
+            </details>
+            <details>
+              <summary>两人做饭时间总对不上，流程表应该怎么改？</summary>
+              <div class="faq-answer">先确认总时长差异出在哪个环节。多数家庭的差异集中在备菜和收尾两段，烹饪段反而接近。如果一方下班到家时间较晚，可以把备菜环节单独拆出来交给先到家的一方，烹饪段仍保持并行。另一种做法是把流程表从“两人同步”改为“一人主厨、一人备菜与清洁”，总时长可能增加十到十五分钟，但两人同时在灶台前的时间减少，摩擦点也随之减少。</div>
+            </details>
+            <details>
+              <summary>对方不愿意聊分工问题，对话模板还有用吗？</summary>
+              <div class="faq-answer">模板的第一步“确认共同目标”在这种情况下的作用有限，因为拒绝进入对话的人通常不认为分工是共同目标。更可行的做法是从一件具体的小事切入，比如“这周末谁来洗碗”，先解决单次分配，再逐步过渡到固定分工。单次分配的对话成本低于整体分工谈判，积累几次成功分配后，再引入分工表的接受度会高一些。</div>
+            </details>
+            <details>
+              <summary>双人记账用共管还是分账，哪种矛盾少？</summary>
+              <div class="faq-answer">收入差距在两倍以内的夫妻，共管模式的投诉集中在“大额支出要不要商量”；收入差距超过两倍的，共管模式下更容易出现“谁花得多”的争议。分账模式的问题则是公共支出怎么分摊，常见做法是按收入比例分摊。混合模式——即公共账户加各自账户——的摩擦点主要在对账频率，每月固定对账一次的家庭反馈问题最少，想起来才对的家庭容易积压争议。三种模式没有通用答案，可以先试一个月再决定。</div>
+            </details>
+            <details>
+              <summary>睡前交换小事聊到没话说怎么办？</summary>
+              <div class="faq-answer">话题枯竭通常出现在第二周前后。可以引入外部随机性，比如抽签卡、轮流指定话题、从当天新闻里挑一条各自说看法。另一种做法是把“一件小事”的范围扩大，允许说一个观察、一个念头，不要求是完整的事件。记录类内容里提到，把范围和形式放松之后，枯竭期会缩短，但内容深度也会下降，两者需要自己权衡。</div>
+            </details>
+            <details>
+              <summary>和对方父母相处的话术，照着说会不会显得假？</summary>
+              <div class="faq-answer">照搬整句容易显得不自然，更实际的做法是只借用话术里的结构。比如“淡化比较”这个路径，核心是先承认对方的好意，再把话题转移到具体事务上，具体用词按各家说话习惯调整。作者在记录里提到，同一句话在不同家庭里的接受度差异很大，判断标准是对方父母平时的表达方式，而不是话术本身是否标准。</div>
+            </details>
+          </div>
+        </section>
+
+        <!-- 8. 用户评论 -->
+        <section class="section" id="comments">
+          <div class="section-header">
+            <h2>读者留下的具体反馈</h2>
+          </div>
+          <div class="comment-list">
+            <div class="comment-item">
+              <div class="comment-head">
+                <span class="comment-avatar">林</span>
+                <span class="comment-nick">林间小满</span>
+                <span class="comment-time">11-07</span>
+              </div>
+              <p class="comment-text">四菜一汤那个流程表试了，备菜真超时了，切菜慢的话直接奔110分钟去了。不过分工确实清楚，没像以前那样两个人挤在灶台前互相碍事。</p>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head">
+                <span class="comment-avatar">陈</span>
+                <span class="comment-nick">陈默的默</span>
+                <span class="comment-time">11-07</span>
+              </div>
+              <p class="comment-text">默契问答第3季的“假期是否接受临时改变计划”这题，我跟我老婆选了相反，然后她就生气了。这题设计得挺好的，就是后果有点严重。</p>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head">
+                <span class="comment-avatar">阿</span>
+                <span class="comment-nick">阿茶不喝茶</span>
+                <span class="comment-time">11-06</span>
+              </div>
+              <p class="comment-text">阳台种香草那个，我的薄荷也是疯长，但罗勒没枯，可能是因为我在南方，光照不太一样。记录里说北方阳台要补光，我们这边冬天反而要遮阴。</p>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head">
+                <span class="comment-avatar">周</span>
+                <span class="comment-nick">周末不加班</span>
+                <span class="comment-time">11-06</span>
+              </div>
+              <p class="comment-text">杭州那条自驾线走了一趟，观景台确实人少，民宿老板说我们是他这周第三对拿着截图来的。建议提前打电话确认房间，我们到的时候只剩一间了。</p>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head">
+                <span class="comment-avatar">大</span>
+                <span class="comment-nick">大橘为重</span>
+                <span class="comment-time">11-05</span>
+              </div>
+              <p class="comment-text">记账那个混合模式，我们试了两个月，对账日定在每个月1号，结果上个月1号吵了一架，因为上上个月的账没对完。可能得改成每周对一次。</p>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head">
+                <span class="comment-avatar">小</span>
+                <span class="comment-nick">小鹿乱撞不撞了</span>
+                <span class="comment-time">11-05</span>
+              </div>
+              <p class="comment-text">五步对话框架第三步真的会吵。我跟我老公卡在“颗粒度不一致”那里，他记的是“我拖了地”，我记的是“我拖了三次地”。后来按时间记才勉强对上。</p>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head">
+                <span class="comment-avatar">李</span>
+                <span class="comment-nick">李子树下</span>
+                <span class="comment-time">11-04</span>
+              </div>
+              <p class="comment-text">睡前交换小事坚持了11天，第12天开始不知道说什么。试了抽签卡，抽到“说一个你今天看到的奇怪的东西”，结果聊了四十分钟。卡本身不重要，重要的是别坐下来干想。</p>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head">
+                <span class="comment-avatar">吴</span>
+                <span class="comment-nick">吴所事事的吴</span>
+                <span class="comment-time">11-04</span>
+              </div>
+              <p class="comment-text">桌游排序里“吵架概率”这个维度挺实在的。我们买了合作类那款，玩了三次，确实没吵。但第四次我老婆嫌太简单不想玩了，这个维度是不是得加个“玩腻速度”。</p>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head">
+                <span class="comment-avatar">郑</span>
+                <span class="comment-nick">郑在输入中</span>
+                <span class="comment-time">11-03</span>
+              </div>
+              <p class="comment-text">和对方父母相处那个话术，我照着“淡化比较”试了一次，结果我妈以为我在敷衍她，当场脸就沉了。可能话术得看人，我妈属于不吃这套的类型。</p>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head">
+                <span class="comment-avatar">何</span>
+                <span class="comment-nick">何处不青山</span>
+                <span class="comment-time">11-03</span>
+              </div>
+              <p class="comment-text">婚龄8年，有俩娃。睡前交换小事这个，我们第一天就卡住了，因为能说的“小事”全是孩子的事，不聊孩子就真的没别的。可能无孩家庭用起来比较顺。</p>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head">
+                <span class="comment-avatar">孙</span>
+                <span class="comment-nick">孙悟饭不吃香菜</span>
+                <span class="comment-time">11-02</span>
+              </div>
+              <p class="comment-text">双人自驾那条线，雨天替换方案里的陶艺店我们去了，人均80，比原方案贵不了多少，而且做完能带走。唯一的问题是周末要排队，等了半小时。</p>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head">
+                <span class="comment-avatar">钱</span>
+                <span class="comment-nick">钱包空空如也</span>
+                <span class="comment-time">11-02</span>
+              </div>
+              <p class="comment-text">记账模式对比里说共管模式投诉率高，我们家就是共管，目前还没吵过，可能因为我们俩都不怎么花钱。这个得看人，不能一概而论。</p>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head">
+                <span class="comment-avatar">冯</span>
+                <span class="comment-nick">冯虚御风</span>
+                <span class="comment-time">11-01</span>
+              </div>
+              <p class="comment-text">香草种植那个，迷迭香是真的难养，我养死两盆了。作者的迷迭香活下来了，但没说用了多大的盆和什么土，这个信息挺关键的。</p>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head">
+                <span class="comment-avatar">沈</span>
+                <span class="comment-nick">沈言沈语</span>
+                <span class="comment-time">10-31</span>
+              </div>
+              <p class="comment-text">五步框架用到第四步“提出试运行方案”的时候，我提的方案被否了三次，最后是我老公提的，反而通过了。可能提方案的人换成被分配的人，接受度会高一点。</p>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head">
+                <span class="comment-avatar">马</span>
+                <span class="comment-nick">马什么梅</span>
+                <span class="comment-time">10-30</span>
+              </div>
+              <p class="comment-text">周末不加班那条评论说提前打电话，我们没打，直接开过去，结果民宿满房，在车上睡了一晚。这条经验值一千块。</p>
+            </div>
+            <div class="comment-item">
+              <div class="comment-head">
+                <span class="comment-avatar">高</span>
+                <span class="comment-nick">高乐高的高</span>
+                <span class="comment-time">10-29</span>
+              </div>
+              <p class="comment-text">桌游那篇漏了UNO，虽然是老游戏但两个人玩也挺好，就是容易翻脸。建议加进下一版，顺便测一下吵架概率。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 9. 相关资讯 -->
+        <section class="section" id="news">
+          <div class="section-header">
+            <h2>近期生活协作类动态</h2>
+          </div>
+          <div class="news-list">
+            <article class="news-item">
+              <img class="news-thumb" src="https://picsum.photos/seed/news1/600/400" width="600" height="400" alt="夫妻在社区活动中一起填写问卷" loading="lazy">
+              <div class="news-body">
+                <h4>「夫妻默契问答」第3季首日参与 860 对，分歧率最高题目出炉</h4>
+                <div class="news-date">2026-11-06</div>
+                <p>860 对参与者中，“假期是否接受临时改变计划”一题的分歧率达到 68%，比第2季同题高出 5 个百分点。组织方在 11 月 6 日晚间追加了该题的讨论入口。</p>
+              </div>
+            </article>
+            <article class="news-item">
+              <img class="news-thumb" src="https://picsum.photos/seed/news2/600/400" width="600" height="400" alt="厨房里摆放着计时器和备菜盘" loading="lazy">
+              <div class="news-body">
+                <h4>周末厨房协作计划新增 12 组打卡，最快出餐 72 分钟</h4>
+                <div class="news-date">2026-11-07</div>
+                <p>11 月 7 日汇总的打卡数据显示，12 组参与夫妻中 7 组在 90 分钟内完成四菜一汤，最慢一组 118 分钟。差值主要来自切配环节，最快组使用了预制净菜。</p>
+              </div>
+            </article>
+            <article class="news-item">
+              <img class="news-thumb" src="https://picsum.photos/seed/news3/600/400" width="600" height="400" alt="家庭记账本与计算器放在一起" loading="lazy">
+              <div class="news-body">
+                <h4>双人记账模式对比补充“收入差距两倍”场景记录</h4>
+                <div class="news-date">2026-11-02</div>
+                <p>三对收入差距超过两倍的夫妻提供了操作记录。两对从共管改为混合模式后，月度对账时间从平均 40 分钟缩短到 15 分钟，另一对保持共管但把对账频率改为每月两次。</p>
+              </div>
+            </article>
+            <article class="news-item">
+              <img class="news-thumb" src="https://picsum.photos/seed/news4/600/400" width="600" height="400" alt="自驾途中路边的指示牌与山路" loading="lazy">
+              <div class="news-body">
+                <h4>杭州周边双人自驾线雨天方案更新，陶艺店周末需排队</h4>
+                <div class="news-date">2026-11-04</div>
+                <p>替换方案中的陶艺体验店人均 80 元，周末平均等位 30 分钟。另一处室内市集人均消费约 45 元，无需预约，但下午四点后人流明显增多。</p>
+              </div>
+            </article>
+            <article class="news-item">
+              <img class="news-thumb" src="https://picsum.photos/seed/news5/600/400" width="600" height="400" alt="阳台上的香草盆栽与喷壶" loading="lazy">
+              <div class="news-body">
+                <h4>阳台香草种植记录更新第 6 周，罗勒枯萎归因调整</h4>
+                <div class="news-date">2026-10-28</div>
+                <p>作者在 10 月 28 日的更新中把罗勒枯萎原因从“光照不足”修正为“浇水频率过高”，并补充了薄荷徒长的修剪建议，两盆的补救措施不同。</p>
+              </div>
+            </article>
+            <article class="news-item">
+              <img class="news-thumb" src="https://picsum.photos/seed/news6/600/400" width="600" height="400" alt="两人在客厅玩桌游的桌面特写" loading="lazy">
+              <div class="news-body">
+                <h4>双人桌游实测新增“吵架概率”评分，对抗类平均 3.2 分</h4>
+                <div class="news-date">2026-10-26</div>
+                <p>47 对夫妻的匿名反馈显示，对抗类游戏争吵概率评分平均 3.2 分（满分 5 分），合作类 1.4 分。评分最高的单款是对抗类中的“资源争夺”机制游戏。</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- 10. 相关推荐 -->
+        <section class="section" id="related">
+          <div class="section-header">
+            <h2>可能还想翻的条目</h2>
+          </div>
+          <div class="related-tags">
+            <a href="/#featured">双人早餐 15 分钟搭配清单</a>
+            <a href="/#featured">换季衣物整理双人分工表</a>
+            <a href="/#featured">周末菜市场采购路线规划</a>
+            <a href="/#featured">夫妻年度旅行预算分配模板</a>
+            <a href="/#featured">客厅改造：两人都能接受的布局</a>
+            <a href="/#featured">对方不爱运动，怎么一起动起来</a>
+            <a href="/#featured">结婚纪念日低成本仪式感方案</a>
+            <a href="/#featured">双人观影清单：分口味不吵架</a>
+          </div>
+        </section>
+
+        <!-- 11. 补充：热门榜单 -->
+        <section class="section" id="ranking">
+          <div class="section-header">
+            <h2>近七日收藏榜</h2>
+          </div>
+          <div class="rank-list">
+            <div class="rank-item">
+              <span class="rank-num">1</span>
+              <span class="rank-name">家务分配谈不拢时的五步对话框架</span>
+              <span class="rank-score">3.1k 收藏</span>
+            </div>
+            <div class="rank-item">
+              <span class="rank-num">2</span>
+              <span class="rank-name">和对方父母相处：三个高频场景的话术准备</span>
+              <span class="rank-score">2.7k 收藏</span>
+            </div>
+            <div class="rank-item">
+              <span class="rank-num">3</span>
+              <span class="rank-name">双人四菜一汤 90 分钟出餐流程表</span>
+              <span class="rank-score">2.4k 收藏</span>
+            </div>
+            <div class="rank-item">
+              <span class="rank-num">4</span>
+              <span class="rank-name">双人记账的三种模式对比：共管、分账、混合</span>
+              <span class="rank-score">2.2k 收藏</span>
+            </div>
+            <div class="rank-item">
+              <span class="rank-num">5</span>
+              <span class="rank-name">人均 180 元的城郊双人两日自驾线</span>
+              <span class="rank-score">1.9k 收藏</span>
+            </div>
+            <div class="rank-item">
+              <span class="rank-num">6</span>
+              <span class="rank-name">适合夫妻两人的六款桌游实测排序</span>
+              <span class="rank-score">1.8k 收藏</span>
+            </div>
+            <div class="rank-item">
+              <span class="rank-num">7</span>
+              <span class="rank-name">睡前十分钟交换“今日一件小事”</span>
+              <span class="rank-score">1.6k 收藏</span>
+            </div>
+            <div class="rank-item">
+              <span class="rank-num">8</span>
+              <span class="rank-name">从零开始养一阳台香草：双人分工记录</span>
+              <span class="rank-score">1.3k 收藏</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 投稿互动 -->
+        <section class="section" id="contribute">
+          <div class="contribute-box">
+            <h3>分享你的双人生活方案</h3>
+            <p>厨房协作流程、周末路线、沟通话术、分工调整记录——写清楚时间、人数和具体步骤，就可以提交。被采纳的条目会标注版本号和更新日期。</p>
+            <a href="/#contribute" class="btn-submit">我要投稿</a>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- 右侧辅助栏 -->
+      <aside class="aux-sidebar" aria-label="辅助信息">
+        <div class="aux-card">
+          <div class="aux-card-header">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 2l2.5 6.5L21 9l-5 4.5L17.5 21 12 16.5 6.5 21 8 13.5 3 9l6.5-.5z"/></svg>
+            七日热榜
+          </div>
+          <div class="hot-list">
+            <a href="/#featured" class="hot-item"><span class="hot-index">1</span><span class="hot-text"><strong>五步对话框架 2.1 版</strong><small>评论 86 · 收藏 3.1k</small></span></a>
+            <a href="/#featured" class="hot-item"><span class="hot-index">2</span><span class="hot-text"><strong>和对方父母相处话术</strong><small>评论 42 · 收藏 2.7k</small></span></a>
+            <a href="/#featured" class="hot-item"><span class="hot-index">3</span><span class="hot-text"><strong>四菜一汤 90 分钟流程</strong><small>评论 57 · 收藏 2.4k</small></span></a>
+            <a href="/#featured" class="hot-item"><span class="hot-index">4</span><span class="hot-text"><strong>双人记账三种模式</strong><small>评论 31 · 收藏 2.2k</small></span></a>
+            <a href="/#featured" class="hot-item"><span class="hot-index">5</span><span class="hot-text"><strong>城郊双人两日自驾线</strong><small>评论 28 · 收藏 1.9k</small></span></a>
+            <a href="/#featured" class="hot-item"><span class="hot-index">6</span><span class="hot-text"><strong>六款双人桌游实测</strong><small>评论 35 · 收藏 1.8k</small></span></a>
+          </div>
+        </div>
+
+        <div class="aux-card">
+          <div class="aux-card-header">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            更新节奏
+          </div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <span class="timeline-dot"></span>
+              <div class="timeline-content"><strong>11-07 厨房协作打卡汇总</strong><span>新增 12 组记录，含出餐时长对比</span></div>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-dot"></span>
+              <div class="timeline-content"><strong>11-06 默契问答第3季上线</strong><span>首日 860 对参与，分歧率 68%</span></div>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-dot"></span>
+              <div class="timeline-content"><strong>11-05 对话框架 2.1 版</strong><span>补充拒绝进入对话的应对</span></div>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-dot"></span>
+              <div class="timeline-content"><strong>11-04 自驾线雨天方案</strong><span>替换两处观景台，人均增 40 元</span></div>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-dot"></span>
+              <div class="timeline-content"><strong>11-02 记账模式补充场景</strong><span>收入差距两倍以上的三对记录</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="aux-card">
+          <div class="aux-card-header">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 19V5a2 2 0 012-2h12a2 2 0 012 2v14"/><path d="M2 19h20"/></svg>
+            互动参与
+          </div>
+          <div style="padding:14px 16px;font-size:13px;color:var(--text-secondary);line-height:1.7;">
+            <p style="margin-bottom:10px;">「夫妻默契问答」第3季进行中，答完生成分歧点清单。</p>
+            <a href="/#contribute" style="color:var(--primary-dark);font-weight:600;">去参与 →</a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- 页尾 -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">69夫妻乐园</div>
+          <p>记录夫妻日常协作的实践细节。内容覆盖 2026 年 10 月至 11 月，以流程清单、实操记录和对话模板为主，每周一、周四汇总更新。</p>
+        </div>
+        <div class="footer-col">
+          <h4>内容方向</h4>
+          <ul>
+            <li><a href="/#featured">厨房协作</a></li>
+            <li><a href="/#featured">双人旅行</a></li>
+            <li><a href="/#featured">沟通模板</a></li>
+            <li><a href="/#featured">家庭账本</a></li>
+            <li><a href="/#featured">共同爱好</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>功能入口</h4>
+          <ul>
+            <li><a href="/#overview">内容概览</a></li>
+            <li><a href="/#updates">最新动态</a></li>
+            <li><a href="/#categories">分类浏览</a></li>
+            <li><a href="/#faq">常见问答</a></li>
+            <li><a href="/#contribute">投稿分享</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>使用说明</h4>
+          <ul>
+            <li><a href="/#deep-dive">信息层级说明</a></li>
+            <li><a href="/#guide">阅读顺序建议</a></li>
+            <li><a href="/#ranking">收藏榜单</a></li>
+            <li><a href="/#comments">读者反馈</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 69夫妻乐园 · 内容为示例条目，具体操作请结合实际情况调整</span>
+        <span class="update-note">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          最近更新：2026-11-07 · 厨房协作打卡汇总
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 回到顶部 -->
+  <button class="back-top" id="backTop" aria-label="回到顶部">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // 移动端菜单
+      var hamburger = document.getElementById('hamburgerBtn');
+      var mobileMenu = document.getElementById('mobileMenu');
+      var overlay = document.getElementById('mobileOverlay');
+      var menuClose = document.getElementById('menuCloseBtn');
+      var mobileLinks = mobileMenu.querySelectorAll('a');
+
+      function openMenu() {
+        mobileMenu.classList.add('show');
+        overlay.classList.add('show');
+        hamburger.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMenu() {
+        mobileMenu.classList.remove('show');
+        overlay.classList.remove('show');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+
+      hamburger.addEventListener('click', openMenu);
+      menuClose.addEventListener('click', closeMenu);
+      overlay.addEventListener('click', closeMenu);
+
+      mobileLinks.forEach(function (link) {
+        link.addEventListener('click', closeMenu);
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeMenu();
+        }
+      });
+
+      // 回到顶部
+      var backTop = document.getElementById('backTop');
+      var ticking = false;
+
+      function onScroll() {
+        if (!ticking) {
+          window.requestAnimationFrame(function () {
+            if (window.scrollY > window.innerHeight * 0.8) {
+              backTop.classList.add('visible');
+            } else {
+              backTop.classList.remove('visible');
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      backTop.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // 搜索过滤（本地可见内容查找）
+      var searchInput = document.getElementById('searchInput');
+      var searchBtn = document.getElementById('searchBtn');
+
+      function doSearch() {
+        var query = searchInput.value.trim().toLowerCase();
+        var cards = document.querySelectorAll('.feature-card');
+        var updateItems = document.querySelectorAll('.update-item');
+        var emptyState = document.getElementById('searchEmpty');
+        var found = 0;
+
+        if (!query) {
+          cards.forEach(function (c) { c.style.display = ''; });
+          updateItems.forEach(function (u) { u.style.display = ''; });
+          if (emptyState) {
+            emptyState.classList.remove('show');
+          }
+          return;
+        }
+
+        cards.forEach(function (card) {
+          var text = card.textContent.toLowerCase();
+          if (text.indexOf(query) > -1) {
+            card.style.display = '';
+            found++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        updateItems.forEach(function (item) {
+          var text = item.textContent.toLowerCase();
+          if (text.indexOf(query) > -1) {
+            item.style.display = '';
+            found++;
+          } else {
+            item.style.display = 'none';
+          }
+        });
+
+        if (!emptyState) {
+          emptyState = document.createElement('div');
+          emptyState.id = 'searchEmpty';
+          emptyState.className = 'search-empty';
+          emptyState.textContent = '没有找到匹配的条目，换个关键词试试。';
+          var featuredSection = document.getElementById('featured');
+          if (featuredSection) {
+            featuredSection.appendChild(emptyState);
+          }
+        }
+
+        if (found === 0) {
+          emptyState.classList.add('show');
+        } else {
+          emptyState.classList.remove('show');
+        }
+      }
+
+      if (searchBtn) {
+        searchBtn.addEventListener('click', doSearch);
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            doSearch();
+          }
+        });
+        searchInput.addEventListener('input', function () {
+          if (!searchInput.value.trim()) {
+            doSearch();
+          }
+        });
+      }
+
+      // 频道高亮
+      var channelLinks = document.querySelectorAll('.channel-list a');
+      var sections = document.querySelectorAll('.section[id]');
+
+      function highlightChannel() {
+        var scrollPos = window.scrollY + 180;
+        var currentId = '';
+        sections.forEach(function (sec) {
+          if (sec.offsetTop <= scrollPos) {
+            currentId = sec.id;
+          }
+        });
+        channelLinks.forEach(function (link) {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '/#' + currentId) {
+            link.classList.add('active');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', highlightChannel, { passive: true });
+    })();
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "69夫妻乐园",
+    "description": "夫妻日常互动、情感沟通、共同爱好与生活记录内容聚合",
+    "inLanguage": "zh-CN"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "家务分工表真的有用吗，还是最后都会回到原样？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "分工表的作用是让谁做了什么从感觉变成可见的条目。它通常能维持两到四周，之后需要复盘调整。维持不下去的常见原因不是表本身没用，而是分工项没有随生活节奏变化更新。建议每两周花十分钟核对一次分工项是否还覆盖当前实际事务。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "两人做饭时间总对不上，流程表应该怎么改？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "先确认总时长差异出在哪个环节。多数家庭的差异集中在备菜和收尾两段。如果一方下班到家时间较晚，可以把备菜环节单独拆出来交给先到家的一方，烹饪段仍保持并行。另一种做法是把流程表从两人同步改为一人主厨、一人备菜与清洁。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "对方不愿意聊分工问题，对话模板还有用吗？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "模板的第一步确认共同目标在这种情况下的作用有限。更可行的做法是从一件具体的小事切入，比如这周末谁来洗碗，先解决单次分配，再逐步过渡到固定分工。单次分配的对话成本低于整体分工谈判。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "双人记账用共管还是分账，哪种矛盾少？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "收入差距在两倍以内的夫妻，共管模式的投诉集中在要不要商量大额支出；收入差距超过两倍的，共管模式下更容易出现谁花得多的争议。分账模式的问题则是公共支出怎么分摊，常见做法是按收入比例分摊。三种模式没有通用答案，可以先试一个月再决定。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "睡前交换小事聊到没话说怎么办？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "话题枯竭通常出现在第二周前后。可以引入外部随机性，比如抽签卡、轮流指定话题、从当天新闻里挑一条各自说看法。另一种做法是把一件小事的范围扩大，允许说一个观察、一个念头。把范围和形式放松之后，枯竭期会缩短，但内容深度也会下降。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "和对方父母相处的话术，照着说会不会显得假？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "照搬整句容易显得不自然，更实际的做法是只借用话术里的结构。比如淡化比较这个路径，核心是先承认对方的好意，再把话题转移到具体事务上。同一句话在不同家庭里的接受度差异很大，判断标准是对方父母平时的表达方式。"
+        }
+      }
+    ]
+  }
+  </script>
+</body>
+        </html>
