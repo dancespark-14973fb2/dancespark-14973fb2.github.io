@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>二次元萝莉 - 角色图鉴与作品索引</title>
+  <meta name="description" content="二次元萝莉角色图鉴与作品索引，收录2026年秋季新番萝莉角色、经典轻小说幼女角色、同人画师作品与黏土人周边，适合想找萌系角色资料和补番顺序的爱好者。">
+  <meta name="keywords" content="二次元萝莉">
+  <style>
+    /* ---------- 全局变量与基础 ---------- */
+    :root {
+      --primary: #e86f9c;
+      --primary-light: #f7d5e3;
+      --primary-dark: #b84a73;
+      --bg: #fefafc;
+      --panel: #ffffff;
+      --text-primary: #2d1e26;
+      --text-secondary: #6b4f5c;
+      --text-tertiary: #9c7f8c;
+      --border: #f0dae4;
+      --radius-card: 18px;
+      --radius-btn: 30px;
+      --radius-tag: 20px;
+      --radius-banner: 16px;
+      --shadow-default: 0 4px 12px rgba(232, 111, 156, 0.08);
+      --shadow-hover: 0 10px 24px rgba(232, 111, 156, 0.18);
+      --font: 'Inter', 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+      --transition: 0.2s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 110px; /* 公告条+页头高度预留 */
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ---------- 吸顶公告条 + 页头 ---------- */
+    .sticky-top {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 250, 252, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .announcement {
+      background: var(--primary-dark);
+      color: #fff;
+      font-size: 0.82rem;
+      padding: 6px 0;
+    }
+
+    .announcement-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .announcement-brand {
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      background: rgba(255,255,255,0.15);
+      padding: 2px 10px;
+      border-radius: 30px;
+    }
+
+    .announcement-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .announcement-item {
+      display: flex;
+      gap: 6px;
+      align-items: baseline;
+    }
+
+    .announcement-date {
+      font-weight: 600;
+      opacity: 0.8;
+    }
+
+    .header {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-svg {
+      width: 38px;
+      height: 38px;
+    }
+
+    .brand-text {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      letter-spacing: -0.5px;
+    }
+
+    .nav-main {
+      display: flex;
+      gap: 28px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .nav-main a {
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color var(--transition), color var(--transition);
+    }
+
+    .nav-main a:hover {
+      color: var(--primary-dark);
+      border-bottom-color: var(--primary);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-btn);
+      padding: 6px 14px;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .search-box:focus-within {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(232,111,156,0.15);
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      font-size: 0.9rem;
+      width: 160px;
+      background: transparent;
+      color: var(--text-primary);
+    }
+
+    .search-box button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--primary-dark);
+      font-size: 1.1rem;
+      line-height: 1;
+      padding: 0 0 0 6px;
+    }
+
+    .btn-submit {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: var(--radius-btn);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-submit:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: 2px solid var(--primary);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 1.4rem;
+      color: var(--primary-dark);
+      cursor: pointer;
+    }
+
+    /* ---------- 首屏 ---------- */
+    .hero {
+      max-width: 1360px;
+      margin: 24px auto 32px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1fr 0.6fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--primary-dark);
+      margin-bottom: 16px;
+      letter-spacing: -1px;
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 540px;
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: var(--radius-btn);
+      font-weight: 600;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary-dark);
+      padding: 10px 26px;
+      border-radius: var(--radius-btn);
+      font-weight: 600;
+      transition: background var(--transition), color var(--transition);
+    }
+
+    .btn-outline:hover {
+      background: var(--primary-light);
+    }
+
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-svg {
+      width: 100%;
+      max-width: 360px;
+      filter: drop-shadow(0 8px 20px rgba(232,111,156,0.2));
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-svg { animation: none; }
+    }
+
+    /* ---------- 三栏主布局 ---------- */
+    .main-container {
+      max-width: 1360px;
+      margin: 0 auto 48px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 180px 1fr 260px;
+      gap: 28px;
+      align-items: start;
+    }
+
+    /* 左侧频道索引 */
+    .channel-sidebar {
+      position: sticky;
+      top: 120px;
+    }
+
+    .channel-sidebar h2 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-tertiary);
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    .channel-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .channel-list a {
+      display: block;
+      padding: 8px 12px;
+      border-radius: 12px;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      transition: background var(--transition), color var(--transition);
+    }
+
+    .channel-list a:hover {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+    }
+
+    /* 中间主内容 */
+    .main-content {
+      min-width: 0;
+    }
+
+    /* 右侧辅助栏 */
+    .right-sidebar {
+      position: sticky;
+      top: 120px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .sidebar-card {
+      background: var(--panel);
+      border-radius: var(--radius-card);
+      padding: 20px;
+      box-shadow: var(--shadow-default);
+      border: 1px solid var(--border);
+    }
+
+    .sidebar-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hot-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .hot-list li {
+      display: flex;
+      gap: 10px;
+      font-size: 0.88rem;
+      align-items: baseline;
+    }
+
+    .hot-rank {
+      font-weight: 700;
+      color: var(--primary);
+      min-width: 20px;
+    }
+
+    .hot-title {
+      color: var(--text-secondary);
+      transition: color var(--transition);
+    }
+
+    .hot-title:hover {
+      color: var(--primary-dark);
+    }
+
+    /* ---------- 通用板块样式 ---------- */
+    .section {
+      margin-bottom: 48px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .section-header h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.3px;
+    }
+
+    .section-link {
+      font-size: 0.9rem;
+      color: var(--primary-dark);
+      font-weight: 500;
+      transition: opacity var(--transition);
+    }
+
+    .section-link:hover {
+      opacity: 0.7;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--panel);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      box-shadow: var(--shadow-default);
+      border: 1px solid var(--border);
+      transition: transform var(--transition), box-shadow var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .card-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      background: var(--primary-light);
+    }
+
+    .card-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      padding: 2px 10px;
+      border-radius: var(--radius-tag);
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-weight: 500;
+    }
+
+    .card-desc {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .card-meta {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      display: flex;
+      justify-content: space-between;
+      margin-top: 4px;
+    }
+
+    /* 最新更新列表 */
+    .update-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .update-item {
+      display: flex;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: baseline;
+    }
+
+    .update-item:last-child {
+      border-bottom: none;
+    }
+
+    .update-date {
+      font-size: 0.78rem;
+      color: var(--text-tertiary);
+      min-width: 80px;
+    }
+
+    .update-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      transition: color var(--transition);
+    }
+
+    .update-title:hover {
+      color: var(--primary-dark);
+    }
+
+    .update-summary {
+      font-size: 0.83rem;
+      color: var(--text-secondary);
+      flex: 1;
+    }
+
+    /* 分类入口网格 */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .category-item {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 18px 14px;
+      text-align: center;
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: background var(--transition), border-color var(--transition), color var(--transition), transform var(--transition);
+      cursor: pointer;
+    }
+
+    .category-item:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .category-item .cat-icon {
+      font-size: 1.6rem;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    /* 深度解析正文 */
+    .deep-dive {
+      background: var(--panel);
+      border-radius: var(--radius-card);
+      padding: 32px;
+      box-shadow: var(--shadow-default);
+      border: 1px solid var(--border);
+    }
+
+    .deep-dive h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .deep-dive h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin: 24px 0 12px;
+      color: var(--primary-dark);
+    }
+
+    .deep-dive p {
+      margin-bottom: 14px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    .deep-dive ul {
+      margin: 12px 0 16px 20px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    .deep-dive li {
+      margin-bottom: 6px;
+    }
+
+    .highlight-box {
+      background: var(--primary-light);
+      border-left: 4px solid var(--primary);
+      padding: 16px 20px;
+      border-radius: 0 12px 12px 0;
+      margin: 20px 0;
+      font-size: 0.92rem;
+      color: var(--text-primary);
+    }
+
+    /* FAQ */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    details {
+      background: var(--panel);
+      border-radius: var(--radius-card);
+      border: 1px solid var(--border);
+      padding: 0 20px;
+      transition: box-shadow var(--transition);
+    }
+
+    details[open] {
+      box-shadow: var(--shadow-default);
+    }
+
+    summary {
+      cursor: pointer;
+      padding: 16px 0;
+      font-weight: 600;
+      font-size: 0.98rem;
+      color: var(--text-primary);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      content: '+';
+      font-size: 1.4rem;
+      color: var(--primary);
+      transition: transform var(--transition);
+    }
+
+    details[open] summary::after {
+      content: '−';
+    }
+
+    .faq-answer {
+      padding: 0 0 18px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      font-size: 0.92rem;
+    }
+
+    /* 评论 */
+    .comment-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .comment-item {
+      background: var(--panel);
+      border-radius: var(--radius-card);
+      padding: 16px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-default);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .comment-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.75rem;
+      color: var(--primary-dark);
+    }
+
+    .nickname {
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--text-primary);
+    }
+
+    .comment-text {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .comment-meta {
+      font-size: 0.72rem;
+      color: var(--text-tertiary);
+    }
+
+    /* 资讯列表 */
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .news-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 20px;
+      background: var(--panel);
+      border-radius: var(--radius-card);
+      padding: 16px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-default);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .news-item:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .news-img {
+      width: 120px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 12px;
+      background: var(--primary-light);
+    }
+
+    .news-content h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .news-date {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      margin-bottom: 6px;
+    }
+
+    .news-summary {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* 相关推荐标签索引 */
+    .tag-index {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag-index a {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-tag);
+      padding: 6px 16px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      transition: background var(--transition), border-color var(--transition), color var(--transition);
+    }
+
+    .tag-index a:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary-dark);
+    }
+
+    /* 投稿/互动板块 */
+    .interact-panel {
+      background: linear-gradient(135deg, var(--primary-light) 0%, #fff 100%);
+      border-radius: var(--radius-card);
+      padding: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-default);
+    }
+
+    .interact-panel h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 6px;
+    }
+
+    .interact-panel p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    /* 页脚 */
+    .footer {
+      background: #2d1e26;
+      color: #e6d5dd;
+      padding: 48px 24px 24px;
+      margin-top: 48px;
+    }
+
+    .footer-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 32px;
+    }
+
+    .footer-brand {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .footer-desc {
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: #b8a0ac;
+      max-width: 300px;
+    }
+
+    .footer h4 {
+      color: #fff;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .footer-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-list a {
+      font-size: 0.82rem;
+      color: #b8a0ac;
+      transition: color var(--transition);
+    }
+
+    .footer-list a:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      max-width: 1360px;
+      margin: 32px auto 0;
+      padding-top: 24px;
+      border-top: 1px solid #4a3540;
+      font-size: 0.75rem;
+      color: #8c7380;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* 回到顶部 */
+    .back-to-top {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      font-size: 1.4rem;
+      cursor: pointer;
+      box-shadow: var(--shadow-hover);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--transition), transform var(--transition);
+      z-index: 90;
+    }
+
+    .back-to-top.visible {
+      display: flex;
+    }
+
+    .back-to-top:hover {
+      background: var(--primary-dark);
+      transform: translateY(-4px);
+    }
+
+    /* ---------- 响应式 ---------- */
+    @media (max-width: 1024px) {
+      .main-container {
+        grid-template-columns: 1fr 260px;
+      }
+      .channel-sidebar {
+        display: none;
+      }
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero-desc {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+      .hero-visual {
+        order: -1;
+      }
+      .hero-svg {
+        max-width: 220px;
+      }
+      .footer-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 740px) {
+      .main-container {
+        grid-template-columns: 1fr;
+      }
+      .right-sidebar {
+        position: static;
+        order: 2;
+      }
+      .main-content {
+        order: 1;
+      }
+      .nav-main {
+        display: none;
+      }
+      .hamburger {
+        display: block;
+      }
+      .header {
+        justify-content: space-between;
+      }
+      .header-actions .search-box {
+        display: none;
+      }
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+      .category-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .comment-list {
+        grid-template-columns: 1fr;
+      }
+      .news-item {
+        grid-template-columns: 1fr;
+      }
+      .news-img {
+        width: 100%;
+        height: 160px;
+      }
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+      .interact-panel {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .deep-dive {
+        padding: 24px 18px;
+      }
+    }
+
+    /* 移动端展开菜单 */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: 200;
+    }
+
+    .mobile-menu.open {
+      display: block;
+    }
+
+    .mobile-nav {
+      background: #fff;
+      width: 280px;
+      height: 100%;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      overflow-y: auto;
+    }
+
+    .mobile-nav a {
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .mobile-nav a:hover {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+    }
+
+    .mobile-nav .close-btn {
+      align-self: flex-end;
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      color: var(--text-tertiary);
+      cursor: pointer;
+      margin-bottom: 12px;
+    }
+
+    /* 无结果提示 */
+    .no-result {
+      display: none;
+      padding: 16px;
+      text-align: center;
+      color: var(--text-tertiary);
+      font-size: 0.9rem;
+    }
+
+    .no-result.visible {
+      display: block;
+    }
+  </style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+  <!-- 吸顶公告条 + 页头 -->
+  <div class="sticky-top">
+    <div class="announcement">
+      <div class="announcement-inner">
+        <span class="announcement-brand">二次元萝莉</span>
+        <div class="announcement-list">
+          <span class="announcement-item"><span class="announcement-date">11月7日</span>「星屑テレパシー」小之星海果 手办开订</span>
+          <span class="announcement-item"><span class="announcement-date">11月5日</span>「萝莉时间」秋季同人画集投稿开放</span>
+        </div>
+      </div>
+    </div>
+    <header class="header">
+      <div class="logo-area">
+        <svg class="logo-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="22" fill="#f7d5e3" stroke="#e86f9c" stroke-width="2"/>
+          <circle cx="16" cy="20" r="3" fill="#b84a73"/>
+          <circle cx="32" cy="20" r="3" fill="#b84a73"/>
+          <path d="M16 32 Q24 40 32 32" stroke="#b84a73" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <path d="M10 14 Q14 8 24 8 Q34 8 38 14" stroke="#e86f9c" stroke-width="2" fill="none"/>
+        </svg>
+        <span class="brand-text">二次元萝莉</span>
+      </div>
+      <nav class="nav-main">
+        <a href="#overview">领域概览</a>
+        <a href="#featured">精选推荐</a>
+        <a href="#updates">最新更新</a>
+        <a href="#categories">分类</a>
+        <a href="#deep-dive">深度解析</a>
+        <a href="#comments">评论</a>
+      </nav>
+      <div class="header-actions">
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="搜索条目、角色..." aria-label="搜索内容">
+          <button id="searchBtn" aria-label="搜索">🔍</button>
+        </div>
+        <button class="btn-submit" onclick="alert('投稿功能为示例，实际提交入口请联系管理员。')">投稿</button>
+        <button class="hamburger" id="hamburgerBtn" aria-label="打开菜单" aria-expanded="false">☰</button>
+      </div>
+    </header>
+  </div>
+
+  <!-- 移动端菜单遮罩 -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="移动导航">
+    <nav class="mobile-nav">
+      <button class="close-btn" id="closeMenuBtn" aria-label="关闭菜单">✕</button>
+      <a href="#overview">领域概览</a>
+      <a href="#featured">精选推荐</a>
+      <a href="#updates">最新更新</a>
+      <a href="#categories">分类</a>
+      <a href="#deep-dive">深度解析</a>
+      <a href="#guide">体验指南</a>
+      <a href="#faq">FAQ</a>
+      <a href="#comments">评论</a>
+      <a href="#news">相关资讯</a>
+      <a href="#recommend">相关推荐</a>
+    </nav>
+  </div>
+
+  <!-- 首屏 -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>二次元萝莉</h1>
+      <p class="hero-desc">汇聚2026年秋季新番幼女角色设定、经典轻小说萝莉角色图鉴、同人画师作品索引与黏土人周边开订信息，按作品、画师、角色类型建立可检索的条目库。</p>
+      <div class="hero-actions">
+        <a href="#featured" class="btn-primary">浏览角色图鉴</a>
+        <a href="#updates" class="btn-outline">查看最新更新</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <svg class="hero-svg" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="150" cy="150" r="120" fill="#f7d5e3" opacity="0.6"/>
+        <circle cx="150" cy="150" r="90" fill="#e86f9c" opacity="0.15"/>
+        <circle cx="110" cy="110" r="20" fill="#b84a73" opacity="0.8"/>
+        <circle cx="190" cy="110" r="20" fill="#b84a73" opacity="0.8"/>
+        <path d="M110 190 Q150 230 190 190" stroke="#b84a73" stroke-width="6" stroke-linecap="round" fill="none"/>
+        <path d="M80 80 Q150 40 220 80" stroke="#e86f9c" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <path d="M100 70 L90 50 L110 60 Z" fill="#e86f9c" opacity="0.6"/>
+        <path d="M200 70 L210 50 L190 60 Z" fill="#e86f9c" opacity="0.6"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- 三栏主布局 -->
+  <div class="main-container">
+    <!-- 左侧频道索引 -->
+    <aside class="channel-sidebar">
+      <h2>频道索引</h2>
+      <ul class="channel-list">
+        <li><a href="#overview">领域概览</a></li>
+        <li><a href="#featured">精选推荐</a></li>
+        <li><a href="#updates">最新更新</a></li>
+        <li><a href="#categories">分类入口</a></li>
+        <li><a href="#deep-dive">深度解析</a></li>
+        <li><a href="#guide">体验指南</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#comments">用户评论</a></li>
+        <li><a href="#news">相关资讯</a></li>
+        <li><a href="#recommend">相关推荐</a></li>
+      </ul>
+    </aside>
+
+    <!-- 中间主内容 -->
+    <main class="main-content">
+      <!-- 1. 主题领域概览 -->
+      <section class="section" id="overview">
+        <div class="section-header">
+          <h2>萝莉角色领域概览</h2>
+        </div>
+        <div class="deep-dive" style="padding: 24px;">
+          <p>二次元萝莉角色在2026年秋季档呈现明显的“低龄化叙事”倾向：以《星屑テレパシー》小之星海果、《萝莉时间》单行本第12卷收录的短篇角色为代表，幼女主角不再只是卖萌符号，而承担主线情感推进。轻小说方面，电击文库10月新刊《幼女战记》第14卷继续以谭雅·冯·提古雷查夫的战术推演吸引读者，而同人画师组合“草莓棉花糖”在Pixiv秋季祭典发布的萝莉角色插画集累计收藏突破2.3万。</p>
+          <p>从内容类型看，可搜索条目集中在四条线：新番幼女主角设定资料、经典轻小说萝莉角色图鉴、同人画师原创角色索引、黏土人/手办周边开订信息。观众需求也从“看图”转向“查设定”：角色身高、年龄、衣装细节、声优访谈成为高频检索词。站内收录的条目中，2026年10月新番萝莉角色占比约34%，轻小说幼女角色占28%，同人原创角色占22%，周边商品占16%。</p>
+        </div>
+      </section>
+
+      <!-- 2. 精选内容推荐 -->
+      <section class="section" id="featured">
+        <div class="section-header">
+          <h2>精选角色与作品</h2>
+          <a href="#recommend" class="section-link">更多推荐 →</a>
+        </div>
+        <div class="card-grid">
+          <div class="card">
+            <img class="card-img" src="https://picsum.photos/seed/hoshikuzu1/400/300" alt="星屑テレパシー小之星海果角色插画" width="400" height="300" loading="lazy">
+            <div class="card-body">
+              <h3 class="card-title">小之星海果 · 星屑テレパシー</h3>
+              <div class="card-tags"><span class="tag">新番</span><span class="tag">幼女主角</span><span class="tag">科幻</span></div>
+              <p class="card-desc">2026年10月新番，海果以12岁天才程序员身份加入宇宙开发社团，第3话用无线电修复卫星的桥段在Niconico播放量破42万。</p>
+              <div class="card-meta"><span>热度 9.2w</span><span>更新至第6话</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img" src="https://picsum.photos/seed/tanya14/400/300" alt="幼女战记第14卷封面谭雅" width="400" height="300" loading="lazy">
+            <div class="card-body">
+              <h3 class="card-title">谭雅·冯·提古雷查夫 · 幼女战记</h3>
+              <div class="card-tags"><span class="tag">轻小说</span><span class="tag">军事</span><span class="tag">第14卷</span></div>
+              <p class="card-desc">电击文库10月新刊，第14卷围绕北方战区后勤补给线展开，谭雅与维夏的战术分歧在读者书评区引发87条讨论。</p>
+              <div class="card-meta"><span>评分 4.6/5</span><span>2026-10-10 发售</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img" src="https://picsum.photos/seed/ichigo/400/300" alt="草莓棉花糖画师原创角色" width="400" height="300" loading="lazy">
+            <div class="card-body">
+              <h3 class="card-title">草莓棉花糖 · 原创角色集</h3>
+              <div class="card-tags"><span class="tag">同人画师</span><span class="tag">Pixiv</span><span class="tag">画集</span></div>
+              <p class="card-desc">画师组合在Pixiv秋季祭典发布12张幼女角色插画，其中“雨衣少女”单张收藏1.2万，评论区求壁纸者超300条。</p>
+              <div class="card-meta"><span>收藏 2.3w</span><span>2026-11-02 发布</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img" src="https://picsum.photos/seed/nendohai/400/300" alt="小之星海果黏土人灰模" width="400" height="300" loading="lazy">
+            <div class="card-body">
+              <h3 class="card-title">小之星海果 黏土人</h3>
+              <div class="card-tags"><span class="tag">手办</span><span class="tag">GSC</span><span class="tag">开订</span></div>
+              <p class="card-desc">Good Smile Company 11月7日开订，附赠“无线电零件”替换手，定价6800日元，2027年4月发货。</p>
+              <div class="card-meta"><span>预约率 62%</span><span>11月7日开订</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img" src="https://picsum.photos/seed/loliyon/400/300" alt="萝莉时间单行本第12卷封面" width="400" height="300" loading="lazy">
+            <div class="card-body">
+              <h3 class="card-title">萝莉时间 第12卷</h3>
+              <div class="card-tags"><span class="tag">漫画</span><span class="tag">短篇集</span><span class="tag">11月新刊</span></div>
+              <p class="card-desc">收录6篇以小学生日常为主题的短篇，其中《雨天的伞》被读者票选为“最想动画化章节”，得票率31%。</p>
+              <div class="card-meta"><span>评分 4.4/5</span><span>2026-11-04 发售</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img" src="https://picsum.photos/seed/yukari/400/300" alt="紫阳花幼女角色设定图" width="400" height="300" loading="lazy">
+            <div class="card-body">
+              <h3 class="card-title">紫阳花 · 原创角色</h3>
+              <div class="card-tags"><span class="tag">Vtuber</span><span class="tag">幼女</span><span class="tag">设定资料</span></div>
+              <p class="card-desc">个人势Vtuber紫阳花于10月30日公布幼女形态3D模型，身高128cm设定，首播同时在线人数1.7万。</p>
+              <div class="card-meta"><span>关注 8.9w</span><span>2026-10-30 公布</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. 最新更新 / 动态 -->
+      <section class="section" id="updates">
+        <div class="section-header">
+          <h2>最新更新与动态</h2>
+        </div>
+        <div class="update-list">
+          <div class="update-item"><span class="update-date">11月8日</span><span class="update-title">「星屑テレパシー」第6话播出</span><span class="update-summary">海果在宇宙空间站用代码修复太阳能板，Niconico好评率92.3%。</span></div>
+          <div class="update-item"><span class="update-date">11月7日</span><span class="update-title">小之星海果黏土人开订</span><span class="update-summary">GSC官方商城前2小时预约量突破3000件，附赠特典“宇宙薯片”。</span></div>
+          <div class="update-item"><span class="update-date">11月6日</span><span class="update-title">「萝莉时间」第12卷特典公开</span><span class="update-summary">虎之穴限定特典为作者复制签名的“雨天书签”，A5尺寸。</span></div>
+          <div class="update-item"><span class="update-date">11月5日</span><span class="update-title">谭雅第14卷书评区破百条</span><span class="update-summary">读者围绕“谭雅是否过度使用幼女身份”展开辩论，长评最高点赞412。</span></div>
+          <div class="update-item"><span class="update-date">11月4日</span><span class="update-title">「萝莉时间」新刊发售</span><span class="update-summary">首周销量2.1万册，位列当周漫画销量榜第7位。</span></div>
+          <div class="update-item"><span class="update-date">11月3日</span><span class="update-title">草莓棉花糖画集追加印刷</span><span class="update-summary">初版2000册售罄，画师宣布11月10日追加1500册。</span></div>
+          <div class="update-item"><span class="update-date">11月2日</span><span class="update-title">紫阳花幼女3D模型配信</span><span class="update-summary">直播中展示了“抱小熊”动作，切片视频播放量18万。</span></div>
+          <div class="update-item"><span class="update-date">10月31日</span><span class="update-title">「星屑テレパシー」第5话作监修正</span><span class="update-summary">官方推特发布海果衣装修正对比图，转发1.4万。</span></div>
+        </div>
+      </section>
+
+      <!-- 4. 分类入口 -->
+      <section class="section" id="categories">
+        <div class="section-header">
+          <h2>分类入口</h2>
+        </div>
+        <div class="category-grid">
+          <div class="category-item" data-category="新番幼女角色"><span class="cat-icon">📺</span>新番幼女角色</div>
+          <div class="category-item" data-category="轻小说幼女角色"><span class="cat-icon">📖</span>轻小说幼女角色</div>
+          <div class="category-item" data-category="同人画师原创"><span class="cat-icon">🎨</span>同人画师原创</div>
+          <div class="category-item" data-category="黏土人手办"><span class="cat-icon">🧸</span>黏土人手办</div>
+          <div class="category-item" data-category="Vtuber幼女形态"><span class="cat-icon">💻</span>Vtuber幼女形态</div>
+          <div class="category-item" data-category="萝莉漫画短篇"><span class="cat-icon">📚</span>萝莉漫画短篇</div>
+          <div class="category-item" data-category="声优访谈"><span class="cat-icon">🎤</span>声优访谈</div>
+          <div class="category-item" data-category="设定资料集"><span class="cat-icon">📐</span>设定资料集</div>
+        </div>
+      </section>
+
+      <!-- 5. 深度解析正文 -->
+      <section class="section" id="deep-dive">
+        <div class="deep-dive">
+          <h2>萝莉角色消费的三个判断维度</h2>
+          <p>从2026年秋季档的实际条目看，判断一个萝莉角色值不值得投入时间，可以拆成三条可核对的线：设定密度、声优选角、周边延展节奏。</p>
+
+          <h3>设定密度：细节数量决定二创空间</h3>
+          <p>以《星屑テレパシー》小之星海果为例，官方设定集28页里，衣装细节标注了17处，包括左手腕的电阻色环和鞋底的星图纹路。对比同季《萝莉时间》短篇角色“雨宫伞”，设定图仅4页，衣装标注3处。设定密度高的角色在同人展上的二创数量差距明显：海果在Pixiv的10月投稿数为1240件，雨宫伞为89件。</p>
+          <ul>
+            <li>可核对指标：官方设定页数、衣装标注数量、首月Pixiv投稿数</li>
+            <li>海果：28页 / 17处 / 1240件</li>
+            <li>雨宫伞：4页 / 3处 / 89件</li>
+          </ul>
+
+          <h3>声优选角：幼女声线的辨识度与角色绑定</h3>
+          <p>海果的声优是2025年出道的新人久住琳，此前仅配过两部剧场版配角。制作人小林在11月1日的访谈中提到，选久住是因为“她试音时把‘程序错误’念出了小学生念错课文的生涩感”。这种声线绑定在角色歌销量上可见：海果角色歌《电波与橡皮擦》首周销量3400张，在同期新番角色歌中排第3。而谭雅第14卷附赠的广播剧CD更换了声优悠木碧的幼女声线处理方式，书评区有读者指出“第14卷的谭雅笑声比第1卷低了半个八度”。</p>
+
+          <h3>周边延展节奏：开订时间与动画进度的匹配</h3>
+          <p>黏土人开订通常安排在动画第5-6话前后，此时角色性格已充分展示。海果黏土人在第6话播出前一天开订，GSC预约页面的“附赠零件”投票中，无线电零件以47%得票率胜出。对比2026年7月番《萝莉侦探社》主角黏土人，开订时间在第3话，附赠零件为“放大镜”，预约率仅41%。开订时间与角色高光集数的匹配度，直接影响预约转化。</p>
+          <div class="highlight-box">
+            判断一个萝莉角色条目的信息可信度，可以拆成三项来源核查：① 官方设定集是否标注页码和衣装编号；② 声优访谈是否给出具体选角理由而非泛泛夸赞；③ 周边开订页面是否公布预约转化率或首日预约数。三项齐全的条目，本季只有海果和谭雅。
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. 体验指南 / 消费路径 -->
+      <section class="section" id="guide">
+        <div class="section-header">
+          <h2>角色内容消费顺序指南</h2>
+        </div>
+        <div class="deep-dive" style="padding: 24px;">
+          <p>补一个萝莉角色或作品，先看动画第1话的“角色介绍卡”——那是判断制作组对幼女角色投入程度的第一手材料。海果第1话的介绍卡停留了4.2秒，比同季平均值多1.5秒，衣装褶皱有3处动态修正。如果介绍卡不到2秒，基本可以判断该角色是功能型配角。</p>
+          <p>接着查声优表：新人声优配幼女主角，往往意味着制作组在赌辨识度，选角访谈值得读；资深声优配幼女，则要留意声线处理是否与角色年龄脱节。谭雅第14卷广播剧更换声线处理就是反例，读者“kaze”在书评区写道“笑声像成年女性捏着嗓子”。</p>
+          <p>最后看周边开订时间：第5话之后开订的黏土人，通常附赠角色高光场景零件，预约转化率也更高。第3话之前开订的，零件多为通用配件，除非角色本身设定密度极高，否则不建议第一时间预约。</p>
+        </div>
+      </section>
+
+      <!-- 7. FAQ -->
+      <section class="section" id="faq">
+        <div class="section-header">
+          <h2>常见问题</h2>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>小之星海果是几岁？身高多少？</summary>
+            <div class="faq-answer">官方设定集标注12岁，身高142cm，鞋底星图纹路有3种颜色版本。第6话台词中她自称“小学六年级”，但设定集补充“跳级进入宇宙开发社团”。</div>
+          </details>
+          <details>
+            <summary>谭雅第14卷和动画版剧情差多少？</summary>
+            <div class="faq-answer">第14卷对应动画版第2季之后的原创章节，围绕北方战区后勤补给线。动画第2季结束于小说第10卷，第14卷有4个全新角色登场，其中2个是幼女军官。</div>
+          </details>
+          <details>
+            <summary>萝莉时间第12卷哪篇最值得看？</summary>
+            <div class="faq-answer">读者票选第一是《雨天的伞》，得票率31%。这篇讲两个小学生雨天共用一把伞，全程无台词，分镜用了23页，作者后记说画了6版分镜才定稿。</div>
+          </details>
+          <details>
+            <summary>草莓棉花糖画集还买得到吗？</summary>
+            <div class="faq-answer">初版2000册11月3日售罄，画师宣布11月10日追加1500册，在Pixiv Booth和虎之穴通贩同步开放预约，每人限购2册。</div>
+          </details>
+          <details>
+            <summary>紫阳花的幼女形态是官方设定还是二创？</summary>
+            <div class="faq-answer">官方设定。10月30日直播中公布的3D模型，身高128cm，声线也调整为幼女音。直播切片“抱小熊”动作由建模师“mochi”制作，耗时3周。</div>
+          </details>
+          <details>
+            <summary>黏土人预约率62%算高吗？</summary>
+            <div class="faq-answer">在GSC 2026年萝莉角色中排第4，前三位分别是《萝莉侦探社》主角68%、《幼女战记》谭雅71%、《魔法少女小圆》鹿目圆74%。62%属于中上水平，附赠无线电零件拉动明显。</div>
+          </details>
+        </div>
+      </section>
+
+      <!-- 8. 用户评论 -->
+      <section class="section" id="comments">
+        <div class="section-header">
+          <h2>用户评论</h2>
+        </div>
+        <div class="comment-list">
+          <div class="comment-item"><div class="comment-header"><span class="avatar">A</span><span class="nickname">星屑观测者</span></div><p class="comment-text">海果第6话修太阳能板那段，代码界面居然真写了Python，虽然不完全能跑但比乱码强太多了。</p><div class="comment-meta">2026-11-08</div></div>
+          <div class="comment-item"><div class="comment-header"><span class="avatar">B</span><span class="nickname">谭雅的书架</span></div><p class="comment-text">第14卷维夏和谭雅吵架那段，维夏说“你根本不懂补给线”，谭雅沉默了3页。这个处理比动画版细腻。</p><div class="comment-meta">2026-11-07</div></div>
+          <div class="comment-item"><div class="comment-header"><span class="avatar">C</span><span class="nickname">雨伞与橡皮</span></div><p class="comment-text">萝莉时间第12卷《雨天的伞》分镜绝了，两个小孩谁也没说话，伞往对方那边斜了两次，看哭了。</p><div class="comment-meta">2026-11-06</div></div>
+          <div class="comment-item"><div class="comment-header"><span class="avatar">D</span><span class="nickname">草莓味画集</span></div><p class="comment-text">草莓棉花糖的雨衣少女那张，我做了三个月壁纸，每次下雨都想起那张图。</p><div class="comment-meta">2026-11-05</div></div>
+          <div class="comment-item"><div class="comment-header"><span class="avatar">E</span><span class="nickname">黏土人破产</span></div><p class="comment-text">海果黏土人附赠薯片零件也太懂了，但6800日元有点贵，等国内代理版。</p><div class="comment-meta">2026-11-05</div></div>
+          <div class="comment-item"><div class="comment-header"><span class="avatar">F</span><span class="nickname">紫阳花推</span></div><p class="comment-text">128cm的3D模型，抱小熊动作真的自然，建模师mochi以前是做MMD的，难怪关节处理顺。</p><div class="comment-meta">2026-11-04</div></div>
+          <div class="comment-item"><div class="comment-header"><span class="avatar">G</span><span class="nickname">声优厨</span></div><p class="comment-text">久住琳的声线辨识度太高了，念“错误”那个生涩感确实像小学生，制作人没吹牛。</p><div class="comment-meta">2026-11-03</div></div>
+          <div class="comment-item"><div class="comment-header"><span class="avatar">H</span><span class="nickname">路过的提督</span></div><p class="comment-text">谭雅第14卷广播剧那个笑声，我听了三遍还是觉得别扭，悠木碧是不是感冒了。</p><div class="comment-meta">2026-11-02</div></div>
+          <div class="comment-item"><div class="comment-header"><span class="avatar">I</span><span class="nickname">同人展赶场</span></div><p class="comment-text">萝莉时间第12卷的虎之穴特典书签，我跑了两家店才买到，复制签名比想象中清楚。</p><div class="comment-meta">2026-11-01</div></div>
+          <div class="comment-item"><div class="comment-header"><span class="avatar">J</span><span class="nickname">画集收藏家</span></div><p class="comment-text">草莓棉花糖追加印刷1500册，画师说封面会换颜色，初版是粉的，追加是薄荷绿。</p><div class="comment-meta">2026-10-31</div></div>
+          <div class="comment-item"><div class="comment-header"><span class="avatar">K</span><span class="nickname">只看不说话</span></div><p class="comment-text">最近幼女角色是不是太多了，这季我追了四部都是小学女生主角，有点审美疲劳。</p><div class="comment-meta">2026-10-30</div></div>
+          <div class="comment-item"><div class="comment-header"><span class="avatar">L</span><span class="nickname">电波少年</span></div><p class="comment-text">海果那个代码界面，我放大看了，写的是“while true: print('hello')”……程序员看了会沉默。</p><div class="comment-meta">2026-10-29</div></div>
+          <div class="comment-item"><div class="comment-header"><span class="avatar">M</span><span class="nickname">轻小说搬运工</span></div><p class="comment-text">谭雅第14卷第3章那个补给线推演，作者写了两页计算，我跳过了，但书评区有人做了Excel表。</p><div class="comment-meta">2026-10-28</div></div>
+          <div class="comment-item"><div class="comment-header"><span class="avatar">N</span><span class="nickname">伞下听雨</span></div><p class="comment-text">雨宫伞那个角色设定太少了，4页设定图能出89张二创已经算厉害了，全靠分镜抬。</p><div class="comment-meta">2026-10-27</div></div>
+          <div class="comment-item"><div class="comment-header"><span class="avatar">O</span><span class="nickname">V圈观察</span></div><p class="comment-text">紫阳花换幼女形态后涨粉3万，但老粉在评论区说“变味了”，新粉说“更可爱了”，两边吵了200楼。</p><div class="comment-meta">2026-10-26</div></div>
+          <div class="comment-item"><div class="comment-header"><span class="avatar">P</span><span class="nickname">手办柜顶</span></div><p class="comment-text">GSC这波预约率62%，我贡献了一个，无线电零件值回票价，薯片就当彩蛋。</p><div class="comment-meta">2026-10-25</div></div>
+        </div>
+      </section>
+
+      <!-- 9. 相关资讯 -->
+      <section class="section" id="news">
+        <div class="section-header">
+          <h2>相关资讯</h2>
+        </div>
+        <div class="news-list">
+          <article class="news-item">
+            <img class="news-img" src="https://picsum.photos/seed/news1/600/400" alt="星屑テレパシー第6话播出截图" width="120" height="90" loading="lazy">
+            <div class="news-content">
+              <h3>「星屑テレパシー」第6话收视率2.8%，创本季新高</h3>
+              <p class="news-date">2026-11-08</p>
+              <p class="news-summary">关东地区收视率2.8%，比第5话提升0.4个百分点，Niconico好评率92.3%。制作组在片尾追加了海果的代码注释彩蛋。</p>
+            </div>
+          </article>
+          <article class="news-item">
+            <img class="news-img" src="https://picsum.photos/seed/news2/600/400" alt="萝莉时间第12卷销量榜" width="120" height="90" loading="lazy">
+            <div class="news-content">
+              <h3>「萝莉时间」第12卷首周销量2.1万册，位列漫画榜第7</h3>
+              <p class="news-date">2026-11-04</p>
+              <p class="news-summary">Oricon 11月第1周漫画销量榜公布，第12卷首周2.1万册，比第11卷的1.8万册增长16.7%。虎之穴特典版贡献约3400册。</p>
+            </div>
+          </article>
+          <article class="news-item">
+            <img class="news-img" src="https://picsum.photos/seed/news3/600/400" alt="草莓棉花糖画集追加印刷公告" width="120" height="90" loading="lazy">
+            <div class="news-content">
+              <h3>草莓棉花糖画集追加印刷1500册，11月10日开放预约</h3>
+              <p class="news-date">2026-11-03</p>
+              <p class="news-summary">画师在Pixiv公告中说明追加版封面改为薄荷绿，内页新增2张未收录草图，预约渠道为Booth和虎之穴通贩，每人限购2册。</p>
+            </div>
+          </article>
+          <article class="news-item">
+            <img class="news-img" src="https://picsum.photos/seed/news4/600/400" alt="谭雅第14卷书评讨论" width="120" height="90" loading="lazy">
+            <div class="news-content">
+              <h3>谭雅第14卷书评区讨论破百条，焦点在“幼女身份使用边界”</h3>
+              <p class="news-date">2026-11-05</p>
+              <p class="news-summary">电击文库官方书评区累计87条长评，最高点赞412。读者“kaze”的批评帖提到“第14卷谭雅笑声处理偏离幼女设定”，作者未回应。</p>
+            </div>
+          </article>
+          <article class="news-item">
+            <img class="news-img" src="https://picsum.photos/seed/news5/600/400" alt="紫阳花3D模型直播截图" width="120" height="90" loading="lazy">
+            <div class="news-content">
+              <h3>紫阳花幼女3D模型直播切片播放18万，建模师公开制作周期</h3>
+              <p class="news-date">2026-11-02</p>
+              <p class="news-summary">直播切片“抱小熊”在YouTube播放18万次，建模师mochi在推特补充：模型耗时3周，关节权重调了11版，参考了真实儿童动作捕捉数据。</p>
+            </div>
+          </article>
+          <article class="news-item">
+            <img class="news-img" src="https://picsum.photos/seed/news6/600/400" alt="小之星海果黏土人开订页面" width="120" height="90" loading="lazy">
+            <div class="news-content">
+              <h3>小之星海果黏土人开订2小时预约破3000件</h3>
+              <p class="news-date">2026-11-07</p>
+              <p class="news-summary">GSC官方商城数据显示，开订2小时预约量3021件，附赠零件投票中无线电零件47%胜出。国内代理版预计11月20日开订。</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 10. 相关推荐 -->
+      <section class="section" id="recommend">
+        <div class="section-header">
+          <h2>相关推荐</h2>
+        </div>
+        <div class="tag-index">
+          <a href="#featured">小之星海果设定资料</a>
+          <a href="#featured">谭雅第14卷试读</a>
+          <a href="#featured">萝莉时间短篇票选</a>
+          <a href="#featured">草莓棉花糖画集</a>
+          <a href="#featured">幼女战记广播剧</a>
+          <a href="#featured">紫阳花3D模型</a>
+          <a href="#featured">黏土人预约攻略</a>
+          <a href="#featured">雨宫伞分镜解析</a>
+        </div>
+      </section>
+
+      <!-- 11. 补充板块：投稿/互动 -->
+      <section class="section" id="interact">
+        <div class="interact-panel">
+          <div>
+            <h3>分享你的萝莉角色图鉴</h3>
+            <p>提交角色设定资料、同人作品或周边开订信息，经审核后收录至条目库。</p>
+          </div>
+          <button class="btn-primary" onclick="alert('投稿功能为示例，实际提交入口请联系管理员。')">立即投稿</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- 右侧辅助栏 -->
+    <aside class="right-sidebar">
+      <div class="sidebar-card">
+        <h3>🔥 本周热榜</h3>
+        <ul class="hot-list">
+          <li><span class="hot-rank">1</span><a href="#featured" class="hot-title">小之星海果 · 星屑テレパシー</a></li>
+          <li><span class="hot-rank">2</span><a href="#featured" class="hot-title">谭雅 · 幼女战记 第14卷</a></li>
+          <li><span class="hot-rank">3</span><a href="#featured" class="hot-title">萝莉时间 第12卷</a></li>
+          <li><span class="hot-rank">4</span><a href="#featured" class="hot-title">草莓棉花糖 画集</a></li>
+          <li><span class="hot-rank">5</span><a href="#featured" class="hot-title">紫阳花 幼女3D模型</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-card">
+        <h3>📅 近期发售</h3>
+        <ul class="hot-list">
+          <li><span class="hot-rank">11/10</span><a href="#featured" class="hot-title">草莓棉花糖画集追加版</a></li>
+          <li><span class="hot-rank">11/15</span><a href="#featured" class="hot-title">萝莉时间第12卷特装版</a></li>
+          <li><span class="hot-rank">11/20</span><a href="#featured" class="hot-title">海果黏土人国内代理</a></li>
+          <li><span class="hot-rank">12/01</span><a href="#featured" class="hot-title">谭雅第14卷广播剧CD</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">二次元萝莉</div>
+        <p class="footer-desc">收录2026年10月-11月新番幼女角色、轻小说幼女角色、同人画师原创与黏土人周边，条目按作品、画师、角色类型分类。</p>
+      </div>
+      <div>
+        <h4>内容分类</h4>
+        <ul class="footer-list">
+          <li><a href="#featured">新番幼女角色</a></li>
+          <li><a href="#featured">轻小说幼女角色</a></li>
+          <li><a href="#featured">同人画师原创</a></li>
+          <li><a href="#featured">黏土人手办</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>互动</h4>
+        <ul class="footer-list">
+          <li><a href="#interact">投稿指南</a></li>
+          <li><a href="#comments">用户评论</a></li>
+          <li><a href="#faq">常见问题</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>关于</h4>
+        <ul class="footer-list">
+          <li><a href="#overview">领域概览</a></li>
+          <li><a href="#news">相关资讯</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 二次元萝莉 内容聚合示例 · 条目数据为示例，仅用于展示</span>
+      <span>最近更新：2026-11-08（对应公告条“星屑テレパシー 小之星海果 手办开订”）</span>
+    </div>
+  </footer>
+
+  <!-- 回到顶部 -->
+  <button class="back-to-top" id="backToTop" aria-label="回到顶部">↑</button>
+
+  <script>
+    // 移动端菜单
+    const hamburger = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeMenu = document.getElementById('closeMenuBtn');
+
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+    });
+
+    closeMenu.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) {
+        mobileMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Esc 关闭菜单
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+        mobileMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // 回到顶部
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // 搜索功能 - 本地筛选（简化示例：搜索卡片和列表标题）
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const searchableItems = document.querySelectorAll('.card-title, .update-title, .hot-title');
+
+    function performSearch() {
+      const query = searchInput.value.trim().toLowerCase();
+      // 简单示例：高亮或筛选，此处仅作空操作提示，避免破坏布局
+      if (query) {
+        // 实际应用可加入筛选逻辑，此处保留无结果提示
+        console.log('搜索：', query);
+      }
+    }
+
+    searchBtn.addEventListener('click', performSearch);
+    searchInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') performSearch();
+    });
+
+    // 分类入口点击提示（示例）
+    document.querySelectorAll('.category-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const cat = item.dataset.category;
+        alert(`分类“${cat}”筛选为示例，实际可跳转至对应栏目。`);
+      });
+    });
+  </script>
+
+  <!-- 结构化数据 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "二次元萝莉",
+    "description": "二次元萝莉角色图鉴与作品索引，收录2026年秋季新番萝莉角色、经典轻小说幼女角色、同人画师作品与黏土人周边。",
+    "url": ""
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "小之星海果是几岁？身高多少？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "官方设定集标注12岁，身高142cm，鞋底星图纹路有3种颜色版本。第6话台词中她自称“小学六年级”，但设定集补充“跳级进入宇宙开发社团”。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "谭雅第14卷和动画版剧情差多少？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "第14卷对应动画版第2季之后的原创章节，围绕北方战区后勤补给线。动画第2季结束于小说第10卷，第14卷有4个全新角色登场，其中2个是幼女军官。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "萝莉时间第12卷哪篇最值得看？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "读者票选第一是《雨天的伞》，得票率31%。这篇讲两个小学生雨天共用一把伞，全程无台词，分镜用了23页，作者后记说画了6版分镜才定稿。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "草莓棉花糖画集还买得到吗？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "初版2000册11月3日售罄，画师宣布11月10日追加1500册，在Pixiv Booth和虎之穴通贩同步开放预约，每人限购2册。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "紫阳花的幼女形态是官方设定还是二创？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "官方设定。10月30日直播中公布的3D模型，身高128cm，声线也调整为幼女音。直播切片“抱小熊”动作由建模师“mochi”制作，耗时3周。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "黏土人预约率62%算高吗？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "在GSC 2026年萝莉角色中排第4，前三位分别是《萝莉侦探社》主角68%、《幼女战记》谭雅71%、《魔法少女小圆》鹿目圆74%。62%属于中上水平，附赠无线电零件拉动明显。"
+        }
+      }
+    ]
+  }
+  </script>
+</body>
+                                   </html>
