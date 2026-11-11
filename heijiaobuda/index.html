@@ -1,0 +1,1367 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>黑椒不打烊官方网站 - 深夜内容聚合站</title>
+<meta name="description" content="黑椒不打烊官方网站汇集深夜电台、夜班短剧、凌晨访谈与城市夜食记录，按类型、时长与更新节奏整理条目，适合夜班族与深夜长时间在线的人按需挑选。">
+<meta name="keywords" content="黑椒不打烊官方网站">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23141118'/%3E%3Ccircle cx='32' cy='30' r='13' fill='%23f0a13c'/%3E%3Ccircle cx='27' cy='27' r='3' fill='%23141118'/%3E%3Ccircle cx='37' cy='27' r='3' fill='%23141118'/%3E%3Cpath d='M32 30v9' stroke='%23141118' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M14 52h36' stroke='%23f0a13c' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root{
+  --brand:#f0a13c;
+  --brand-light:#ffd39b;
+  --brand-deep:#b96a12;
+  --bg:#121016;
+  --bg-soft:#1a1720;
+  --panel:#211d29;
+  --panel-2:#2a2533;
+  --text:#f3efe9;
+  --text-2:#c3bbcf;
+  --text-3:#8d8599;
+  --line:#332d3e;
+  --line-soft:#282334;
+  --r-card:14px;
+  --r-btn:9px;
+  --r-tag:6px;
+  --r-banner:18px;
+  --sh:0 2px 10px rgba(0,0,0,.35);
+  --sh-hover:0 8px 24px rgba(0,0,0,.5);
+  --stick:112px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{margin:0;line-height:1.35;font-weight:700}
+p{margin:0 0 12px}
+ul,ol{margin:0 0 12px;padding-left:20px}
+button{font-family:inherit}
+.wrap{max-width:1320px;margin:0 auto;padding:0 20px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ===== 吸顶公告条 ===== */
+.notice{
+  position:sticky;top:0;z-index:60;
+  background:linear-gradient(90deg,var(--brand-deep),#6d3d08 70%);
+  color:#fff5e6;font-size:13px;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+.notice .wrap{display:flex;align-items:center;gap:14px;min-height:40px;flex-wrap:wrap;padding-top:4px;padding-bottom:4px}
+.notice-brand{font-weight:700;letter-spacing:.5px;color:#fff;white-space:nowrap}
+.notice-items{display:flex;gap:8px;flex-wrap:wrap;align-items:center;overflow:hidden}
+.notice-item{display:inline-flex;gap:6px;align-items:center;background:rgba(0,0,0,.22);padding:2px 10px;border-radius:99px;white-space:nowrap}
+.notice-item b{color:var(--brand-light);font-weight:600}
+.notice-item a{color:#fff;border-bottom:1px dashed rgba(255,255,255,.4)}
+.notice-item a:hover{color:var(--brand-light)}
+
+/* ===== 页头 ===== */
+.site-header{
+  position:sticky;top:40px;z-index:55;
+  background:rgba(18,16,22,.86);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{display:flex;align-items:center;gap:22px;min-height:70px}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.logo svg{width:36px;height:36px}
+.logo-text{font-size:18px;font-weight:800;letter-spacing:.5px;color:var(--text)}
+.logo-text span{color:var(--brand)}
+.main-nav{display:flex;gap:4px;flex-wrap:wrap;flex:1}
+.main-nav a{
+  padding:6px 12px;border-radius:var(--r-btn);font-size:14px;color:var(--text-2);
+  transition:background .18s,color .18s;
+}
+.main-nav a:hover,.main-nav a:focus-visible{background:var(--panel-2);color:var(--brand-light);outline:none}
+.header-tools{display:flex;align-items:center;gap:10px;margin-left:auto}
+.search-box{position:relative}
+.search-box input{
+  width:190px;padding:7px 30px 7px 12px;border-radius:var(--r-btn);
+  background:var(--panel);border:1px solid var(--line);color:var(--text);font-size:13px;
+}
+.search-box input::placeholder{color:var(--text-3)}
+.search-box input:focus{outline:2px solid var(--brand);outline-offset:1px;border-color:transparent}
+.search-box .clear-btn{
+  position:absolute;right:6px;top:50%;transform:translateY(-50%);
+  background:none;border:0;color:var(--text-3);cursor:pointer;font-size:15px;line-height:1;padding:2px 4px;border-radius:4px;
+}
+.search-box .clear-btn:hover{color:var(--brand)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:7px 14px;border-radius:var(--r-btn);border:1px solid var(--brand);color:var(--brand);
+  background:transparent;font-size:13px;cursor:pointer;transition:background .18s,color .18s;
+}
+.btn-ghost:hover{background:var(--brand);color:#1b1409}
+.hamburger{
+  display:none;width:40px;height:38px;border-radius:var(--r-btn);
+  border:1px solid var(--line);background:var(--panel);color:var(--text);cursor:pointer;
+  align-items:center;justify-content:center;font-size:18px;
+}
+.hamburger:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.search-feedback{
+  position:absolute;right:0;top:calc(100% + 8px);min-width:220px;
+  background:var(--panel-2);border:1px solid var(--line);border-radius:var(--r-card);
+  padding:10px 14px;font-size:13px;color:var(--text-2);box-shadow:var(--sh-hover);
+  display:none;
+}
+.search-feedback.show{display:block}
+
+/* ===== 首屏 ===== */
+.hero{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(720px 320px at 82% 10%,rgba(240,161,60,.18),transparent 65%),
+    radial-gradient(520px 300px at 8% 90%,rgba(110,80,180,.22),transparent 70%),
+    linear-gradient(160deg,#191521,#121016 60%);
+  border-bottom:1px solid var(--line);
+}
+.hero::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,transparent 1px 64px);
+  mask-image:linear-gradient(180deg,#000,transparent 80%);
+}
+.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.25fr .75fr;gap:40px;padding:56px 0 60px;align-items:center}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;font-size:12.5px;letter-spacing:1px;
+  color:var(--brand-light);border:1px solid rgba(240,161,60,.4);
+  background:rgba(240,161,60,.08);padding:4px 12px;border-radius:99px;margin-bottom:18px;
+}
+.hero-tag i{width:7px;height:7px;border-radius:50%;background:var(--brand);display:inline-block;animation:pulse 2.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.82)}}
+.hero h1{font-size:clamp(30px,4.4vw,50px);letter-spacing:1px;margin-bottom:16px;color:#fff}
+.hero h1 em{font-style:normal;color:var(--brand)}
+.hero-desc{font-size:15.5px;color:var(--text-2);max-width:560px;line-height:1.85}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:var(--r-btn);
+  background:linear-gradient(135deg,var(--brand),#d9822b);color:#22160a;font-weight:700;font-size:14.5px;
+  border:0;cursor:pointer;box-shadow:0 4px 16px rgba(240,161,60,.28);transition:transform .18s,box-shadow .18s;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(240,161,60,.4)}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:var(--r-btn);
+  border:1px solid var(--line);color:var(--text-2);background:var(--panel);font-size:14.5px;transition:border-color .18s,color .18s;
+}
+.btn-secondary:hover{border-color:var(--brand);color:var(--brand-light)}
+.hero-stats{display:flex;gap:26px;margin-top:30px;flex-wrap:wrap}
+.hero-stat b{display:block;font-size:22px;color:var(--brand-light);font-weight:800;line-height:1.2}
+.hero-stat span{font-size:12px;color:var(--text-3);letter-spacing:.5px}
+.hero-visual{position:relative;height:320px}
+.hero-visual .disc{
+  position:absolute;right:8%;top:6%;width:250px;height:250px;border-radius:50%;
+  background:conic-gradient(from 210deg,#2c2638,#1b1723 40%,#2c2638 70%,#1b1723);
+  border:1px solid #3a3348;box-shadow:inset 0 0 0 30px rgba(0,0,0,.35),0 20px 50px rgba(0,0,0,.5);
+  animation:spin 26s linear infinite;
+}
+.hero-visual .disc::before{
+  content:"";position:absolute;inset:38%;border-radius:50%;
+  background:radial-gradient(circle,var(--brand) 0 34%,#c07d22 100%);
+}
+.hero-visual .disc::after{
+  content:"";position:absolute;inset:46%;border-radius:50%;background:#121016;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-visual .card-float{
+  position:absolute;left:0;bottom:8px;width:210px;background:var(--panel);
+  border:1px solid var(--line);border-radius:var(--r-banner);padding:14px 16px;box-shadow:var(--sh-hover);
+}
+.hero-visual .card-float strong{display:block;font-size:13.5px;color:var(--brand-light);margin-bottom:4px}
+.hero-visual .card-float p{font-size:12.5px;color:var(--text-3);margin:0;line-height:1.6}
+.hero-visual .bar{
+  position:absolute;left:26%;top:2%;width:60px;height:6px;border-radius:99px;
+  background:linear-gradient(90deg,var(--brand),transparent);
+}
+
+/* ===== 主布局：左侧单栏 ===== */
+.layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:34px;padding:44px 0 70px;align-items:start}
+.side-nav{
+  position:sticky;top:var(--stick);
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--r-card);
+  padding:16px 12px;max-height:calc(100vh - 140px);overflow:auto;
+}
+.side-nav h2{font-size:13px;color:var(--text-3);letter-spacing:1.5px;padding:0 10px 10px;font-weight:600}
+.side-nav a{
+  display:flex;justify-content:space-between;align-items:center;gap:8px;
+  padding:7px 10px;border-radius:8px;font-size:13.5px;color:var(--text-2);
+  transition:background .16s,color .16s;
+}
+.side-nav a span{font-size:11.5px;color:var(--text-3)}
+.side-nav a:hover{background:var(--panel-2);color:var(--brand-light)}
+.side-nav a.active{background:rgba(240,161,60,.14);color:var(--brand-light);font-weight:600}
+.side-nav .side-block{margin-top:14px;padding-top:14px;border-top:1px solid var(--line-soft)}
+.side-nav .side-block p{font-size:12.5px;color:var(--text-3);padding:0 10px;margin:0 0 8px;line-height:1.65}
+
+.main-col{min-width:0}
+section[id]{scroll-margin-top:var(--stick)}
+.block{margin-bottom:52px}
+.block-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:18px;flex-wrap:wrap}
+.block-head h2{font-size:22px;letter-spacing:.5px}
+.block-head h2::before{content:"";display:inline-block;width:4px;height:17px;border-radius:2px;background:var(--brand);margin-right:10px;vertical-align:-2px}
+.block-head .sub{font-size:13px;color:var(--text-3)}
+
+/* 概览 */
+.overview{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--r-banner);
+  padding:26px 28px;font-size:14.5px;color:var(--text-2);line-height:1.95;
+}
+.overview strong{color:var(--brand-light)}
+.overview em{font-style:normal;color:var(--text);border-bottom:1px dashed var(--brand-deep)}
+
+/* 精选卡片 */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:18px}
+.card{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--r-card);
+  overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s,border-color .2s;
+}
+.card:hover{transform:translateY(-3px);box-shadow:var(--sh-hover);border-color:#463d55}
+.card .thumb{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--panel-2)}
+.card .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.card:hover .thumb img{transform:scale(1.04)}
+.card .tag-type{
+  position:absolute;left:10px;top:10px;font-size:11.5px;padding:2px 9px;border-radius:var(--r-tag);
+  background:rgba(18,16,22,.82);color:var(--brand-light);border:1px solid rgba(240,161,60,.4);backdrop-filter:blur(4px);
+}
+.card .body{padding:14px 15px 16px;display:flex;flex-direction:column;flex:1}
+.card h3{font-size:15.5px;margin-bottom:8px;line-height:1.45}
+.card .point{font-size:13px;color:var(--text-2);line-height:1.7;margin:0 0 12px;flex:1}
+.tag-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.tag{
+  font-size:11.5px;padding:1px 8px;border-radius:var(--r-tag);
+  background:var(--panel-2);color:var(--text-3);border:1px solid var(--line-soft);white-space:nowrap;
+}
+.card .meta{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--text-3);border-top:1px solid var(--line-soft);padding-top:9px}
+.card .meta b{color:var(--brand);font-weight:600}
+
+/* 更新动态 */
+.update-list{background:var(--panel);border:1px solid var(--line);border-radius:var(--r-card);overflow:hidden}
+.update-item{display:flex;gap:16px;padding:14px 18px;border-bottom:1px solid var(--line-soft);align-items:flex-start;transition:background .16s}
+.update-item:last-child{border-bottom:0}
+.update-item:hover{background:var(--panel-2)}
+.update-time{flex-shrink:0;width:64px;font-size:12px;color:var(--brand);font-weight:600;padding-top:2px;letter-spacing:.3px}
+.update-body h3{font-size:14.5px;margin-bottom:3px}
+.update-body p{font-size:13px;color:var(--text-3);margin:0;line-height:1.65}
+
+/* 分类入口 */
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.cat{
+  display:flex;flex-direction:column;gap:4px;padding:15px 16px;border-radius:var(--r-card);
+  background:var(--panel);border:1px solid var(--line);transition:border-color .18s,background .18s,transform .18s;
+}
+.cat:hover{border-color:var(--brand-deep);background:var(--panel-2);transform:translateY(-2px)}
+.cat strong{font-size:14.5px;color:var(--text)}
+.cat span{font-size:12px;color:var(--text-3)}
+
+/* 深度解析 */
+.deep{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--r-banner);
+  padding:30px 32px;font-size:14.5px;color:var(--text-2);line-height:1.95;
+}
+.deep h3{font-size:17.5px;color:var(--text);margin:26px 0 12px;padding-left:12px;border-left:3px solid var(--brand-deep)}
+.deep h3:first-child{margin-top:0}
+.deep strong{color:var(--brand-light)}
+.deep .quote{
+  margin:16px 0;padding:12px 18px;border-left:3px solid var(--brand);
+  background:rgba(240,161,60,.06);border-radius:0 var(--r-card) var(--r-card) 0;font-size:13.8px;color:var(--text-2);
+}
+.deep ul li{margin-bottom:6px}
+.compare-table{width:100%;border-collapse:collapse;margin:14px 0 18px;font-size:13.2px}
+.compare-table th,.compare-table td{border:1px solid var(--line);padding:8px 11px;text-align:left;vertical-align:top}
+.compare-table th{background:var(--panel-2);color:var(--text);font-weight:600}
+.compare-table td{color:var(--text-2)}
+
+/* 指南步骤 */
+.steps{display:grid;gap:14px}
+.step{
+  display:grid;grid-template-columns:52px 1fr;gap:16px;align-items:start;
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--r-card);padding:16px 18px;
+}
+.step .num{
+  width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:rgba(240,161,60,.12);border:1px solid rgba(240,161,60,.4);color:var(--brand-light);font-weight:800;font-size:16px;
+}
+.step h3{font-size:15px;margin-bottom:6px}
+.step p{font-size:13.5px;color:var(--text-2);margin:0;line-height:1.8}
+
+/* FAQ */
+.faq details{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--r-card);
+  margin-bottom:10px;overflow:hidden;
+}
+.faq summary{
+  cursor:pointer;padding:14px 18px;font-size:14.5px;font-weight:600;color:var(--text);
+  list-style:none;display:flex;justify-content:space-between;gap:14px;align-items:center;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--brand);font-size:18px;font-weight:400;flex-shrink:0;transition:transform .18s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq summary:focus-visible{outline:2px solid var(--brand);outline-offset:-2px}
+.faq .ans{padding:0 18px 16px;font-size:13.8px;color:var(--text-2);line-height:1.85}
+.faq details[open]{border-color:#463d55}
+
+/* 评论 */
+.comment-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(266px,1fr));gap:14px}
+.comment{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--r-card);padding:14px 16px;
+}
+.comment .who{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.avatar{
+  width:30px;height:30px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  font-size:12.5px;font-weight:700;color:#1b1409;
+}
+.comment .name{font-size:13px;color:var(--brand-light);font-weight:600}
+.comment .time{font-size:11.5px;color:var(--text-3);margin-left:auto}
+.comment p{font-size:13.2px;color:var(--text-2);margin:0;line-height:1.78}
+
+/* 资讯 */
+.news-list{display:grid;gap:14px}
+.news{
+  display:grid;grid-template-columns:180px 1fr;gap:18px;
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--r-card);overflow:hidden;
+  transition:border-color .18s,background .18s;
+}
+.news:hover{border-color:#463d55;background:var(--panel-2)}
+.news img{width:180px;height:100%;min-height:118px;object-fit:cover}
+.news .nb{padding:14px 18px 16px}
+.news .nd{font-size:12px;color:var(--brand);letter-spacing:.3px;margin-bottom:5px}
+.news h3{font-size:15px;margin-bottom:6px}
+.news p{font-size:13px;color:var(--text-3);margin:0;line-height:1.7}
+
+/* 相关推荐 */
+.rec-tags{display:flex;flex-wrap:wrap;gap:10px}
+.rec-tag{
+  display:inline-flex;align-items:center;gap:7px;padding:8px 15px;border-radius:99px;
+  background:var(--panel);border:1px solid var(--line);font-size:13.5px;color:var(--text-2);
+  transition:border-color .16s,color .16s,background .16s;
+}
+.rec-tag:hover{border-color:var(--brand);color:var(--brand-light);background:rgba(240,161,60,.08)}
+.rec-tag b{color:var(--brand);font-weight:600;font-size:12px}
+
+/* 榜单 */
+.rank-list{display:grid;gap:10px}
+.rank{
+  display:grid;grid-template-columns:38px 1fr auto;gap:14px;align-items:center;
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--r-card);padding:12px 16px;
+}
+.rank .rk{font-size:19px;font-weight:800;color:var(--text-3);text-align:center;font-variant-numeric:tabular-nums}
+.rank.top .rk{color:var(--brand)}
+.rank .rt h3{font-size:14.5px;margin-bottom:2px}
+.rank .rt p{font-size:12.5px;color:var(--text-3);margin:0}
+.rank .rv{font-size:13px;color:var(--brand-light);font-weight:700;white-space:nowrap}
+
+/* 投稿互动 */
+.submit-panel{
+  display:grid;grid-template-columns:1.1fr .9fr;gap:22px;
+  background:linear-gradient(140deg,#241d2e,#1a1720);
+  border:1px solid var(--line);border-radius:var(--r-banner);padding:28px 30px;
+}
+.submit-panel h2{font-size:20px;margin-bottom:10px}
+.submit-panel p{font-size:13.8px;color:var(--text-2);line-height:1.85}
+.submit-form{display:grid;gap:10px;align-content:start}
+.submit-form label{font-size:12.5px;color:var(--text-3)}
+.submit-form input,.submit-form select,.submit-form textarea{
+  width:100%;padding:9px 12px;border-radius:var(--r-btn);background:var(--panel-2);
+  border:1px solid var(--line);color:var(--text);font-size:13.5px;font-family:inherit;
+}
+.submit-form input:focus,.submit-form select:focus,.submit-form textarea:focus{outline:2px solid var(--brand);outline-offset:1px;border-color:transparent}
+.submit-form textarea{min-height:74px;resize:vertical}
+.form-note{font-size:12.5px;color:var(--brand-light);min-height:20px}
+
+/* 页脚 */
+.site-footer{
+  background:#0d0b11;border-top:1px solid var(--line);padding:44px 0 26px;font-size:13px;color:var(--text-3);
+}
+.footer-top{display:grid;grid-template-columns:1.4fr 2.2fr;gap:40px;margin-bottom:30px}
+.footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.footer-brand svg{width:32px;height:32px}
+.footer-brand strong{font-size:16px;color:var(--text)}
+.footer-desc{line-height:1.85;max-width:340px}
+.footer-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.footer-cols h3{font-size:13px;color:var(--text-2);margin-bottom:10px;letter-spacing:.5px}
+.footer-cols a{display:block;padding:3px 0;color:var(--text-3);transition:color .15s}
+.footer-cols a:hover{color:var(--brand-light)}
+.footer-bottom{border-top:1px solid var(--line-soft);padding-top:18px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px}
+
+/* 回到顶部 */
+.to-top{
+  position:fixed;right:22px;bottom:26px;width:44px;height:44px;border-radius:50%;
+  border:1px solid var(--line);background:var(--panel);color:var(--brand);font-size:18px;
+  display:none;align-items:center;justify-content:center;cursor:pointer;z-index:50;box-shadow:var(--sh);
+  transition:background .18s,transform .18s;
+}
+.to-top.show{display:flex}
+.to-top:hover{background:var(--panel-2);transform:translateY(-3px)}
+.to-top:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+
+/* 移动遮罩 */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:57;display:none}
+.overlay.show{display:block}
+
+@media (max-width:1024px){
+  .layout{grid-template-columns:1fr;gap:26px}
+  .side-nav{position:static;max-height:none;display:none;order:2}
+  .side-nav.open{display:block}
+  .main-col{order:1}
+  .hero-inner{grid-template-columns:1fr;gap:24px;padding:40px 0 46px}
+  .hero-visual{height:220px;order:-1}
+  .hero-visual .disc{width:170px;height:170px;right:auto;left:6%}
+  .hero-visual .card-float{left:auto;right:6%;bottom:0;width:190px}
+  .submit-panel{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr;gap:26px}
+  .hamburger{display:flex}
+  .main-nav{display:none}
+  .main-nav.open{
+    display:flex;position:absolute;left:0;right:0;top:100%;
+    background:var(--panel);border-bottom:1px solid var(--line);padding:12px 20px;flex-direction:column;gap:2px;
+    box-shadow:var(--sh-hover);
+  }
+  .main-nav.open a{padding:10px 12px;font-size:14.5px}
+  .header-inner{position:relative;flex-wrap:wrap}
+  .search-box input{width:150px}
+}
+@media (max-width:740px){
+  .wrap{padding:0 14px}
+  .header-inner{gap:10px;min-height:62px}
+  .logo-text{font-size:16px}
+  .search-box{flex:1;min-width:0}
+  .search-box input{width:100%}
+  .btn-ghost{padding:7px 10px;font-size:12.5px}
+  .hero h1{font-size:30px}
+  .hero-desc{font-size:14px}
+  .hero-stats{gap:18px}
+  .hero-stat b{font-size:19px}
+  .notice .wrap{gap:8px;font-size:12px}
+  .notice-item{font-size:11.5px;padding:2px 8px}
+  .block{margin-bottom:40px}
+  .block-head h2{font-size:19px}
+  .overview,.deep{padding:20px 18px;font-size:14px}
+  .news{grid-template-columns:1fr}
+  .news img{width:100%;height:150px;min-height:0}
+  .card-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .comment-grid{grid-template-columns:1fr}
+  .cat-grid{grid-template-columns:1fr 1fr}
+  .step{grid-template-columns:1fr;gap:10px}
+  .rank{grid-template-columns:32px 1fr;gap:10px}
+  .rank .rv{grid-column:2;font-size:12px}
+  .submit-panel{padding:20px 18px}
+  .to-top{right:14px;bottom:16px}
+  .footer-cols{grid-template-columns:1fr 1fr}
+  .compare-table{font-size:12.2px}
+  .compare-table th,.compare-table td{padding:6px 7px}
+}
+@media (max-width:400px){
+  .card-grid{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<!-- 吸顶公告条 -->
+<div class="notice" role="region" aria-label="更新公告">
+  <div class="wrap">
+    <span class="notice-brand">黑椒不打烊</span>
+    <div class="notice-items">
+      <span class="notice-item"><b>11月8日</b>《凌晨三点的便利店》第14期上线</span>
+      <span class="notice-item"><b>+7</b> 夜班访谈频道新增条目</span>
+      <span class="notice-item"><b>11月7日</b><a href="/#latest">《末班地铁录音带》更新</a></span>
+    </div>
+  </div>
+</div>
+
+<!-- 页头 -->
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="logo" href="/" aria-label="黑椒不打烊官方网站 首页">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#1f1a29"/>
+        <circle cx="32" cy="29" r="13" fill="#f0a13c"/>
+        <circle cx="27" cy="26" r="2.8" fill="#1f1a29"/>
+        <circle cx="37" cy="26" r="2.8" fill="#1f1a29"/>
+        <path d="M32 29v9" stroke="#1f1a29" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M13 52h38" stroke="#f0a13c" stroke-width="3.2" stroke-linecap="round"/>
+      </svg>
+      <span class="logo-text">黑椒不<span>打烊</span></span>
+    </a>
+    <nav class="main-nav" id="mainNav" aria-label="主题导航">
+      <a href="/#overview">领域概览</a>
+      <a href="/#picks">精选推荐</a>
+      <a href="/#latest">最新更新</a>
+      <a href="/#cats">分类频道</a>
+      <a href="/#deep">深度解析</a>
+      <a href="/#guide">体验指南</a>
+      <a href="/#faq">常见问答</a>
+      <a href="/#news">相关资讯</a>
+    </nav>
+    <div class="header-tools">
+      <div class="search-box">
+        <label class="sr-only" for="siteSearch">站内内容查找</label>
+        <input type="search" id="siteSearch" placeholder="搜条目 / 类型 / 频道" autocomplete="off">
+        <button class="clear-btn" id="clearSearch" type="button" aria-label="清空搜索" hidden>×</button>
+        <div class="search-feedback" id="searchFeedback" role="status" aria-live="polite"></div>
+      </div>
+      <a class="btn-ghost" href="/#submit">投稿入口</a>
+      <button class="hamburger" id="hamburger" type="button" aria-label="打开导航菜单" aria-expanded="false" aria-controls="mainNav">☰</button>
+    </div>
+  </div>
+</header>
+<div class="overlay" id="overlay" hidden></div>
+
+<!-- 首屏 -->
+<section class="hero" aria-labelledby="heroTitle">
+  <div class="wrap hero-inner">
+    <div>
+      <span class="hero-tag"><i aria-hidden="true"></i>24 小时不打烊 · 深夜内容索引</span>
+      <h1 id="heroTitle">黑椒不打烊官方网站</h1>
+      <p class="hero-desc">深夜电台、夜班短剧、凌晨人物访谈、城市夜食记录、便利店观察与末班车影像，按类型、时长、更新节奏和适合的收听场景整理成可检索的条目库。夜班族、通宵写稿的人和时差党，都能在这里找到具体在播什么、几点上线、值不值得听完。</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="/#picks">看本周精选条目 →</a>
+        <a class="btn-secondary" href="/#guide">按场景挑内容</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><b>312</b><span>在架条目</span></div>
+        <div class="hero-stat"><b>11</b><span>内容频道</span></div>
+        <div class="hero-stat"><b>11月8日</b><span>最近更新时间</span></div>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="disc"></div>
+      <div class="bar"></div>
+      <div class="card-float">
+        <strong>正在播</strong>
+        <p>《凌晨三点的便利店》第14期 · 42分钟 · 城市深夜观察</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 主布局：左侧频道栏 + 右主内容 -->
+<div class="wrap layout">
+  <aside class="side-nav" id="sideNav" aria-label="频道索引">
+    <h2>频道索引</h2>
+    <a href="/#overview">领域概览 <span>01</span></a>
+    <a href="/#picks">精选推荐 <span>02</span></a>
+    <a href="/#latest">最新更新 <span>03</span></a>
+    <a href="/#cats">分类频道 <span>04</span></a>
+    <a href="/#deep">深度解析 <span>05</span></a>
+    <a href="/#guide">体验指南 <span>06</span></a>
+    <a href="/#faq">常见问答 <span>07</span></a>
+    <a href="/#comments">听友评论 <span>08</span></a>
+    <a href="/#news">相关资讯 <span>09</span></a>
+    <a href="/#rank">深夜榜单 <span>10</span></a>
+    <a href="/#submit">投稿互动 <span>11</span></a>
+    <div class="side-block">
+      <p>当前时段 22:00—02:00 主打长音频，03:00 后切换为短条目循环。</p>
+    </div>
+  </aside>
+
+  <main class="main-col">
+
+    <!-- 01 领域概览 -->
+    <section class="block" id="overview">
+      <div class="block-head">
+        <h2>深夜内容领域概览</h2>
+        <span class="sub">11月8日整理</span>
+      </div>
+      <div class="overview">
+        <p>深夜内容大致分成几类。第一类是<strong>长音频节目</strong>，包括夜间电台、播客访谈、助眠白噪音和读信节目，时长普遍在 30 到 90 分钟，适合通勤末段、夜班间隙或睡前躺着听。第二类是<strong>夜班短剧</strong>，单集 8 到 20 分钟，主打便利店、医院、出租车、高速公路服务区这类夜间职业场景，近半年在短视频平台和音频平台同时分发。</p>
+        <p>第三类是<em>凌晨人物访谈</em>，采访对象多为夜班护士、代驾司机、24 小时书店店员、通宵外卖骑手，形式有图文长报道，也有 60 分钟以上的对谈录音。第四类是<strong>城市夜食记录</strong>，探店内容从烧烤摊、深夜面馆延伸到火车站候车厅的泡面测评，画面粗糙但信息密度高。第五类是<em>末班车与街头影像</em>，地铁末班车、凌晨环卫作业、夜市收摊的纪实短片，多在夜里 23 点到次日 2 点之间拍摄。</p>
+        <p>近期值得留意的具体内容包括：《凌晨三点的便利店》第14期把镜头对准了南昌一家 24 小时便利店的夜班店员；《末班地铁录音带》用环境声加旁白的方式记录广州地铁 3 号线末班车；《夜班医生手记》第二季在 11 月 5 日更新了急诊科的一集；《通宵面馆》系列则拍到了成都玉林路一家凌晨 4 点还在营业的甜水面摊。这些条目的共同点是现场感强、时间标注清楚，能对上具体城市与具体时段。</p>
+      </div>
+    </section>
+
+    <!-- 02 精选推荐 -->
+    <section class="block" id="picks">
+      <div class="block-head">
+        <h2>本周精选条目</h2>
+        <span class="sub">按内容完成度与现场信息筛选</span>
+      </div>
+      <div class="card-grid">
+        <article class="card">
+          <div class="thumb">
+            <img src="https://picsum.photos/seed/bianlidian14/400/300" width="400" height="300" loading="lazy" alt="便利店夜班店员在收银台整理货架的夜间场景">
+            <span class="tag-type">夜班短剧</span>
+          </div>
+          <div class="body">
+            <h3>凌晨三点的便利店 第14期</h3>
+            <div class="tag-row"><span class="tag">南昌</span><span class="tag">夜班店员</span><span class="tag">42分钟</span></div>
+            <p class="point">全程跟拍一家 24 小时便利店从凌晨 1 点到 5 点的客流变化，记录了代驾司机、网吧散场客和早班环卫工三拨人。收银台对话没做字幕修饰，方言原声保留。</p>
+            <div class="meta"><span>更新 11-08</span><b>热度 9.4</b></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb">
+            <img src="https://picsum.photos/seed/mobanditie/400/300" width="400" height="300" loading="lazy" alt="深夜地铁站台末班车进站的灯光与站牌">
+            <span class="tag-type">环境声纪录</span>
+          </div>
+          <div class="body">
+            <h3>末班地铁录音带 Vol.07</h3>
+            <div class="tag-row"><span class="tag">广州地铁3号线</span><span class="tag">环境声</span><span class="tag">28分钟</span></div>
+            <p class="point">从体育西路站末班车进站开始录，包含报站、闸机提示音和车厢内的低语。旁白只出现四次，其余交给现场声，适合戴耳机通勤时听。</p>
+            <div class="meta"><span>更新 11-07</span><b>热度 9.1</b></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb">
+            <img src="https://picsum.photos/seed/yebanyisheng/400/300" width="400" height="300" loading="lazy" alt="医院急诊科夜班走廊的灯光与推车">
+            <span class="tag-type">人物访谈</span>
+          </div>
+          <div class="body">
+            <h3>夜班医生手记 第二季·急诊科</h3>
+            <div class="tag-row"><span class="tag">急诊</span><span class="tag">对谈</span><span class="tag">67分钟</span></div>
+            <p class="point">受访者是杭州一家三甲医院急诊科的主治医师，谈的是凌晨 2 点到 4 点的接诊规律，以及夜班排班表怎么轮。中途有两次被呼叫打断，保留了原样。</p>
+            <div class="meta"><span>更新 11-05</span><b>热度 8.9</b></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb">
+            <img src="https://picsum.photos/seed/tongxiaomian/400/300" width="400" height="300" loading="lazy" alt="凌晨街边面馆的灶台与蒸腾热气">
+            <span class="tag-type">城市夜食</span>
+          </div>
+          <div class="body">
+            <h3>通宵面馆：玉林路甜水面摊</h3>
+            <div class="tag-row"><span class="tag">成都</span><span class="tag">凌晨4点</span><span class="tag">18分钟</span></div>
+            <p class="point">摊主夫妻从 1998 年摆到现在，凌晨 4 点仍有熟客。条目里记了甜水面的配料比例和摊位的收摊时间，比一般探店多一层经营细节。</p>
+            <div class="meta"><span>更新 11-06</span><b>热度 8.6</b></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb">
+            <img src="https://picsum.photos/seed/daijiasiji/400/300" width="400" height="300" loading="lazy" alt="代驾司机深夜在路边折叠电动车等待接单">
+            <span class="tag-type">职业纪实</span>
+          </div>
+          <div class="body">
+            <h3>代驾司机的凌晨两点半</h3>
+            <div class="tag-row"><span class="tag">代驾</span><span class="tag">收入账</span><span class="tag">35分钟</span></div>
+            <p class="point">跟拍一位在合肥跑代驾的司机，从晚上 9 点接到凌晨 2 点半最后一单。条目里列了当晚的接单数、流水和平台抽成，数字标得清楚。</p>
+            <div class="meta"><span>更新 11-04</span><b>热度 8.7</b></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb">
+            <img src="https://picsum.photos/seed/shudianshi/400/300" width="400" height="300" loading="lazy" alt="深夜书店内暖色台灯下的书架与阅读者">
+            <span class="tag-type">夜间电台</span>
+          </div>
+          <div class="body">
+            <h3>深夜书店电台：读信到打烊</h3>
+            <div class="tag-row"><span class="tag">读信</span><span class="tag">书店</span><span class="tag">54分钟</span></div>
+            <p class="point">在一家开到凌晨 1 点的独立书店录制，主持人读听众来信，中途有翻书页和关门的声音。信件内容涉及异地工作、养猫和搬家，语气平实。</p>
+            <div class="meta"><span>更新 11-03</span><b>热度 8.4</b></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb">
+            <img src="https://picsum.photos/seed/huanweigong/400/300" width="400" height="300" loading="lazy" alt="凌晨环卫工人在街道清扫落叶">
+            <span class="tag-type">街头影像</span>
+          </div>
+          <div class="body">
+            <h3>凌晨四点的环卫作业段</h3>
+            <div class="tag-row"><span class="tag">环卫</span><span class="tag">沈阳</span><span class="tag">22分钟</span></div>
+            <p class="point">拍的是沈阳一条主干道的清晨清扫，从 4 点 10 分第一班到 5 点半交接。条目里标了作业段长度、班组人数和冬季作业时间调整。</p>
+            <div class="meta"><span>更新 11-02</span><b>热度 8.2</b></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb">
+            <img src="https://picsum.photos/seed/huochezhan/400/300" width="400" height="300" loading="lazy" alt="深夜火车站候车厅的座椅与旅客">
+            <span class="tag-type">夜食测评</span>
+          </div>
+          <div class="body">
+            <h3>火车站候车厅泡面测评</h3>
+            <div class="tag-row"><span class="tag">候车厅</span><span class="tag">泡面</span><span class="tag">16分钟</span></div>
+            <p class="point">在三个不同车站的候车厅试了六种泡面，记录了开水房位置、水温够不够、座位附近有没有插座。结论直接标在条目末尾。</p>
+            <div class="meta"><span>更新 11-01</span><b>热度 8.0</b></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 03 最新更新 -->
+    <section class="block" id="latest">
+      <div class="block-head">
+        <h2>最近七天更新动态</h2>
+        <span class="sub">11月2日—11月8日</span>
+      </div>
+      <div class="update-list">
+        <div class="update-item">
+          <span class="update-time">11-08</span>
+          <div class="update-body">
+            <h3>《凌晨三点的便利店》第14期上线</h3>
+            <p>42 分钟，南昌站前路店，记录了凌晨 1 点到 5 点的三拨客流与夜班店员的交接班流程。</p>
+          </div>
+        </div>
+        <div class="update-item">
+          <span class="update-time">11-08</span>
+          <div class="update-body">
+            <h3>夜班访谈频道新增 7 条条目</h3>
+            <p>集中在医院、物流分拣和高速服务区三个场景，其中 4 条带完整排班表截图。</p>
+          </div>
+        </div>
+        <div class="update-item">
+          <span class="update-time">11-07</span>
+          <div class="update-body">
+            <h3>《末班地铁录音带》Vol.07 更新</h3>
+            <p>广州地铁 3 号线，28 分钟环境声，补录了体育西路站末班车进站的完整报站音。</p>
+          </div>
+        </div>
+        <div class="update-item">
+          <span class="update-time">11-06</span>
+          <div class="update-body">
+            <h3>《通宵面馆》新增成都玉林路条目</h3>
+            <p>18 分钟，记录了甜水面摊的配料比例、收摊时间与凌晨 4 点后的熟客构成。</p>
+          </div>
+        </div>
+        <div class="update-item">
+          <span class="update-time">11-05</span>
+          <div class="update-body">
+            <h3>《夜班医生手记》第二季第 3 集更新</h3>
+            <p>67 分钟对谈，杭州急诊科主治医师，谈凌晨 2 点到 4 点的接诊规律与夜班轮值。</p>
+          </div>
+        </div>
+        <div class="update-item">
+          <span class="update-time">11-04</span>
+          <div class="update-body">
+            <h3>《代驾司机的凌晨两点半》上线</h3>
+            <p>35 分钟，合肥代驾司机一晚接单 9 次，条目内附流水、抽成与充电成本明细。</p>
+          </div>
+        </div>
+        <div class="update-item">
+          <span class="update-time">11-03</span>
+          <div class="update-body">
+            <h3>深夜书店电台第 6 期发布</h3>
+            <p>54 分钟读信节目，录制于一家营业至凌晨 1 点的独立书店，保留翻书页与关门声。</p>
+          </div>
+        </div>
+        <div class="update-item">
+          <span class="update-time">11-02</span>
+          <div class="update-body">
+            <h3>《凌晨四点的环卫作业段》上线</h3>
+            <p>22 分钟，沈阳主干道清扫跟拍，标注作业段长度、班组人数与冬季作业时间调整。</p>
+          </div>
+        </div>
+        <div class="update-item">
+          <span class="update-time">11-01</span>
+          <div class="update-body">
+            <h3>候车厅泡面测评条目补全</h3>
+            <p>新增第三个车站的开水房位置与插座分布，六种泡面的复水时间对比表已更新。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 分类入口 -->
+    <section class="block" id="cats">
+      <div class="block-head">
+        <h2>按内容类型进入</h2>
+        <span class="sub">8 个频道</span>
+      </div>
+      <div class="cat-grid">
+        <a class="cat" href="/#picks"><strong>夜间电台</strong><span>长音频 · 30—90分钟</span></a>
+        <a class="cat" href="/#picks"><strong>夜班短剧</strong><span>单集 8—20分钟</span></a>
+        <a class="cat" href="/#picks"><strong>凌晨人物访谈</strong><span>对谈录音 + 图文</span></a>
+        <a class="cat" href="/#picks"><strong>城市夜食记录</strong><span>探店 · 摊位经营</span></a>
+        <a class="cat" href="/#picks"><strong>末班车影像</strong><span>环境声 · 纪实短片</span></a>
+        <a class="cat" href="/#picks"><strong>夜班职业纪实</strong><span>代驾 · 护士 · 分拣</span></a>
+        <a class="cat" href="/#picks"><strong>助眠白噪音</strong><span>雨声 · 车厢声 · 风扇</span></a>
+        <a class="cat" href="/#picks"><strong>通宵书店与读信</strong><span>书店现场 · 听众来信</span></a>
+      </div>
+    </section>
+
+    <!-- 05 深度解析 -->
+    <section class="block" id="deep">
+      <div class="block-head">
+        <h2>深夜内容怎么判断值不值得听完</h2>
+        <span class="sub">以近三个月条目为例</span>
+      </div>
+      <div class="deep">
+        <p>深夜内容的评价标准，和白天刷短视频不一样。白天讲究前 3 秒抓人，夜里讲究的是能不能撑住一段完整的时间。撑不住，用户会切走；撑得太满，又容易让人睡不着。这个矛盾决定了一档夜间节目好不好，要看它怎么处理节奏和信息的密度。</p>
+
+        <h3>时长不是越长越好，要看结构有没有分段</h3>
+        <p>《夜班医生手记》第二季急诊科那集 67 分钟，听感上不觉得长，原因在于它天然被分成三段：前 20 分钟谈排班表，中间被两次呼叫打断，后 30 分钟谈接诊规律。打断不是缺点，反而给了听众换气的节点。对比之下，一些 40 分钟的夜间电台节目全程一个语速、一个音量，听到第 15 分钟就开始走神。</p>
+        <p>判断方法很直接：看条目简介里有没有标注分段或章节。标注了"00:00 开场 / 12:40 第一次呼叫 / 31:20 排班表"，通常说明制作者自己听过成片；只写"深度对谈 60 分钟"的，多半是一刀未剪。</p>
+
+        <h3>现场声的取舍，比旁白更能说明制作水准</h3>
+        <p>《末班地铁录音带》Vol.07 全程 28 分钟，旁白只出现四次。这个比例不是随便定的。地铁末班车的环境声本身有信息：报站音、闸机提示、车厢连接处的金属声，都能帮听众判断列车走到了哪一段。旁白一多，这些信息就被盖住。</p>
+        <p>反过来，有些城市夜食条目把现场声压得很低，配上一路解说，观众听到的是主播的声音而不是摊主的声音。成都玉林路那期《通宵面馆》处理得比较好：摊主夫妻的对话保留原声，只在配料比例处插入一句字幕说明，没有旁白覆盖。</p>
+
+        <div class="quote">一个可核对的判断：把条目静音看画面，如果仍能知道发生了什么，说明现场信息足够；如果静音后只剩空镜和字幕，那这条内容主要靠解说撑，现场感是弱的。</div>
+
+        <h3>信息来源要分层看，别把转述当事实</h3>
+        <p>深夜题材里经常出现"某夜班护士说""据代驾司机反映"这类表述。这类内容要拆开看：当事人原话是一层，拍摄者转述是一层，平台推荐语又是一层。以《代驾司机的凌晨两点半》为例，当晚接单 9 次、流水 486 元、平台抽成 92 元，这些是条目里直接给出的数字，属于可核对的一层；而"代驾比送外卖轻松"这类判断，是司机本人的说法，属于当事人回应层，不能当作普遍结论。</p>
+
+        <table class="compare-table">
+          <caption class="sr-only">深夜条目信息层级对照</caption>
+          <thead>
+            <tr><th>信息层级</th><th>典型表述</th><th>核对方式</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>已公开事实</td><td>接单 9 次、流水 486 元、抽成 92 元</td><td>对照平台账单截图或条目内明细表</td></tr>
+            <tr><td>当事人回应</td><td>"跑代驾比送外卖自由"</td><td>看是否为受访者原话，是否标注采访时间</td></tr>
+            <tr><td>拍摄者转述</td><td>"不少代驾司机都这么讲"</td><td>看有没有给出人数、地点、时间范围</td></tr>
+            <tr><td>网友推测</td><td>"这行月入过万很正常"</td><td>无来源，只能当讨论素材，不能当结论</td></tr>
+          </tbody>
+        </table>
+
+        <h3>更新节奏决定了一个系列能不能追</h3>
+        <p>《凌晨三点的便利店》从第 1 期到第 14 期用了 5 个月，平均 11 天一期，节奏稳定；《末班地铁录音带》从 Vol.01 到 Vol.07 用了 3 个月，平均 13 天，但有两期间隔超过 20 天。节奏不稳定的系列，追起来容易断，听众会在等待中流失。</p>
+        <p>对追更的人来说，更实用的做法是先看条目页有没有标注"预计下期时间"。标了日期的，通常制作方有排期；只写"不定期更新"的，建议等积累到 5 期以上再一次性听。</p>
+
+        <h3>哪些条目适合放着当背景，哪些需要专注听</h3>
+        <p>助眠白噪音、车厢环境声、雨声这类条目，信息主要来自声音本身，不需要专注，适合睡前或写东西时放着。《夜班医生手记》《代驾司机的凌晨两点半》这类对谈，涉及具体数字和判断，走神容易漏掉关键信息，建议在能暂停的场景里听。</p>
+        <p>一个简单的分辨办法：看条目简介里有没有出现具体数字、人名、地名。出现得越多，越需要专注；通篇是形容词和氛围描述的，多半可以当背景音。</p>
+      </div>
+    </section>
+
+    <!-- 06 体验指南 -->
+    <section class="block" id="guide">
+      <div class="block-head">
+        <h2>按夜间场景挑内容的顺序</h2>
+        <span class="sub">从时段出发，不从类型出发</span>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <span class="num">1</span>
+          <div>
+            <h3>先定时段，再定类型</h3>
+            <p>22 点到 24 点，人还清醒，适合看需要专注的对谈和纪实；0 点到 2 点，注意力开始下降，适合 20 分钟以内的短剧和环境声；2 点以后，多数人只需要白噪音或极低信息量的读信节目。先看自己处在哪个时段，再挑类型，比直接按"电台""短剧"筛要准。</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="num">2</span>
+          <div>
+            <h3>看条目页有没有标时长和分段</h3>
+            <p>标了总时长和分段节点的条目，制作方通常自己完整听过成片。只写"精彩对谈"、不写时长的，多半是剪辑粗糙或未经整理的录音。夜间内容对时长敏感，40 分钟和 70 分钟对应的是两种完全不同的收听场景。</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="num">3</span>
+          <div>
+            <h3>用前 5 分钟判断现场声比例</h3>
+            <p>打开条目听前 5 分钟。如果前 5 分钟里旁白占了大半，现场声只是点缀，这条内容主要靠解说，适合当背景；如果前 5 分钟能听到环境里的人和物在动，说明现场信息足，值得专注听。这个方法对城市夜食和末班车影像尤其有效。</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="num">4</span>
+          <div>
+            <h3>类似条目横向比三个点</h3>
+            <p>同样拍便利店夜班，比三件事：一是拍摄时段是否覆盖完整班次，二是店员的对话有没有被剪掉，三是有没有给出客流数据。三项都有的，信息密度高；只有第一项的，多半是氛围向短片。横向比过三条，就能判断一个系列的整体水准。</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="num">5</span>
+          <div>
+            <h3>追更前先看系列更新间隔</h3>
+            <p>打开系列的往期列表，算一下相邻两期的间隔天数。间隔稳定在 10 到 15 天的，可以放心追；间隔忽长忽短、有两期超过 25 天的，建议等积累到 5 期再听。夜间内容的追更体验，很大程度取决于制作方能不能按排期交付。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 FAQ -->
+    <section class="block" id="faq">
+      <div class="block-head">
+        <h2>常见问题</h2>
+        <span class="sub">围绕条目与类型</span>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>夜班短剧和普通短剧有什么区别？</summary>
+          <div class="ans">夜班短剧的场景基本固定在夜间职业里，便利店、急诊、代驾、高速服务区是常见背景，单集多在 8 到 20 分钟。普通短剧的场景和时间段更自由，节奏也更快。区别主要在信息密度：夜班短剧通常保留更多环境声和职业细节，比如交接班流程、收银台对话，这些在普通短剧里一般会被剪掉。</div>
+        </details>
+        <details>
+          <summary>《末班地铁录音带》为什么旁白这么少？</summary>
+          <div class="ans">这档节目以环境声为主体，旁白只用于交代线路、时间和录制位置。广州地铁 3 号线 Vol.07 全长 28 分钟，旁白出现四次，分别在第 0 分钟、第 9 分钟、第 18 分钟和第 26 分钟。旁白一多，报站音和车厢连接处的金属声就被盖住，听众也就失去了判断列车位置的信息。</div>
+        </details>
+        <details>
+          <summary>凌晨人物访谈里的数字能直接当结论吗？</summary>
+          <div class="ans">要看数字属于哪一层。《代驾司机的凌晨两点半》里当晚接单 9 次、流水 486 元、抽成 92 元，这些是条目内给出的明细，属于可核对的一层；但受访者说"这行比送外卖自由"，属于个人判断，只能代表他本人的体验。把单晚数据当成月收入，或者把一个人的说法当成行业普遍情况，都会出偏差。</div>
+        </details>
+        <details>
+          <summary>助眠白噪音和夜间电台能混着听吗？</summary>
+          <div class="ans">不建议混。白噪音的信息量极低，作用是盖住环境杂音，帮助入睡；夜间电台有对话、有内容推进，需要一定注意力。混着听的结果往往是电台听到一半睡着，第二天要重听。比较实际的做法是 0 点前听电台，0 点后切白噪音，中间留一个明确的切换动作。</div>
+        </details>
+        <details>
+          <summary>城市夜食记录里，哪些细节值得看？</summary>
+          <div class="ans">看三样：摊位营业到几点、熟客构成、食材和配料的具体比例。成都玉林路那期《通宵面馆》给了甜水面的配料比例和收摊时间，也拍了凌晨 4 点后仍在的熟客，这三样都有。只拍食物特写和吃播反应的条目，信息量通常偏低，适合当背景，不适合当参考。</div>
+        </details>
+        <details>
+          <summary>一个夜间系列多久不更新算断更？</summary>
+          <div class="ans">按现有条目的节奏看。《凌晨三点的便利店》平均 11 天一期，《末班地铁录音带》平均 13 天一期。超过平均间隔的两倍还没更新，也就是 22 到 26 天以上，基本可以视为暂停。有些系列会在条目页标注"预计下期时间"，标了日期的按日期看，没标的按平均间隔推算。</div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 08 评论 -->
+    <section class="block" id="comments">
+      <div class="block-head">
+        <h2>听友评论</h2>
+        <span class="sub">11月6日—11月8日</span>
+      </div>
+      <div class="comment-grid">
+        <div class="comment">
+          <div class="who"><span class="avatar" style="background:#f0a13c">夜</span><span class="name">夜班第七年</span><span class="time">11-08</span></div>
+          <p>便利店第14期那个收银台对话没做字幕，方言我听了两遍才懂，但就是这种没修饰的才对味。</p>
+        </div>
+        <div class="comment">
+          <div class="who"><span class="avatar" style="background:#9b7bd4">末</span><span class="name">末班车常客</span><span class="time">11-08</span></div>
+          <p>3号线录音带第9分钟那段报站音，我每天通勤都听，一模一样。</p>
+        </div>
+        <div class="comment">
+          <div class="who"><span class="avatar" style="background:#5fb8a5">代</span><span class="name">代驾老陈</span><span class="time">11-08</span></div>
+          <p>486的流水不算高，合肥这边周末能到七百多，不过抽成那块他算得挺实。</p>
+        </div>
+        <div class="comment">
+          <div class="who"><span class="avatar" style="background:#e0796b">甜</span><span class="name">甜水面爱好者</span><span class="time">11-07</span></div>
+          <p>玉林路那家我去过，凌晨四点确实还有人，但配料比例拍出来有点简略，只给了三种。</p>
+        </div>
+        <div class="comment">
+          <div class="who"><span class="avatar" style="background:#7a9be0">写</span><span class="name">通宵写稿的</span><span class="time">11-07</span></div>
+          <p>医生手记那集被呼叫打断两次，反而听得下去，不然67分钟我肯定中途切走。</p>
+        </div>
+        <div class="comment">
+          <div class="who"><span class="avatar" style="background:#d4a24a">白</span><span class="name">白噪音重度用户</span><span class="time">11-07</span></div>
+          <p>助眠区更新太慢了，翻来覆去就那几条雨声，希望多上点车厢声。</p>
+        </div>
+        <div class="comment">
+          <div class="who"><span class="avatar" style="background:#8fbf6a">环</span><span class="name">环卫家属</span><span class="time">11-06</span></div>
+          <p>沈阳那期拍得不错，作业段长度和班组人数都标了，冬天四点确实冷。</p>
+        </div>
+        <div class="comment">
+          <div class="who"><span class="avatar" style="background:#c97bb0">泡</span><span class="name">泡面研究员</span><span class="time">11-06</span></div>
+          <p>候车厅那期开水房位置太有用了，比测评味道实在多了。</p>
+        </div>
+        <div class="comment">
+          <div class="who"><span class="avatar" style="background:#6fb0c9">书</span><span class="name">书店打烊后</span><span class="time">11-06</span></div>
+          <p>读信那期翻书页的声音没剪掉，挺好的。不过有几封信读得太快，没听清。</p>
+        </div>
+        <div class="comment">
+          <div class="who"><span class="avatar" style="background:#d98c5f">时</span><span class="name">时差党小周</span><span class="time">11-05</span></div>
+          <p>这边是下午，听末班车录音带当背景，感觉像在国内赶车。</p>
+        </div>
+        <div class="comment">
+          <div class="who"><span class="avatar" style="background:#9a9ad4">嫌</span><span class="name">嫌更新慢</span><span class="time">11-05</span></div>
+          <p>录音带两期隔了二十多天，等得我差点忘了还有这个系列。</p>
+        </div>
+        <div class="comment">
+          <div class="who"><span class="avatar" style="background:#e0a05f">急</span><span class="name">急诊科小护士</span><span class="time">11-05</span></div>
+          <p>医生手记里讲凌晨2到4点接诊规律那段，跟我们科室情况基本对得上。</p>
+        </div>
+        <div class="comment">
+          <div class="who"><span class="avatar" style="background:#7fc4a8">路</span><span class="name">路人甲</span><span class="time">11-04</span></div>
+          <p>随手点进来的，结果把便利店14期看完了。</p>
+        </div>
+        <div class="comment">
+          <div class="who"><span class="avatar" style="background:#b47fd4">深</span><span class="name">深夜食堂老板</span><span class="time">11-04</span></div>
+          <p>拍夜食的还是喜欢看经营细节，流水、房租、备货，这些比吃播有意思。</p>
+        </div>
+        <div class="comment">
+          <div class="who"><span class="avatar" style="background:#d47f7f">丢</span><span class="name">丢三落四</span><span class="time">11-03</span></div>
+          <p>收藏夹里存了一堆，真正听完的就三期。</p>
+        </div>
+        <div class="comment">
+          <div class="who"><span class="avatar" style="background:#6f9fd4">分</span><span class="name">分拣线老李</span><span class="time">11-03</span></div>
+          <p>物流分拣那几条还没听，先码住，我们那条线凌晨三点最忙。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 相关资讯 -->
+    <section class="block" id="news">
+      <div class="block-head">
+        <h2>相关资讯</h2>
+        <span class="sub">10月28日—11月8日</span>
+      </div>
+      <div class="news-list">
+        <article class="news">
+          <img src="https://picsum.photos/seed/zixun-bianlidian/600/400" width="600" height="400" loading="lazy" alt="南昌便利店夜间营业的街景">
+          <div class="nb">
+            <div class="nd">11月8日</div>
+            <h3>《凌晨三点的便利店》第14期以南昌站前路店为拍摄地</h3>
+            <p>制作方在条目说明里注明拍摄时间为 10 月 26 日凌晨 1 点至 5 点，成片 42 分钟，比上一期多出 9 分钟，多出的部分主要给了交接班流程。</p>
+          </div>
+        </article>
+        <article class="news">
+          <img src="https://picsum.photos/seed/zixun-ditie/600/400" width="600" height="400" loading="lazy" alt="地铁末班车站台灯光">
+          <div class="nb">
+            <div class="nd">11月7日</div>
+            <h3>《末班地铁录音带》Vol.07 补录体育西路站进站报站音</h3>
+            <p>录制方在 11 月 6 日晚间重录了进站段，替换了初版中被人声覆盖的 12 秒。Vol.08 计划在 11 月 20 日前后上线，线路暂定为广州地铁 5 号线。</p>
+          </div>
+        </article>
+        <article class="news">
+          <img src="https://picsum.photos/seed/zixun-yisheng/600/400" width="600" height="400" loading="lazy" alt="医院急诊科夜班走廊">
+          <div class="nb">
+            <div class="nd">11月5日</div>
+            <h3>《夜班医生手记》第二季急诊科集 67 分钟，含两次呼叫中断</h3>
+            <p>受访医师在采访中两次被急诊呼叫打断，制作方保留原样未剪。该集上线后 48 小时内播放量进入夜班访谈频道前三。</p>
+          </div>
+        </article>
+        <article class="news">
+          <img src="https://picsum.photos/seed/zixun-mian'guan/600/400" width="600" height="400" loading="lazy" alt="成都玉林路夜间面摊">
+          <div class="nb">
+            <div class="nd">11月3日</div>
+            <h3>成都玉林路甜水面摊被拍进《通宵面馆》，摊主称营业到凌晨 5 点</h3>
+            <p>摊主夫妻接受拍摄时表示，摊位从 1998 年摆到现在，冬季收摊时间比夏季晚半小时。条目上线后，该摊位的夜间客流在 11 月 4 日、5 日两天明显增加。</p>
+          </div>
+        </article>
+        <article class="news">
+          <img src="https://picsum.photos/seed/zixun-daijia/600/400" width="600" height="400" loading="lazy" alt="代驾司机深夜路边等待">
+          <div class="nb">
+            <div class="nd">11月1日</div>
+            <h3>代驾司机单晚流水 486 元条目引讨论，平台抽成 92 元被单独列出</h3>
+            <p>条目内附平台账单截图，显示当晚 9 单中有 3 单为跨区长途。有代驾从业者在评论区补充，合肥周末流水普遍高于工作日晚间。</p>
+          </div>
+        </article>
+        <article class="news">
+          <img src="https://picsum.photos/seed/zixun-shudain/600/400" width="600" height="400" loading="lazy" alt="深夜书店内暖灯书架">
+          <div class="nb">
+            <div class="nd">10月28日</div>
+            <h3>深夜书店电台第 6 期录制完成，读信环节保留翻书页原声</h3>
+            <p>录制地点为一家营业至凌晨 1 点的独立书店，本期共读 11 封听众来信，其中 4 封涉及异地工作。制作方表示下一期将尝试加入现场听众。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 10 深夜榜单 -->
+    <section class="block" id="rank">
+      <div class="block-head">
+        <h2>深夜收听榜</h2>
+        <span class="sub">按 11 月 1 日—8 日完播率排序</span>
+      </div>
+      <div class="rank-list">
+        <div class="rank top">
+          <span class="rk">1</span>
+          <div class="rt"><h3>凌晨三点的便利店 第14期</h3><p>夜班短剧 · 42分钟 · 完播率 78%</p></div>
+          <span class="rv">9.4</span>
+        </div>
+        <div class="rank top">
+          <span class="rk">2</span>
+          <div class="rt"><h3>末班地铁录音带 Vol.07</h3><p>环境声纪录 · 28分钟 · 完播率 74%</p></div>
+          <span class="rv">9.1</span>
+        </div>
+        <div class="rank top">
+          <span class="rk">3</span>
+          <div class="rt"><h3>夜班医生手记 第二季·急诊科</h3><p>人物访谈 · 67分钟 · 完播率 69%</p></div>
+          <span class="rv">8.9</span>
+        </div>
+        <div class="rank">
+          <span class="rk">4</span>
+          <div class="rt"><h3>代驾司机的凌晨两点半</h3><p>职业纪实 · 35分钟 · 完播率 66%</p></div>
+          <span class="rv">8.7</span>
+        </div>
+        <div class="rank">
+          <span class="rk">5</span>
+          <div class="rt"><h3>通宵面馆：玉林路甜水面摊</h3><p>城市夜食 · 18分钟 · 完播率 63%</p></div>
+          <span class="rv">8.6</span>
+        </div>
+        <div class="rank">
+          <span class="rk">6</span>
+          <div class="rt"><h3>深夜书店电台：读信到打烊</h3><p>夜间电台 · 54分钟 · 完播率 61%</p></div>
+          <span class="rv">8.4</span>
+        </div>
+        <div class="rank">
+          <span class="rk">7</span>
+          <div class="rt"><h3>凌晨四点的环卫作业段</h3><p>街头影像 · 22分钟 · 完播率 58%</p></div>
+          <span class="rv">8.2</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 相关推荐 -->
+    <section class="block" id="related">
+      <div class="block-head">
+        <h2>相关内容方向</h2>
+        <span class="sub">按条目与类型索引</span>
+      </div>
+      <div class="rec-tags">
+        <a class="rec-tag" href="/#picks">24小时药店夜班 <b>夜班职业</b></a>
+        <a class="rec-tag" href="/#picks">高速服务区凌晨实录 <b>街头影像</b></a>
+        <a class="rec-tag" href="/#picks">物流分拣线零点交接 <b>职业纪实</b></a>
+        <a class="rec-tag" href="/#picks">出租车夜班司机对谈 <b>人物访谈</b></a>
+        <a class="rec-tag" href="/#picks">雨夜车厢白噪音 <b>助眠</b></a>
+        <a class="rec-tag" href="/#picks">夜市收摊流程记录 <b>城市夜食</b></a>
+        <a class="rec-tag" href="/#picks">凌晨网吧散场观察 <b>夜班短剧</b></a>
+      </div>
+    </section>
+
+    <!-- 12 投稿互动 -->
+    <section class="block" id="submit">
+      <div class="submit-panel">
+        <div>
+          <h2>投稿与线索征集</h2>
+          <p>如果你身边有值得记录的夜班场景——便利店、急诊、代驾、分拣线、通宵书店、高速服务区——可以把地点、时段和大致内容写下来。线索会先做基础核实，再决定是否进入拍摄排期。</p>
+          <p>每周三、周六晚 21:00 整理一次投稿，11 月 8 日当周已收到 34 条线索，其中 6 条进入实地联系阶段。</p>
+          <p style="font-size:12.5px;color:var(--text-3)">征集方向：夜班职业纪实、城市夜食摊位、末班车沿线记录、通宵营业场所观察。</p>
+        </div>
+        <form class="submit-form" id="submitForm" novalidate>
+          <label for="sf-name">称呼</label>
+          <input id="sf-name" name="name" type="text" placeholder="怎么称呼你" required>
+          <label for="sf-topic">线索类型</label>
+          <select id="sf-topic" name="topic">
+            <option>夜班职业纪实</option>
+            <option>城市夜食摊位</option>
+            <option>末班车沿线记录</option>
+            <option>通宵营业场所观察</option>
+          </select>
+          <label for="sf-desc">线索简述</label>
+          <textarea id="sf-desc" name="desc" placeholder="地点、时段、大致内容，越具体越好"></textarea>
+          <button class="btn-primary" type="submit">提交线索</button>
+          <div class="form-note" id="formNote" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- 页脚 -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="14" fill="#241d2e"/>
+            <circle cx="32" cy="29" r="13" fill="#f0a13c"/>
+            <circle cx="27" cy="26" r="2.8" fill="#241d2e"/>
+            <circle cx="37" cy="26" r="2.8" fill="#241d2e"/>
+            <path d="M32 29v9" stroke="#241d2e" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M13 52h38" stroke="#f0a13c" stroke-width="3.2" stroke-linecap="round"/>
+          </svg>
+          <strong>黑椒不打烊官方网站</strong>
+        </div>
+        <p class="footer-desc">覆盖 2024 年 3 月至 2026 年 11 月的夜间内容条目，以 20 分钟以内的短条目为主体，长音频与对谈约占三成。常规更新节奏为每周二、周五各一次，紧急更新随节目排期。</p>
+      </div>
+      <div class="footer-cols">
+        <div>
+          <h3>频道</h3>
+          <a href="/#cats">夜间电台</a>
+          <a href="/#cats">夜班短剧</a>
+          <a href="/#cats">凌晨人物访谈</a>
+          <a href="/#cats">城市夜食记录</a>
+        </div>
+        <div>
+          <h3>内容</h3>
+          <a href="/#picks">精选条目</a>
+          <a href="/#latest">最新更新</a>
+          <a href="/#deep">深度解析</a>
+          <a href="/#guide">体验指南</a>
+        </div>
+        <div>
+          <h3>互动</h3>
+          <a href="/#submit">线索投稿</a>
+          <a href="/#comments">听友评论</a>
+          <a href="/#rank">深夜收听榜</a>
+          <a href="/#faq">常见问题</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>页面内容为示例条目，条目名称、数据与评分用于演示排版，不构成对真实节目或人物的评价。</span>
+      <span>最近更新：2026 年 11 月 8 日 · 对应《凌晨三点的便利店》第14期上线</span>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" type="button" aria-label="回到顶部">↑</button>
+
+<script>
+(function(){
+  var nav = document.getElementById('mainNav');
+  var hamburger = document.getElementById('hamburger');
+  var overlay = document.getElementById('overlay');
+  var sideNav = document.getElementById('sideNav');
+  var searchInput = document.getElementById('siteSearch');
+  var clearBtn = document.getElementById('clearSearch');
+  var feedback = document.getElementById('searchFeedback');
+  var toTop = document.getElementById('toTop');
+
+  function closeNav(){
+    nav.classList.remove('open');
+    hamburger.setAttribute('aria-expanded','false');
+    hamburger.setAttribute('aria-label','打开导航菜单');
+    overlay.classList.remove('show');
+    overlay.hidden = true;
+    if(sideNav) sideNav.classList.remove('open');
+  }
+  function openNav(){
+    nav.classList.add('open');
+    hamburger.setAttribute('aria-expanded','true');
+    hamburger.setAttribute('aria-label','关闭导航菜单');
+    overlay.classList.add('show');
+    overlay.hidden = false;
+    if(sideNav) sideNav.classList.add('open');
+  }
+  hamburger.addEventListener('click', function(){
+    if(nav.classList.contains('open')) closeNav(); else openNav();
+  });
+  overlay.addEventListener('click', closeNav);
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){ closeNav(); }
+  });
+  // 导航项点击后收起
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', closeNav);
+  });
+  if(sideNav){
+    sideNav.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        if(window.innerWidth <= 1024) sideNav.classList.remove('open');
+      });
+    });
+  }
+
+  // 滚动高亮 + 回到顶部
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var sideLinks = sideNav ? Array.prototype.slice.call(sideNav.querySelectorAll('a')) : [];
+  function onScroll(){
+    var y = window.scrollY || window.pageYOffset;
+    toTop.classList.toggle('show', y > window.innerHeight);
+    var cur = null;
+    sections.forEach(function(s){
+      if(s.getBoundingClientRect().top <= 160) cur = s.id;
+    });
+    sideLinks.forEach(function(a){
+      var href = a.getAttribute('href');
+      a.classList.toggle('active', href === '/#' + cur);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  toTop.addEventListener('click', function(){
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+
+  // 本地搜索筛选
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#picks .card'));
+  var updates = Array.prototype.slice.call(document.querySelectorAll('#latest .update-item'));
+  var newsItems = Array.prototype.slice.call(document.querySelectorAll('#news .news'));
+  var searchables = cards.concat(updates, newsItems);
+  function runSearch(){
+    var q = searchInput.value.trim().toLowerCase();
+    clearBtn.hidden = q.length === 0;
+    if(!q){
+      searchables.forEach(function(el){ el.style.display = ''; });
+      feedback.classList.remove('show');
+      feedback.textContent = '';
+      return;
+    }
+    var count = 0;
+    searchables.forEach(function(el){
+      var txt = (el.textContent || '').toLowerCase();
+      var hit = txt.indexOf(q) !== -1;
+      el.style.display = hit ? '' : 'none';
+      if(hit) count++;
+    });
+    feedback.classList.add('show');
+    if(count === 0){
+      feedback.textContent = '没有找到包含「' + searchInput.value.trim() + '」的条目，试试“便利店”“地铁”“代驾”或“夜食”。';
+    }else{
+      feedback.textContent = '找到 ' + count + ' 条相关内容，已在下方面板中筛选显示。';
+    }
+  }
+  searchInput.addEventListener('input', runSearch);
+  clearBtn.addEventListener('click', function(){
+    searchInput.value = '';
+    runSearch();
+    searchInput.focus();
+  });
+
+  // 投稿表单
+  var form = document.getElementById('submitForm');
+  var note = document.getElementById('formNote');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('sf-name').value.trim();
+    var desc = document.getElementById('sf-desc').value.trim();
+    if(!name){ note.textContent = '请填写称呼。'; document.getElementById('sf-name').focus(); return; }
+    if(desc.length < 8){ note.textContent = '线索简述再具体些，至少写清地点和时段。'; document.getElementById('sf-desc').focus(); return; }
+    note.textContent = '线索已记录（示例提交，未发送）。' + name + '，感谢补充。';
+    form.reset();
+  });
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "黑椒不打烊官方网站",
+  "description": "汇集深夜电台、夜班短剧、凌晨访谈与城市夜食记录的内容索引站。",
+  "inLanguage": "zh-CN",
+  "about": "深夜内容聚合"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "夜班短剧和普通短剧有什么区别？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "夜班短剧的场景基本固定在夜间职业里，便利店、急诊、代驾、高速服务区是常见背景，单集多在8到20分钟，通常保留更多环境声和职业细节。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "《末班地铁录音带》为什么旁白这么少？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "这档节目以环境声为主体，旁白只用于交代线路、时间和录制位置。广州地铁3号线Vol.07全长28分钟，旁白出现四次。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "凌晨人物访谈里的数字能直接当结论吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "要区分信息层级。当晚接单9次、流水486元、抽成92元属于可核对明细；受访者说这行比送外卖自由属于个人判断，不能当作行业普遍情况。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "助眠白噪音和夜间电台能混着听吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不建议混。白噪音信息量极低，作用是盖住环境杂音；夜间电台有对话和内容推进，需要一定注意力。0点前听电台、0点后切白噪音更实际。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "城市夜食记录里，哪些细节值得看？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "看三样：摊位营业到几点、熟客构成、食材和配料的具体比例。成都玉林路《通宵面馆》给出了甜水面配料比例和收摊时间，三类信息都有。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "一个夜间系列多久不更新算断更？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "超过平均间隔的两倍还没更新，大致可视为暂停。《凌晨三点的便利店》平均11天一期，《末班地铁录音带》平均13天一期。"
+      }
+    }
+  ]
+}
+</script>
+</body>
+                                                              </html>
