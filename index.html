@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>粤之家 粤语站 - 粤语文化内容聚合</title>
+  <meta name="description" content="粤之家 粤语站汇聚粤语歌曲、影视、讲古、粤剧、栋笃笑与方言教学等具体内容，适合粤语爱好者和广府文化关注者浏览与发现。">
+  <meta name="keywords" content="粤之家 粤语站">
+  <style>
+    /* ---------- 基础重置与变量 ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      --primary: #b83b2e;
+      --primary-light: #d95e4f;
+      --primary-dark: #8f2a20;
+      --bg: #fcf8f3;
+      --surface: #ffffff;
+      --text-primary: #1e1a17;
+      --text-secondary: #5e524a;
+      --text-tertiary: #8a7b71;
+      --border: #e7ddd3;
+      --radius-card: 16px;
+      --radius-btn: 40px;
+      --radius-tag: 6px;
+      --radius-banner: 20px;
+      --shadow-default: 0 4px 12px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
+      --shadow-hover: 0 12px 24px -8px rgba(184, 59, 46, 0.18), 0 4px 8px rgba(0, 0, 0, 0.04);
+      --font-sans: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', system-ui, -apple-system, sans-serif;
+      --font-serif: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+      --header-height: 110px;
+      --max-width: 1360px;
+    }
+    html {
+      scroll-padding-top: var(--header-height);
+      scroll-behavior: smooth;
+    }
+    body {
+      background-color: var(--bg);
+      font-family: var(--font-sans);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    ul, ol {
+      list-style: none;
+    }
+    img {
+      max-width: 100%;
+      display: block;
+    }
+    button {
+      font-family: inherit;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+    :focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    /* ---------- 吸顶公告条与页头 ---------- */
+    .sticky-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(252, 248, 243, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .announcement-bar {
+      background: var(--primary-dark);
+      color: #fff;
+      font-size: 0.82rem;
+      padding: 6px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 8px 24px;
+      letter-spacing: 0.02em;
+    }
+    .announcement-bar span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .announcement-bar .dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #ffb3a7;
+      flex-shrink: 0;
+    }
+    .header-main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .logo-svg {
+      width: 40px;
+      height: 40px;
+      display: block;
+    }
+    .brand-name {
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--primary-dark);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+    .main-nav {
+      display: flex;
+      gap: 8px 20px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .main-nav a {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      padding: 6px 2px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .main-nav a:hover,
+    .main-nav a[aria-current="page"] {
+      color: var(--primary-dark);
+      border-bottom-color: var(--primary);
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+    }
+    .search-toggle {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      padding: 6px 12px;
+      border-radius: var(--radius-btn);
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .search-toggle:hover {
+      border-color: var(--primary-light);
+      background: var(--surface);
+    }
+    .menu-btn {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+    .menu-btn span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text-primary);
+      border-radius: 2px;
+      transition: 0.2s;
+    }
+
+    /* ---------- 主容器 ---------- */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ---------- 首屏 ---------- */
+    .hero {
+      background: linear-gradient(145deg, #f3e8df 0%, #fcf8f3 60%);
+      border-radius: 0 0 32px 32px;
+      padding: 40px 0 36px;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-inner {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .hero-content {
+      flex: 1 1 380px;
+      min-width: 280px;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-visual {
+      flex: 1 1 320px;
+      min-width: 240px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .hero-visual svg {
+      width: 100%;
+      max-width: 420px;
+      height: auto;
+      display: block;
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 800;
+      color: var(--primary-dark);
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: 0.01em;
+    }
+    .hero-desc {
+      font-size: 1.06rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: var(--radius-btn);
+      font-weight: 600;
+      font-size: 1rem;
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 6px 16px -6px rgba(184, 59, 46, 0.4);
+    }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 12px 22px;
+      border-radius: var(--radius-btn);
+      border: 1.5px solid var(--primary);
+      color: var(--primary-dark);
+      font-weight: 600;
+      transition: background 0.2s, transform 0.2s;
+      background: transparent;
+    }
+    .btn-outline:hover {
+      background: rgba(184, 59, 46, 0.06);
+      transform: translateY(-2px);
+    }
+
+    /* ---------- 布局：双栏标准 ---------- */
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 40px;
+      align-items: start;
+      margin-bottom: 56px;
+    }
+    .main-content {
+      min-width: 0;
+    }
+    .sidebar {
+      min-width: 0;
+      position: sticky;
+      top: calc(var(--header-height) + 20px);
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* ---------- 通用板块间距 ---------- */
+    .section {
+      margin-bottom: 48px;
+    }
+    .section:last-child {
+      margin-bottom: 0;
+    }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .section-header h2 {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      letter-spacing: 0.01em;
+      line-height: 1.3;
+    }
+    .section-header .more-link {
+      font-size: 0.85rem;
+      color: var(--text-tertiary);
+      transition: color 0.2s;
+    }
+    .section-header .more-link:hover {
+      color: var(--primary);
+    }
+
+    /* ---------- 卡片网格 ---------- */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: var(--shadow-default);
+      transition: box-shadow 0.25s, transform 0.25s;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-3px);
+    }
+    .card-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      background: #efe7df;
+    }
+    .card-body {
+      padding: 14px 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+    .card-type {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--text-primary);
+    }
+    .card-desc {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      flex: 1;
+    }
+    .card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 12px;
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      align-items: center;
+      margin-top: 4px;
+    }
+    .tag-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .tag {
+      background: #f5ede7;
+      padding: 2px 8px;
+      border-radius: var(--radius-tag);
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+    }
+
+    /* ---------- 资讯列表 ---------- */
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .news-item {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      border: 1px solid var(--border);
+      padding: 18px 20px;
+      box-shadow: var(--shadow-default);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .news-item:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
+    }
+    .news-title {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+    .news-summary {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .news-date {
+      font-size: 0.78rem;
+      color: var(--text-tertiary);
+      margin-top: 8px;
+    }
+
+    /* ---------- 分类入口 ---------- */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+    }
+    .category-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 16px 14px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .category-item:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+    .category-item .cat-count {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--text-tertiary);
+    }
+    .category-item:hover .cat-count {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* ---------- 深度解析正文 ---------- */
+    .deep-dive {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      border: 1px solid var(--border);
+      padding: 28px 30px;
+      box-shadow: var(--shadow-default);
+    }
+    .deep-dive h3 {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+    .deep-dive h3:first-of-type {
+      margin-top: 0;
+    }
+    .deep-dive p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+      line-height: 1.8;
+    }
+    .deep-dive ul {
+      margin-bottom: 16px;
+      padding-left: 20px;
+      list-style: disc;
+    }
+    .deep-dive ul li {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+      line-height: 1.6;
+    }
+    .deep-dive .note {
+      background: #fdf6f0;
+      border-left: 3px solid var(--primary);
+      padding: 12px 16px;
+      border-radius: 0 10px 10px 0;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin: 16px 0;
+    }
+
+    /* ---------- FAQ ---------- */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+    }
+    .faq-item summary {
+      padding: 16px 20px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: background 0.2s;
+    }
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+    .faq-item summary::after {
+      content: "+";
+      font-size: 1.3rem;
+      color: var(--primary);
+      font-weight: 400;
+      transition: transform 0.2s;
+    }
+    .faq-item[open] summary::after {
+      content: "−";
+    }
+    .faq-item summary:hover {
+      background: #faf5f0;
+    }
+    .faq-answer {
+      padding: 0 20px 18px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ---------- 评论 ---------- */
+    .comment-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
+    }
+    .comment-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 14px 16px;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      transition: box-shadow 0.2s;
+    }
+    .comment-card:hover {
+      box-shadow: var(--shadow-hover);
+    }
+    .comment-author {
+      font-weight: 700;
+      font-size: 0.82rem;
+      color: var(--primary-dark);
+      margin-bottom: 6px;
+    }
+    .comment-text {
+      overflow-wrap: break-word;
+    }
+
+    /* ---------- 资讯列表（相关资讯）---------- */
+    .related-news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .related-news-item {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 14px;
+    }
+    .related-news-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .related-news-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .related-news-meta {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      margin-bottom: 4px;
+    }
+    .related-news-summary {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ---------- 相关推荐标签索引 ---------- */
+    .rec-tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .rec-tag {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: var(--radius-btn);
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .rec-tag:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    /* ---------- 侧栏模块 ---------- */
+    .sidebar-card {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      border: 1px solid var(--border);
+      padding: 20px;
+      box-shadow: var(--shadow-default);
+    }
+    .sidebar-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hot-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .hot-item {
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+      font-size: 0.88rem;
+    }
+    .hot-rank {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 0.8rem;
+      min-width: 20px;
+    }
+    .hot-title {
+      color: var(--text-primary);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .hot-title:hover {
+      color: var(--primary);
+    }
+    .update-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .update-item {
+      display: flex;
+      gap: 8px;
+      align-items: baseline;
+    }
+    .update-date {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      white-space: nowrap;
+    }
+
+    /* ---------- 投稿互动板块 ---------- */
+    .contribute-banner {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      border-radius: var(--radius-banner);
+      padding: 28px 30px;
+      color: #fff;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .contribute-banner h3 {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .contribute-banner p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+    .contribute-btn {
+      background: #fff;
+      color: var(--primary-dark);
+      font-weight: 700;
+      padding: 10px 24px;
+      border-radius: var(--radius-btn);
+      font-size: 0.9rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      white-space: nowrap;
+    }
+    .contribute-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ---------- 页脚 ---------- */
+    .footer {
+      background: #2d2521;
+      color: #d9cec6;
+      padding: 48px 0 24px;
+      margin-top: 40px;
+    }
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 32px;
+    }
+    .footer-brand .brand-name {
+      color: #f3e8df;
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .footer-desc {
+      font-size: 0.85rem;
+      color: #b8aaa1;
+      line-height: 1.7;
+      max-width: 280px;
+    }
+    .footer h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #f3e8df;
+      margin-bottom: 14px;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .footer-links a {
+      font-size: 0.84rem;
+      color: #b8aaa1;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover {
+      color: #f3e8df;
+    }
+    .footer-bottom {
+      max-width: var(--max-width);
+      margin: 32px auto 0;
+      padding: 20px 24px 0;
+      border-top: 1px solid #4a3f39;
+      font-size: 0.78rem;
+      color: #8a7b71;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    /* ---------- 回到顶部 ---------- */
+    .back-to-top {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: var(--primary);
+      color: #fff;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 6px 16px rgba(184, 59, 46, 0.4);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s, transform 0.2s;
+      z-index: 90;
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    .back-to-top:hover {
+      transform: translateY(-3px);
+    }
+
+    /* ---------- 搜索面板 ---------- */
+    .search-panel {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 120px;
+    }
+    .search-panel.active {
+      display: flex;
+    }
+    .search-box {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      width: 90%;
+      max-width: 520px;
+      padding: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+    .search-box input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-btn);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-box input:focus {
+      border-color: var(--primary);
+    }
+    .search-results {
+      margin-top: 16px;
+      max-height: 320px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .search-result-item {
+      padding: 10px 14px;
+      background: #faf5f0;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      color: var(--text-primary);
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+    .search-result-item:hover {
+      background: #f0e4da;
+    }
+    .search-empty {
+      text-align: center;
+      padding: 20px;
+      color: var(--text-tertiary);
+      font-size: 0.9rem;
+    }
+    .search-close {
+      margin-top: 16px;
+      width: 100%;
+      padding: 10px;
+      border-radius: var(--radius-btn);
+      background: #f0e4da;
+      color: var(--text-secondary);
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .search-close:hover {
+      background: #e4d5c8;
+    }
+
+    /* ---------- 响应式 ---------- */
+    @media (max-width: 1024px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        position: static;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 20px;
+      }
+      .footer-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+      .header-main {
+        gap: 16px;
+      }
+    }
+    @media (max-width: 740px) {
+      :root {
+        --header-height: 100px;
+      }
+      .header-main {
+        padding: 8px 16px;
+        gap: 12px;
+      }
+      .brand-name {
+        font-size: 1.2rem;
+      }
+      .main-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--surface);
+        flex-direction: column;
+        padding: 16px 20px;
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+        gap: 6px;
+        z-index: 99;
+      }
+      .main-nav.open {
+        display: flex;
+      }
+      .main-nav a {
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border);
+        width: 100%;
+        font-size: 1rem;
+      }
+      .menu-btn {
+        display: flex;
+      }
+      .hero {
+        padding: 28px 0 24px;
+        border-radius: 0 0 24px 24px;
+      }
+      .hero-inner {
+        gap: 24px;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero-desc {
+        font-size: 0.95rem;
+      }
+      .container {
+        padding: 0 16px;
+      }
+      .layout {
+        gap: 28px;
+      }
+      .card-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 12px;
+      }
+      .comment-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .back-to-top {
+        bottom: 18px;
+        right: 18px;
+        width: 40px;
+        height: 40px;
+      }
+      .deep-dive {
+        padding: 20px;
+      }
+      .contribute-banner {
+        padding: 20px;
+      }
+    }
+    @media (max-width: 420px) {
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+      .category-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .hero-visual svg {
+        animation: none;
+      }
+    }
+  </style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+  <!-- 吸顶公告条与页头 -->
+  <div class="sticky-wrapper">
+    <div class="announcement-bar">
+      <span><span class="dot"></span>11月7日 粤语讲古《伦文叙》第37回更新</span>
+      <span><span class="dot"></span>26部粤语短剧上线「粤之家 粤语站」</span>
+      <span><span class="dot"></span>11月8日 栋笃笑专场《加班》开放投稿</span>
+    </div>
+    <header class="header-main">
+      <div class="logo-area">
+        <svg class="logo-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="4" y="4" width="40" height="40" rx="12" fill="#b83b2e"/>
+          <path d="M14 30 L18 18 L24 26 L30 16 L34 30" stroke="#fcf8f3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="34" cy="34" r="3" fill="#f5c9b8"/>
+        </svg>
+        <span class="brand-name">粤之家 粤语站</span>
+      </div>
+      <nav class="main-nav" id="mainNav" aria-label="主题导航">
+        <a href="/#section-overview">粤语概览</a>
+        <a href="/#section-picks">精选推荐</a>
+        <a href="/#section-updates">最新更新</a>
+        <a href="/#section-categories">分类入口</a>
+        <a href="/#section-deep">深度解析</a>
+        <a href="/#section-guide">体验指南</a>
+        <a href="/#section-faq">常见问答</a>
+        <a href="/#section-comments">用户评论</a>
+      </nav>
+      <div class="header-actions">
+        <button class="search-toggle" id="searchToggle" aria-label="打开搜索">🔍 搜索</button>
+        <button class="menu-btn" id="menuBtn" aria-label="打开导航菜单" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+  </div>
+
+  <!-- 首屏 -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <h1>粤之家 粤语站</h1>
+        <p class="hero-desc">汇聚粤语歌曲、影视剧集、讲古广播、粤剧折子戏与栋笃笑专场，每日更新广府文化现场与方言教学条目。</p>
+        <div class="hero-actions">
+          <a href="/#section-picks" class="btn-primary">浏览精选内容 →</a>
+          <a href="/#section-categories" class="btn-outline">查看全部分类</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="200" cy="150" r="130" fill="#f3e8df"/>
+          <circle cx="200" cy="150" r="100" fill="#fcf8f3" stroke="#e7ddd3" stroke-width="1.5"/>
+          <path d="M130 180 Q160 100 200 110 Q240 120 270 180" stroke="#b83b2e" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <circle cx="200" cy="150" r="8" fill="#b83b2e"/>
+          <path d="M160 210 L200 170 L240 210" stroke="#d95e4f" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <rect x="180" y="220" width="40" height="6" rx="3" fill="#d95e4f" opacity="0.5"/>
+          <circle cx="120" cy="90" r="6" fill="#d95e4f" opacity="0.6"/>
+          <circle cx="300" cy="100" r="4" fill="#d95e4f" opacity="0.5"/>
+          <circle cx="280" cy="220" r="5" fill="#d95e4f" opacity="0.4"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- 主内容区 -->
+  <div class="container">
+    <div class="layout">
+      <!-- 左主内容 -->
+      <main class="main-content">
+
+        <!-- 板块1：主题领域概览 -->
+        <section class="section" id="section-overview">
+          <div class="section-header">
+            <h2>广府文化内容版图</h2>
+          </div>
+          <div style="background: var(--surface); border-radius: var(--radius-card); border: 1px solid var(--border); padding: 24px 26px; box-shadow: var(--shadow-default);">
+            <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 12px;">粤语内容消费集中在几个具体方向：粤语流行曲的经典翻唱与新歌首播、TVB与ViuTV剧集的正片与花絮、讲古大师的章回体广播（如《伦文叙》《济公传》）、粤剧折子戏的现场实录，以及栋笃笑专场的完整版与片段。近年粤语短剧和方言教学短视频成为新增量，抖音“粤语教学”话题播放量在2026年10月已超47亿次。</p>
+            <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.8;">值得关注的具体条目包括：黄子华2026年新栋笃笑《加班》将于11月15日在红馆开锣；讲古艺人林兆明重制版《西游记》第12回在10月28日上线；粤剧《帝女花》青春版广州巡演11月2日开票。方言保护方向，香港语言学会在10月发布《粤语拼音方案（2026修订版）》，对39个韵母标注作出调整。</p>
+          </div>
+        </section>
+
+        <!-- 板块2：精选内容推荐 -->
+        <section class="section" id="section-picks">
+          <div class="section-header">
+            <h2>本周值得看的粤语条目</h2>
+            <a href="/#section-updates" class="more-link">更多更新 →</a>
+          </div>
+          <div class="card-grid">
+            <article class="card">
+              <img class="card-img" src="https://picsum.photos/seed/yueju1/400/300" width="400" height="300" loading="lazy" alt="粤剧《帝女花》青春版舞台剧照">
+              <div class="card-body">
+                <span class="card-type">粤剧</span>
+                <h3 class="card-title">粤剧《帝女花》青春版</h3>
+                <p class="card-desc">广东粤剧院青年团11月2日开票，主演陈嘉欣、李伟骢。任白版经典折子戏《香夭》保留原腔，新增投影字幕。</p>
+                <div class="card-meta"><span>热度 8.7</span><span>11月2日开票</span></div>
+                <div class="tag-group"><span class="tag">任白腔</span><span class="tag">广州巡演</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <img class="card-img" src="https://picsum.photos/seed/dongdu1/400/300" width="400" height="300" loading="lazy" alt="黄子华栋笃笑《加班》海报局部">
+              <div class="card-body">
+                <span class="card-type">栋笃笑</span>
+                <h3 class="card-title">黄子华《加班》红馆专场</h3>
+                <p class="card-desc">2026年11月15日开锣，共12场。主题围绕职场与AI焦虑，优先场片段已在10月30日释出3分钟。</p>
+                <div class="card-meta"><span>热度 9.4</span><span>11月15日开演</span></div>
+                <div class="tag-group"><span class="tag">红馆</span><span class="tag">职场题材</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <img class="card-img" src="https://picsum.photos/seed/jianggu1/400/300" width="400" height="300" loading="lazy" alt="讲古艺人林兆明录制《西游记》现场">
+              <div class="card-body">
+                <span class="card-type">讲古</span>
+                <h3 class="card-title">林兆明重制版《西游记》</h3>
+                <p class="card-desc">第12回“观音院唐僧脱难”10月28日上线，单集点击47万。保留1980年代电台录音底噪，仅重做片头。</p>
+                <div class="card-meta"><span>热度 8.2</span><span>10月28日更新</span></div>
+                <div class="tag-group"><span class="tag">章回体</span><span class="tag">电台经典</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <img class="card-img" src="https://picsum.photos/seed/yueyu1/400/300" width="400" height="300" loading="lazy" alt="粤语拼音方案修订版内页示意">
+              <div class="card-body">
+                <span class="card-type">方言教学</span>
+                <h3 class="card-title">粤语拼音方案2026修订版</h3>
+                <p class="card-desc">香港语言学会10月发布，39个韵母标注调整，新增“eo”与“oe”区分说明。配套音频由港大语言系录制。</p>
+                <div class="card-meta"><span>热度 7.9</span><span>10月发布</span></div>
+                <div class="tag-group"><span class="tag">粤拼</span><span class="tag">韵母表</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <img class="card-img" src="https://picsum.photos/seed/duanju1/400/300" width="400" height="300" loading="lazy" alt="粤语短剧《西关大屋》拍摄花絮">
+              <div class="card-body">
+                <span class="card-type">短剧</span>
+                <h3 class="card-title">《西关大屋》第2季</h3>
+                <p class="card-desc">26部粤语短剧合集在11月6日上线，每集8—12分钟。主演“细龟”梁志强，场景设在荔湾老宅。</p>
+                <div class="card-meta"><span>热度 7.5</span><span>11月6日上线</span></div>
+                <div class="tag-group"><span class="tag">西关</span><span class="tag">轻喜剧</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <img class="card-img" src="https://picsum.photos/seed/gequ1/400/300" width="400" height="300" loading="lazy" alt="粤语歌曲《湾》MV画面">
+              <div class="card-body">
+                <span class="card-type">粤语歌</span>
+                <h3 class="card-title">《湾》- 麦浚龙 ft. 陈蕾</h3>
+                <p class="card-desc">10月31日派台，MV取景南沙码头。歌词由周耀辉执笔，编曲用上五声音阶与电子鼓机混合。</p>
+                <div class="card-meta"><span>热度 8.1</span><span>10月31日派台</span></div>
+                <div class="tag-group"><span class="tag">新歌</span><span class="tag">周耀辉</span></div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- 板块3：最新更新 / 动态 -->
+        <section class="section" id="section-updates">
+          <div class="section-header">
+            <h2>11月7日—8日条目动态</h2>
+          </div>
+          <div class="news-list">
+            <div class="news-item">
+              <div class="news-title">讲古《伦文叙》第37回上线</div>
+              <div class="news-summary">主播陈波11月7日晚更新，本回讲伦文叙智斗柳先开，时长28分16秒。</div>
+              <div class="news-date">2026年11月7日</div>
+            </div>
+            <div class="news-item">
+              <div class="news-title">《帝女花》青春版加开11月20日场</div>
+              <div class="news-summary">广东粤剧院11月8日公告，首轮两场门票在开票6小时内售罄，加开场次11月10日开票。</div>
+              <div class="news-date">2026年11月8日</div>
+            </div>
+            <div class="news-item">
+              <div class="news-title">粤语短剧合集新增《骑楼下的夏天》</div>
+              <div class="news-summary">11月6日上线第1—6集，导演何敏仪，每集9分钟，讲西关骑楼里三户人家的暑假。</div>
+              <div class="news-date">2026年11月6日</div>
+            </div>
+            <div class="news-item">
+              <div class="news-title">黄子华《加班》优先场片段释出</div>
+              <div class="news-summary">10月30日晚官方账号发布3分钟片段，内容围绕“AI取代人类”的职场笑话，转发量超2.1万。</div>
+              <div class="news-date">2026年10月30日</div>
+            </div>
+            <div class="news-item">
+              <div class="news-title">《湾》MV上线48小时播放破80万</div>
+              <div class="news-summary">麦浚龙与陈蕾合作曲11月1日上线MV，导演为麦曦茵，取景南沙码头与深水埗唐楼。</div>
+              <div class="news-date">2026年11月1日</div>
+            </div>
+            <div class="news-item">
+              <div class="news-title">粤语拼音修订版配套音频开放下载</div>
+              <div class="news-summary">港大语言系11月3日上传39个韵母示范音频，提供MP3与WAV两种格式，总时长52分钟。</div>
+              <div class="news-date">2026年11月3日</div>
+            </div>
+            <div class="news-item">
+              <div class="news-title">林兆明《西游记》第12回点击47万</div>
+              <div class="news-summary">重制版10月28日上线后，单集在粤之家站内播放量截至11月7日为47.3万，评论312条。</div>
+              <div class="news-date">2026年11月7日</div>
+            </div>
+            <div class="news-item">
+              <div class="news-title">《西关大屋》第二季主演确定</div>
+              <div class="news-summary">11月5日剧组公布阵容：梁志强、陈婉玲、黄志荣，11月12日在荔湾开机。</div>
+              <div class="news-date">2026年11月5日</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 板块4：分类入口 -->
+        <section class="section" id="section-categories">
+          <div class="section-header">
+            <h2>按类型进入</h2>
+          </div>
+          <div class="category-grid">
+            <a href="/#section-picks" class="category-item">粤语歌曲<span class="cat-count">128首</span></a>
+            <a href="/#section-picks" class="category-item">粤语影视<span class="cat-count">64部</span></a>
+            <a href="/#section-picks" class="category-item">讲古广播<span class="cat-count">37回</span></a>
+            <a href="/#section-picks" class="category-item">粤剧折子戏<span class="cat-count">42折</span></a>
+            <a href="/#section-picks" class="category-item">栋笃笑<span class="cat-count">18场</span></a>
+            <a href="/#section-picks" class="category-item">粤语短剧<span class="cat-count">26部</span></a>
+            <a href="/#section-picks" class="category-item">方言教学<span class="cat-count">53课时</span></a>
+            <a href="/#section-picks" class="category-item">广府现场<span class="cat-count">19场</span></a>
+          </div>
+        </section>
+
+        <!-- 板块5：深度解析正文 -->
+        <section class="section" id="section-deep">
+          <div class="section-header">
+            <h2>粤语内容消费的三个判断维度</h2>
+          </div>
+          <div class="deep-dive">
+            <h3>版本源流决定可信度</h3>
+            <p>同一段粤剧折子戏，不同版本的信息量差异极大。以《帝女花·香夭》为例，任剑辉、白雪仙1959年录音室版与1989年演唱会版在拖腔处理上不同：1959年版“落花满天蔽月光”的“蔽”字拖三拍，1989年版拖四拍半，原因是白雪仙当年嗓音状态变化。目前站内收录的7个版本中，只有3个标注了录音年份与场地，其余4个来源不明。判断版本可信度，先看条目是否标注录制时间、场地、演出阵容三项，缺两项以上建议跳过。</p>
+            <h3>讲古的章回体节奏与收听场景</h3>
+            <p>林兆明重制版《西游记》第12回时长28分16秒，比1980年代原版短4分钟，剪掉了两段过场诗。这种删减对通勤收听更友好，但对习惯完整章回体的老听众是损失。对比张悦楷版《西游记》第12回（32分钟，保留全部过场诗），两个版本在“观音院”一节的节奏差异明显：林兆明版用2分10秒讲完悟空献袈裟，张悦楷版用3分40秒加入老和尚心理描写。选哪个版本取决于收听场景——开车或做家务选林兆明版，睡前细听选张悦楷版。</p>
+            <h3>栋笃笑专场的信息层级拆解</h3>
+            <p>黄子华《加班》优先场片段释出后，社交平台出现三类信息：官方账号发布的3分钟片段（已公开事实）、现场观众的文字repo（当事人回应）、娱乐号整理的“金句合集”（媒体转述）。判断某条“金句”是否可信，可以核对三个环节：①是否出现在官方片段中；②是否有至少两个现场观众的repo互相印证；③娱乐号是否标注了来源。目前流传的“AI不会加班但会让你加班”一句，在官方片段中没有出现，两个现场repo提到类似表述但用词不同，可信度中等。</p>
+            <ul>
+              <li>已公开事实：官方片段、开票公告、曲目列表</li>
+              <li>当事人回应：演员采访、主创微博、现场repo</li>
+              <li>媒体转述：娱乐号整理、新闻稿、短视频剪辑</li>
+              <li>网友推测：未标注来源的“金句”、场次猜测</li>
+            </ul>
+            <p>这套分层同样适用于粤语歌新歌评价。麦浚龙《湾》10月31日派台后，音乐论坛出现“编曲抄袭某日文歌”的说法，核查发现该说法来自一条未标注对比时间点的帖子，且两首歌的和弦走向在第三小节后分叉。这类指控至少需要提供两首歌的准确时间码对比，否则只能算网友推测。</p>
+          </div>
+        </section>
+
+        <!-- 板块6：体验指南 / 消费路径 -->
+        <section class="section" id="section-guide">
+          <div class="section-header">
+            <h2>从入门到深听的消费路径</h2>
+          </div>
+          <div style="background: var(--surface); border-radius: var(--radius-card); border: 1px solid var(--border); padding: 24px 26px; box-shadow: var(--shadow-default);">
+            <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px;">第一次接触粤语内容，建议从时长可控、信息密度适中的条目入手。讲古单回20—30分钟适合通勤，粤剧折子戏单折15—25分钟适合周末晚上，栋笃笑专场90分钟起需要整块时间。</p>
+            <ol style="padding-left: 20px; list-style: decimal; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.8; display: flex; flex-direction: column; gap: 10px;">
+              <li><strong>先听讲古：</strong>选林兆明《西游记》第1回或张悦楷《三国演义》第1回，两个版本各听10分钟，判断自己更习惯哪种语速。</li>
+              <li><strong>再看折子戏：</strong>《帝女花·香夭》任白1959年版是基准线，看完再对比青春版陈嘉欣的现场录像，留意“落花满天”一句的拖腔差异。</li>
+              <li><strong>栋笃笑挑专场：</strong>黄子华《加班》优先场片段先看3分钟，能接受节奏再考虑完整场次；否则从《娱乐圈血肉史》精选片段入门。</li>
+              <li><strong>方言教学按需：</strong>粤拼修订版39个韵母中，先学“oe”“eo”两组易混韵母，配套音频的52分钟里这组占11分钟。</li>
+            </ol>
+            <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.8; margin-top: 16px;">比较两个条目值不值得花时间，看三条：①是否有明确的录制时间与演出阵容；②单集时长是否匹配你的可用时段；③评论区是否有至少两条提到具体细节（如某句唱腔、某个包袱），而不是只说“好听”“好笑”。</p>
+          </div>
+        </section>
+
+        <!-- 板块7：FAQ -->
+        <section class="section" id="section-faq">
+          <div class="section-header">
+            <h2>粤语内容常见问答</h2>
+          </div>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>粤剧《帝女花》青春版和任白版主要区别在哪？</summary>
+              <div class="faq-answer">任白版1959年录音室版是标准参照，青春版由陈嘉欣、李伟骢主演，保留任白腔骨架但删减了过场戏，全剧时长从3小时20分压缩到2小时35分。青春版新增投影字幕，方便非粤语观众跟唱词。</div>
+            </details>
+            <details class="faq-item">
+              <summary>林兆明重制版《西游记》删了哪些内容？</summary>
+              <div class="faq-answer">第12回删掉两段过场诗，共约4分钟。原版1980年代电台录音中，过场诗用于转场和广告间隔，重制版按流媒体收听习惯剪掉。核心情节和角色对白未删。</div>
+            </details>
+            <details class="faq-item">
+              <summary>粤语拼音2026修订版的“eo”和“oe”怎么区分？</summary>
+              <div class="faq-answer">“oe”出现在“靴”（hoe1）、“约”（joek3）等字，舌位靠前；“eo”出现在“卒”（zeot1）、“出”（ceot1）等字，舌位靠后。修订版新增两组韵母的对比音频，各3分钟，港大语言系录制。</div>
+            </details>
+            <details class="faq-item">
+              <summary>黄子华《加班》优先场片段里有哪些具体包袱？</summary>
+              <div class="faq-answer">3分钟片段中，黄子华讲了两个完整包袱：一是“老板说AI不会请假，但AI会让你加班”；二是“以前OT有饭盒，现在OT有AI帮你写报告”。第二个包袱在片段结尾，现场反应最热烈。</div>
+            </details>
+            <details class="faq-item">
+              <summary>粤语短剧《西关大屋》第一季和第二季主演有变化吗？</summary>
+              <div class="faq-answer">第一季主演梁志强、陈婉玲保持不变，第二季新增黄志荣饰演三叔公。导演何敏仪在两季中均未更换，取景地从第一季的恩宁路扩展到多宝路。</div>
+            </details>
+            <details class="faq-item">
+              <summary>麦浚龙《湾》的编曲用了什么具体乐器？</summary>
+              <div class="faq-answer">编曲以五声音阶的合成器铺底，叠加电子鼓机TR-808的变体节奏，副歌部分加入南音琵琶采样。周耀辉的歌词在第二段主歌嵌入“舢舨”与“码头”两个意象。</div>
+            </details>
+          </div>
+        </section>
+
+        <!-- 板块8：用户评论 -->
+        <section class="section" id="section-comments">
+          <div class="section-header">
+            <h2>听友与观众留言</h2>
+          </div>
+          <div class="comment-grid">
+            <div class="comment-card"><div class="comment-author">阿明_荔湾</div><div class="comment-text">《伦文叙》第37回柳先开对对联那段，陈波把“狗屁”两个字讲得特别慢，笑死。</div></div>
+            <div class="comment-card"><div class="comment-author">Kiki_港岛</div><div class="comment-text">《湾》的MV拍得比预期好，南沙码头那个镜头有电影感。不过陈蕾的声线在副歌被编曲盖住了一点点。</div></div>
+            <div class="comment-card"><div class="comment-author">大华_越秀</div><div class="comment-text">林兆明版《西游记》第12回剪掉过场诗可以接受，但希望第13回把“观音院”结尾的收场诗保留。</div></div>
+            <div class="comment-card"><div class="comment-author">肥仔聪</div><div class="comment-text">黄子华《加班》优先场那段“AI帮你写报告”的包袱，现场反应比视频里剪出来的更炸。</div></div>
+            <div class="comment-card"><div class="comment-author">Cathy_天河</div><div class="comment-text">粤拼修订版的“eo”和“oe”终于有对比音频了，之前自学一直分不清“出”和“靴”。</div></div>
+            <div class="comment-card"><div class="comment-author">牛杂佬</div><div class="comment-text">《西关大屋》第二季换到多宝路取景，第一季恩宁路的骑楼镜头已经很有味道了，希望别丢。</div></div>
+            <div class="comment-card"><div class="comment-author">阿贞_佛山</div><div class="comment-text">《帝女花》青春版票价380起，比任白纪念场便宜一半，但陈嘉欣的“香夭”拖腔还差些火候。</div></div>
+            <div class="comment-card"><div class="comment-author">Ben_深圳</div><div class="comment-text">讲古单集28分钟对我这种每天通勤40分钟的人来说刚好，来回各听一半。</div></div>
+            <div class="comment-card"><div class="comment-author">月姐</div><div class="comment-text">《湾》的歌词“舢舨摇过旧码头”写得真好，周耀辉还是稳。</div></div>
+            <div class="comment-card"><div class="comment-author">阿强_海珠</div><div class="comment-text">栋笃笑专场90分钟太长，优先场片段3分钟刚好下饭，完整版等上线再说。</div></div>
+            <div class="comment-card"><div class="comment-author">小雨_澳门</div><div class="comment-text">粤剧折子戏的投影字幕对非粤语观众太友好了，上次带北方朋友看《香夭》终于不用全程翻译。</div></div>
+            <div class="comment-card"><div class="comment-author">老陈_荔湾</div><div class="comment-text">张悦楷版《西游记》第12回的节奏比林兆明版慢，睡前听容易睡着，通勤听会急。</div></div>
+            <div class="comment-card"><div class="comment-author">阿蚊</div><div class="comment-text">粤语短剧《骑楼下的夏天》第一集9分钟，讲三户人家抢天台晒被子，很接地气。</div></div>
+            <div class="comment-card"><div class="comment-author">Ken_香港</div><div class="comment-text">《加班》红馆12场，11月15日开锣，优先场片段里的“AI不会请假”那句应该是新写的。</div></div>
+          </div>
+        </section>
+
+        <!-- 板块9：相关资讯 -->
+        <section class="section" id="section-news">
+          <div class="section-header">
+            <h2>近期粤语文化动态</h2>
+          </div>
+          <div class="related-news-list">
+            <div class="related-news-item">
+              <div class="related-news-title">广东粤剧院加开《帝女花》青春版11月20日场</div>
+              <div class="related-news-meta">2026年11月8日</div>
+              <div class="related-news-summary">首轮两场在开票6小时内售罄，加开场次11月10日10时开票。主演陈嘉欣在11月7日采访中表示“香夭”拖腔将按任白版1959年录音处理。</div>
+            </div>
+            <div class="related-news-item">
+              <div class="related-news-title">林兆明《西游记》重制版第13回定档11月14日</div>
+              <div class="related-news-meta">2026年11月7日</div>
+              <div class="related-news-summary">制作方透露第13回保留“观音院”收场诗，时长31分钟，比第12回多3分钟。11月10日开放预约。</div>
+            </div>
+            <div class="related-news-item">
+              <div class="related-news-title">黄子华《加班》优先场片段48小时播放120万</div>
+              <div class="related-news-meta">2026年11月1日</div>
+              <div class="related-news-summary">官方账号10月30日释出3分钟片段，截至11月1日中午播放量120.4万，转发2.1万。红馆12场门票已售出九成。</div>
+            </div>
+            <div class="related-news-item">
+              <div class="related-news-title">粤语拼音修订版配套音频下载量破3万</div>
+              <div class="related-news-meta">2026年11月5日</div>
+              <div class="related-news-summary">港大语言系11月3日上传39个韵母示范音频，两日内下载量3.2万次，其中“eo/oe”对比音频占下载量四成。</div>
+            </div>
+            <div class="related-news-item">
+              <div class="related-news-title">《西关大屋》第二季11月12日荔湾开机</div>
+              <div class="related-news-meta">2026年11月5日</div>
+              <div class="related-news-summary">剧组公布主演阵容：梁志强、陈婉玲、黄志荣。取景地从恩宁路扩展到多宝路，计划拍摄30天，共12集。</div>
+            </div>
+            <div class="related-news-item">
+              <div class="related-news-title">麦浚龙《湾》登粤语歌曲榜第三位</div>
+              <div class="related-news-meta">2026年11月6日</div>
+              <div class="related-news-summary">歌曲10月31日派台，11月6日位列本地电台粤语榜第三，前两位为陈奕迅《焦焦》与林家谦《无答案》。MV导演麦曦茵。</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 板块10：相关推荐 -->
+        <section class="section" id="section-recommend">
+          <div class="section-header">
+            <h2>按具体方向找内容</h2>
+          </div>
+          <div class="rec-tag-list">
+            <a href="/#section-picks" class="rec-tag">任白腔《帝女花》</a>
+            <a href="/#section-picks" class="rec-tag">林兆明《西游记》章回</a>
+            <a href="/#section-picks" class="rec-tag">黄子华栋笃笑专场</a>
+            <a href="/#section-picks" class="rec-tag">粤拼oe/eo对比</a>
+            <a href="/#section-picks" class="rec-tag">西关骑楼短剧</a>
+            <a href="/#section-picks" class="rec-tag">南音琵琶采样</a>
+            <a href="/#section-picks" class="rec-tag">张悦楷《三国》讲古</a>
+            <a href="/#section-picks" class="rec-tag">广府现场折子戏</a>
+          </div>
+        </section>
+
+        <!-- 板块11：补充板块 - 投稿互动 -->
+        <section class="section" id="section-contribute">
+          <div class="contribute-banner">
+            <div>
+              <h3>粤语内容投稿与传声</h3>
+              <p>讲古片段、粤剧现场实录、方言教学短片均可上传。11月8日—11月30日“我的西关记忆”短剧征集进行中。</p>
+            </div>
+            <a href="/#section-contribute" class="contribute-btn">了解投稿方式</a>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- 右侧辅助栏 -->
+      <aside class="sidebar">
+        <div class="sidebar-card">
+          <h3>本周热听榜</h3>
+          <div class="hot-list">
+            <div class="hot-item"><span class="hot-rank">1</span><a href="/#section-picks" class="hot-title">林兆明《西游记》第12回</a></div>
+            <div class="hot-item"><span class="hot-rank">2</span><a href="/#section-picks" class="hot-title">黄子华《加班》优先场片段</a></div>
+            <div class="hot-item"><span class="hot-rank">3</span><a href="/#section-picks" class="hot-title">麦浚龙《湾》MV</a></div>
+            <div class="hot-item"><span class="hot-rank">4</span><a href="/#section-picks" class="hot-title">粤剧《帝女花》青春版</a></div>
+            <div class="hot-item"><span class="hot-rank">5</span><a href="/#section-picks" class="hot-title">《西关大屋》第2季</a></div>
+          </div>
+        </div>
+        <div class="sidebar-card">
+          <h3>条目更新日志</h3>
+          <div class="update-list">
+            <div class="update-item"><span class="update-date">11月7日</span><span>讲古《伦文叙》第37回</span></div>
+            <div class="update-item"><span class="update-date">11月6日</span><span>短剧《骑楼下的夏天》1—6集</span></div>
+            <div class="update-item"><span class="update-date">11月5日</span><span>《西关大屋》第二季阵容公布</span></div>
+            <div class="update-item"><span class="update-date">11月3日</span><span>粤拼修订版配套音频上线</span></div>
+            <div class="update-item"><span class="update-date">11月1日</span><span>《湾》MV上线</span></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="brand-name">粤之家 粤语站</span>
+        <p class="footer-desc">覆盖粤语歌曲、影视、讲古、粤剧、栋笃笑与方言教学，每日更新具体条目与现场动态。内容时间跨度从1959年任白录音室版到2026年11月新上线条目。</p>
+      </div>
+      <div>
+        <h4>内容类型</h4>
+        <div class="footer-links">
+          <a href="/#section-picks">粤语歌曲</a>
+          <a href="/#section-picks">粤语影视</a>
+          <a href="/#section-picks">讲古广播</a>
+          <a href="/#section-picks">粤剧折子戏</a>
+          <a href="/#section-picks">栋笃笑</a>
+        </div>
+      </div>
+      <div>
+        <h4>参与</h4>
+        <div class="footer-links">
+          <a href="/#section-contribute">投稿方式</a>
+          <a href="/#section-contribute">短剧征集</a>
+          <a href="/#section-comments">听友留言</a>
+          <a href="/#section-faq">常见问答</a>
+        </div>
+      </div>
+      <div>
+        <h4>关于</h4>
+        <div class="footer-links">
+          <a href="/#section-overview">内容版图</a>
+          <a href="/#section-deep">判断维度</a>
+          <a href="/#section-guide">消费路径</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 粤之家 粤语站 · 内容聚合示例 · 数据截至2026年11月8日</span>
+      <span>站内条目为示例内容，事实性信息以标注来源为准</span>
+    </div>
+  </footer>
+
+  <!-- 回到顶部 -->
+  <button class="back-to-top" id="backToTop" aria-label="回到顶部">↑</button>
+
+  <!-- 搜索面板 -->
+  <div class="search-panel" id="searchPanel" role="dialog" aria-label="搜索站内内容" aria-modal="true">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="输入条目名、类型或关键词..." aria-label="搜索关键词">
+      <div class="search-results" id="searchResults"></div>
+      <button class="search-close" id="searchClose">关闭搜索</button>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // 菜单切换（移动端）
+      const menuBtn = document.getElementById('menuBtn');
+      const mainNav = document.getElementById('mainNav');
+      if (menuBtn && mainNav) {
+        menuBtn.addEventListener('click', function() {
+          const expanded = this.getAttribute('aria-expanded') === 'true';
+          this.setAttribute('aria-expanded', !expanded);
+          mainNav.classList.toggle('open');
+        });
+        // 点击导航项后收起
+        mainNav.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            if (window.innerWidth <= 740) {
+              mainNav.classList.remove('open');
+              menuBtn.setAttribute('aria-expanded', 'false');
+            }
+          });
+        });
+      }
+
+      // 回到顶部
+      const backToTop = document.getElementById('backToTop');
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > window.innerHeight) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      });
+      backToTop.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // 搜索面板
+      const searchToggle = document.getElementById('searchToggle');
+      const searchPanel = document.getElementById('searchPanel');
+      const searchClose = document.getElementById('searchClose');
+      const searchInput = document.getElementById('searchInput');
+      const searchResults = document.getElementById('searchResults');
+
+      // 收集页面中的可搜索条目（标题文本）
+      function collectSearchableItems() {
+        const items = [];
+        // 卡片标题
+        document.querySelectorAll('.card-title').forEach(el => {
+          items.push({ text: el.textContent.trim(), anchor: el.closest('.card')?.querySelector('.card-title')?.closest('section')?.id || '' });
+        });
+        // 新闻标题
+        document.querySelectorAll('.news-title').forEach(el => {
+          items.push({ text: el.textContent.trim(), anchor: el.closest('section')?.id || '' });
+        });
+        // 相关资讯标题
+        document.querySelectorAll('.related-news-title').forEach(el => {
+          items.push({ text: el.textContent.trim(), anchor: el.closest('section')?.id || '' });
+        });
+        // FAQ 问题
+        document.querySelectorAll('.faq-item summary').forEach(el => {
+          items.push({ text: el.textContent.trim(), anchor: 'section-faq' });
+        });
+        // 推荐标签
+        document.querySelectorAll('.rec-tag').forEach(el => {
+          items.push({ text: el.textContent.trim(), anchor: 'section-recommend' });
+        });
+        return items;
+      }
+
+      const searchableItems = collectSearchableItems();
+
+      function renderSearchResults(query) {
+        const q = query.trim().toLowerCase();
+        if (!q) {
+          searchResults.innerHTML = '';
+          return;
+        }
+        const matches = searchableItems.filter(item => item.text.toLowerCase().includes(q));
+        if (matches.length === 0) {
+          searchResults.innerHTML = '<div class="search-empty">没有找到匹配的条目，试试其他关键词。</div>';
+          return;
+        }
+        searchResults.innerHTML = matches.slice(0, 12).map(item =>
+          `<a class="search-result-item" href="/#${item.anchor}" data-href="${item.anchor}">${item.text}</a>`
+        ).join('');
+        // 点击结果关闭搜索并滚动
+        searchResults.querySelectorAll('.search-result-item').forEach(link => {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.dataset.href;
+            searchPanel.classList.remove('active');
+            if (targetId) {
+              const targetEl = document.getElementById(targetId);
+              if (targetEl) {
+                const offset = 110;
+                const top = targetEl.getBoundingClientRect().top + window.scrollY - offset;
+                window.scrollTo({ top, behavior: 'smooth' });
+              }
+            }
+          });
+        });
+      }
+
+      searchInput.addEventListener('input', function() {
+        renderSearchResults(this.value);
+      });
+
+      searchToggle.addEventListener('click', function() {
+        searchPanel.classList.add('active');
+        searchInput.value = '';
+        searchResults.innerHTML = '';
+        setTimeout(() => searchInput.focus(), 100);
+      });
+
+      searchClose.addEventListener('click', function() {
+        searchPanel.classList.remove('active');
+      });
+
+      searchPanel.addEventListener('click', function(e) {
+        if (e.target === searchPanel) {
+          searchPanel.classList.remove('active');
+        }
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && searchPanel.classList.contains('active')) {
+          searchPanel.classList.remove('active');
+        }
+      });
+
+      // 平滑滚动偏移
+      document.querySelectorAll('a[href^="/#"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href.startsWith('/#')) {
+            const id = href.substring(2);
+            const target = document.getElementById(id);
+            if (target) {
+              e.preventDefault();
+              const offset = 110;
+              const top = target.getBoundingClientRect().top + window.scrollY - offset;
+              window.scrollTo({ top, behavior: 'smooth' });
+              history.pushState(null, '', href);
+            }
+          }
+        });
+      });
+    })();
+  </script>
+
+  <!-- 结构化数据 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "粤之家 粤语站",
+    "description": "汇聚粤语歌曲、影视、讲古、粤剧、栋笃笑与方言教学等具体内容，适合粤语爱好者和广府文化关注者浏览。",
+    "inLanguage": "zh-CN",
+    "about": {
+      "@type": "Thing",
+      "name": "粤语文化"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "粤剧《帝女花》青春版和任白版主要区别在哪？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "任白版1959年录音室版是标准参照，青春版由陈嘉欣、李伟骢主演，保留任白腔骨架但删减了过场戏，全剧时长从3小时20分压缩到2小时35分。青春版新增投影字幕。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "林兆明重制版《西游记》删了哪些内容？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "第12回删掉两段过场诗，共约4分钟。核心情节和角色对白未删。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "粤语拼音2026修订版的“eo”和“oe”怎么区分？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "“oe”出现在“靴”（hoe1）、“约”（joek3）等字，舌位靠前；“eo”出现在“卒”（zeot1）、“出”（ceot1）等字，舌位靠后。修订版新增两组韵母的对比音频。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "黄子华《加班》优先场片段里有哪些具体包袱？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "3分钟片段中，黄子华讲了两个完整包袱：一是“老板说AI不会请假，但AI会让你加班”；二是“以前OT有饭盒，现在OT有AI帮你写报告”。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "粤语短剧《西关大屋》第一季和第二季主演有变化吗？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "第一季主演梁志强、陈婉玲保持不变，第二季新增黄志荣饰演三叔公。导演何敏仪在两季中均未更换，取景地扩展到多宝路。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "麦浚龙《湾》的编曲用了什么具体乐器？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "编曲以五声音阶的合成器铺底，叠加电子鼓机TR-808的变体节奏，副歌部分加入南音琵琶采样。"
+        }
+      }
+    ]
+  }
+  </script>
+</body>
+  </html>
